@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
+import me.elhoussam.util.sys.TimeHandler;
 
 public class Tracking {
   public static Boolean globalSwitcher = true ;
@@ -23,6 +24,10 @@ public class Tracking {
   public static synchronized void info(Boolean enable, String infoMsg) {
     String[] parts = Tracking.LineNb().split("-")  ;
     Toggle(globalSwitcher && enable,parts[0],Integer.valueOf(parts[1])) ;
+
+    (Database.getInstance()).insertRecord("appEvent", new Object[] {"INFO",TimeHandler.getTimeString(),
+        parts[0], parts[1], infoMsg});
+
     instance.info( infoMsg );
     //fh.close();
   }
@@ -46,20 +51,28 @@ public class Tracking {
   /**
    *which trace the warning of the system
    */
-  public static synchronized void warning(Boolean enable, String warningMsg ) {
-
+  public static synchronized void warning(Boolean enable, String warningMsg )  {
     String[] parts = Tracking.LineNb().split("-")  ;
     Toggle(globalSwitcher && enable,parts[0],Integer.valueOf(parts[1])) ;
+
+    (Database.getInstance()).insertRecord("appEvent", new Object[] {"warning".toUpperCase(),TimeHandler.getTimeString(),
+        parts[0], parts[1], warningMsg });
+
+
     instance.warning( warningMsg );
     //fh.close();
   }
   /**
    * public method which trace the errors of the system
    */
-  public static synchronized void error(Boolean enable, String errorMsg ) {
+  public static synchronized void error(Boolean enable, String errorMsg )  {
     enable = true;
     String[] parts = Tracking.LineNb().split("-")  ;
     Toggle(enable ,parts[0],Integer.valueOf(parts[1])) ;
+
+    (Database.getInstance()).insertRecord("appEvent", new Object[] {"error".toUpperCase(),TimeHandler.getTimeString(),
+        parts[0], parts[1], errorMsg });
+
     instance.severe(errorMsg);
   }
   /**
@@ -133,6 +146,10 @@ public class Tracking {
       //if( ! str.endsWith("\n") )  str+="\n";
       System.out.println( str );
     }
+
+    (Database.getInstance()).insertRecord("appEvent", new Object[] {"ECHO",TimeHandler.getTimeString(),
+        "unknown", 0, obj.toString() });
+
   }
 
   /** @return The line number of the code that ran this method
