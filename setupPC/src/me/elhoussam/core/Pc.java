@@ -4,6 +4,7 @@ import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 import me.elhoussam.implementation.info;
 import me.elhoussam.interfaces.infoInterface.STATE;
+import me.elhoussam.util.log.Database;
 import me.elhoussam.util.log.Tracking;
 import me.elhoussam.util.sys.ExceptionHandler;
 import me.elhoussam.util.sys.SecurityHandler;
@@ -11,18 +12,40 @@ import me.elhoussam.util.sys.SecurityHandler;
 public class Pc {
   private static Pc localObj = null;
   private String ipAddress = "NONE";
+
+  private byte pcSessionNumber = 1; // retrive last pc session number
+  // query : select seq from sqlite_sequence where name="appEvent" ** to get the last inserted ID
+  private byte guestSessionNumber = 1;
+  private byte pcStateChanged = 1;
+
+
   private int startTime = 0;
   private int lastOpenTime = 0;
   private int workTime = 0;
+  private int totalWorkTime = 0;
+
   private int lastCloseTime = 0;
   private int closeTime = 0;
+  private int totalCloseTime = 0;
+
   private int lastPauseTime = 0;
   private int pauseTime = 0;
+  private int totalPauseTime = 0;
+
   private boolean firstTimeOpen;
-  private STATE currentState = STATE.CLOSED;
+  private STATE currentState = STATE.CLOSED; // the same with idle
+  private int guestSessionStartTime;
 
   public static STATE getCurrentState() {
     return localObj.currentState;
+  }
+
+  public static byte getGuestSession() {
+    return localObj.guestSessionNumber;
+  }
+
+  public static byte getPcSession() {
+    return localObj.pcSessionNumber;
   }
 
   public static int getWorkTime() {
@@ -69,7 +92,23 @@ public class Pc {
   public static int Close(int lastCloseTime) {
     STATE lastState = localObj.currentState;
     localObj.currentState = STATE.CLOSED;
+
+    // insert pc Status
+    (Database.getInstance()).insertRecord("pcStatus",
+        new Object[] {Pc.getGuestSession(), Pc.getPcSession(), lastState,
+            Pc.getCurrentState().toString(), connection.currentTimeManagerPc(), "CLOSE",
+            Pc.getCloseTime()});
+    int guestSessionEndTime = connection.currentTimeManagerPc();
+
+    // insert guestSession
+    (Database.getInstance()).insertRecord("guestSessions",
+        new Object[] {Pc.getPcSession(), String.valueOf(Pc.localObj.guestSessionStartTime),
+            String.valueOf(localObj.closeTime), String.valueOf(localObj.workTime),
+            String.valueOf(localObj.pauseTime), String.valueOf(guestSessionEndTime), "DATE TEXT"});
+
+
     int currentTime = connection.currentTimeManagerPc();
+
     localObj.lastCloseTime = currentTime;
     if (lastCloseTime >= 0)
       localObj.closeTime = lastCloseTime;
@@ -81,10 +120,21 @@ public class Pc {
   }
 
   public static int Open(int lastWorkTime) {
+
     if (getCurrentState().equals(STATE.CLOSED))
       localObj.firstTimeOpen = true;
     else // paussed
       localObj.firstTimeOpen = false;
+
+    // insert pc Status
+    (Database.getInstance()).insertRecord("pcStatus",
+        new Object[] {Pc.getGuestSession(), Pc.getPcSession(), Pc.getCurrentState().toString(),
+            "WORKING", connection.currentTimeManagerPc(), "OPEN", Pc.getCloseTime()});
+    // save guest session started time
+    localObj.guestSessionStartTime = connection.currentTimeManagerPc();
+
+    // guest session increment
+    localObj.guestSessionNumber++;
 
     localObj.currentState = STATE.WORKING;
     int currentTime = connection.currentTimeManagerPc();

@@ -1,0 +1,914 @@
+[2020-01-02 08:22:49][INFOS  ][me.elhoussam.core.Pc:175]Start Pc Applicaion
+[2020-01-02 08:22:49][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2020-01-02 08:22:49][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-02 08:22:49][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2020-01-02 08:22:49][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2020-01-02 08:22:49][INFOS  ][me.elhoussam.core.Pc:145]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-02 08:22:52][INFOS  ][me.elhoussam.core.Pc:158]Pc Ip Address : 192.168.1.6
+[2020-01-02 08:22:52][INFOS  ][me.elhoussam.core.Pc:163]Provider PC is ready.
+[2020-01-02 08:22:52][INFOS  ][me.elhoussam.core.Pc:184]ip of the manager 192.168.1.9
+[2020-01-02 08:22:52][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-02 08:23:14][GRAVE  ][me.elhoussam.core.connection:209]getRemoteObj (192.168.1.9):Not connected
+[2020-01-02 08:23:14][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-02 08:23:14][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2020-01-02 08:23:14][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2020-01-02 08:23:14][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 10
+[2020-01-02 08:23:24][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-02 08:23:35][GRAVE  ][me.elhoussam.core.connection:209]getRemoteObj (192.168.1.9):Not connected
+[2020-01-02 08:23:35][GRAVE  ][me.elhoussam.core.connection$2:176]PC launchLocalClock :java.lang.NullPointerException
+[2020-01-02 08:23:36][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:12:03][INFOS  ][me.elhoussam.core.Pc:224]Start Pc Applicaion
+[2020-01-12 16:12:03][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2020-01-12 16:12:03][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:12:03][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2020-01-12 16:12:03][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2020-01-12 16:12:03][INFOS  ][me.elhoussam.core.Pc:194]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:12:06][INFOS  ][me.elhoussam.core.Pc:207]Pc Ip Address : 192.168.1.6
+[2020-01-12 16:12:06][INFOS  ][me.elhoussam.core.Pc:212]Provider PC is ready.
+[2020-01-12 16:12:06][INFOS  ][me.elhoussam.core.Pc:233]ip of the manager 192.168.1.9
+[2020-01-12 16:12:06][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:12:55][INFOS  ][me.elhoussam.core.Pc:224]Start Pc Applicaion
+[2020-01-12 16:12:55][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2020-01-12 16:12:56][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:12:56][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2020-01-12 16:12:56][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2020-01-12 16:12:56][INFOS  ][me.elhoussam.core.Pc:194]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:12:58][INFOS  ][me.elhoussam.core.Pc:207]Pc Ip Address : 192.168.1.6
+[2020-01-12 16:12:58][INFOS  ][me.elhoussam.core.Pc:212]Provider PC is ready.
+[2020-01-12 16:12:59][INFOS  ][me.elhoussam.core.Pc:233]ip of the manager 192.168.1.12
+[2020-01-12 16:12:59][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:12:59][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:13:00][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:13:00][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:13:00][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2020-01-12 16:13:00][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2020-01-12 16:13:00][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 10
+[2020-01-12 16:13:01][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:13:10][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:13:13][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:13:23][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:13:26][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:13:28][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:13:36][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:13:40][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:13:40][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:13:50][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:13:57][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:14:07][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:14:13][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:14:23][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:14:27][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:14:37][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:14:37][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:14:40][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:20:22][INFOS  ][me.elhoussam.core.Pc:225]Start Pc Applicaion
+[2020-01-12 16:20:22][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2020-01-12 16:20:23][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:20:23][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2020-01-12 16:20:23][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2020-01-12 16:20:24][INFOS  ][me.elhoussam.core.Pc:195]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:20:26][INFOS  ][me.elhoussam.core.Pc:208]Pc Ip Address : 192.168.1.6
+[2020-01-12 16:20:26][INFOS  ][me.elhoussam.core.Pc:213]Provider PC is ready.
+[2020-01-12 16:20:26][INFOS  ][me.elhoussam.core.Pc:234]ip of the manager 192.168.1.12
+[2020-01-12 16:20:26][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:20:27][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:20:28][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:20:28][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:20:28][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2020-01-12 16:20:28][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2020-01-12 16:20:28][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 10
+[2020-01-12 16:20:29][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:20:38][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:20:41][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:20:51][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:20:54][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:20:59][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:21:04][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:21:07][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:21:17][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:21:20][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:21:31][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:21:34][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:21:44][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:23:28][INFOS  ][me.elhoussam.core.Pc:225]Start Pc Applicaion
+[2020-01-12 16:23:28][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2020-01-12 16:23:28][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:23:28][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2020-01-12 16:23:28][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2020-01-12 16:23:28][INFOS  ][me.elhoussam.core.Pc:195]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:23:31][INFOS  ][me.elhoussam.core.Pc:208]Pc Ip Address : 192.168.1.6
+[2020-01-12 16:23:31][INFOS  ][me.elhoussam.core.Pc:213]Provider PC is ready.
+[2020-01-12 16:23:31][INFOS  ][me.elhoussam.core.Pc:234]ip of the manager 192.168.1.12
+[2020-01-12 16:23:31][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:23:33][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:23:34][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:23:34][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:23:34][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2020-01-12 16:23:34][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2020-01-12 16:23:35][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 10
+[2020-01-12 16:23:35][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:23:45][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:23:48][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:23:50][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:24:00][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:24:05][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:24:15][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:24:18][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:24:28][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:24:31][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:24:41][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:24:44][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:24:45][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:24:54][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:24:57][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:25:07][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:25:10][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:25:20][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:25:23][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:25:33][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:25:36][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:25:40][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:25:46][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:25:49][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:25:59][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:26:02][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:26:12][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:26:15][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:26:25][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:26:28][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:26:36][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:26:38][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:26:38][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:26:41][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:26:42][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:26:52][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:26:55][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:27:05][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:27:17][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:27:27][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:27:30][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:27:31][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:27:40][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:27:44][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:27:54][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:27:57][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:28:07][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:28:10][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:28:20][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:28:23][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:31:44][INFOS  ][me.elhoussam.core.Pc:225]Start Pc Applicaion
+[2020-01-12 16:31:44][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2020-01-12 16:31:44][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:31:45][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2020-01-12 16:31:45][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2020-01-12 16:31:45][INFOS  ][me.elhoussam.core.Pc:195]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:31:47][INFOS  ][me.elhoussam.core.Pc:208]Pc Ip Address : 192.168.1.6
+[2020-01-12 16:31:47][INFOS  ][me.elhoussam.core.Pc:213]Provider PC is ready.
+[2020-01-12 16:31:47][INFOS  ][me.elhoussam.core.Pc:234]ip of the manager 192.168.1.12
+[2020-01-12 16:31:48][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:31:48][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:31:49][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:31:49][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:31:49][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2020-01-12 16:31:49][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2020-01-12 16:31:49][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 10
+[2020-01-12 16:31:49][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:31:59][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:32:02][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:32:12][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:32:15][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:32:30][INFOS  ][me.elhoussam.core.Pc:225]Start Pc Applicaion
+[2020-01-12 16:32:30][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2020-01-12 16:32:31][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:32:31][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2020-01-12 16:32:31][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2020-01-12 16:32:31][INFOS  ][me.elhoussam.core.Pc:195]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:32:34][INFOS  ][me.elhoussam.core.Pc:208]Pc Ip Address : 192.168.1.6
+[2020-01-12 16:32:34][INFOS  ][me.elhoussam.core.Pc:213]Provider PC is ready.
+[2020-01-12 16:32:34][INFOS  ][me.elhoussam.core.Pc:234]ip of the manager 192.168.1.12
+[2020-01-12 16:32:34][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:32:35][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:32:35][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:32:35][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:32:36][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2020-01-12 16:32:36][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2020-01-12 16:32:36][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 10
+[2020-01-12 16:32:36][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:32:40][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:32:46][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:32:49][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:32:59][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:33:02][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:33:12][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:33:15][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:33:25][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:33:25][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:33:28][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:33:38][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:33:41][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:33:51][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:33:54][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:34:04][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:34:07][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:34:17][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:34:20][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:34:20][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:34:30][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:34:33][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:34:43][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:34:46][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:34:56][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:34:59][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:35:09][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:35:12][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:35:15][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:35:23][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:35:25][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:35:36][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:35:39][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:35:39][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:35:40][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:35:49][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:35:51][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:36:02][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:36:04][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:37:24][INFOS  ][me.elhoussam.core.Pc:225]Start Pc Applicaion
+[2020-01-12 16:37:25][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2020-01-12 16:37:25][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:37:25][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2020-01-12 16:37:25][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2020-01-12 16:37:26][INFOS  ][me.elhoussam.core.Pc:195]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:37:28][INFOS  ][me.elhoussam.core.Pc:208]Pc Ip Address : 192.168.1.6
+[2020-01-12 16:37:28][INFOS  ][me.elhoussam.core.Pc:213]Provider PC is ready.
+[2020-01-12 16:37:28][INFOS  ][me.elhoussam.core.Pc:234]ip of the manager 192.168.1.12
+[2020-01-12 16:37:28][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:37:29][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:37:29][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:37:30][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:37:30][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2020-01-12 16:37:30][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2020-01-12 16:37:30][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 10
+[2020-01-12 16:37:30][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:37:36][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:37:40][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:37:47][INFOS  ][me.elhoussam.core.Pc:225]Start Pc Applicaion
+[2020-01-12 16:37:48][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2020-01-12 16:37:48][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:37:48][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2020-01-12 16:37:48][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2020-01-12 16:37:48][INFOS  ][me.elhoussam.core.Pc:195]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:37:50][INFOS  ][me.elhoussam.core.Pc:208]Pc Ip Address : 192.168.1.6
+[2020-01-12 16:37:51][INFOS  ][me.elhoussam.core.Pc:213]Provider PC is ready.
+[2020-01-12 16:37:51][INFOS  ][me.elhoussam.core.Pc:234]ip of the manager 192.168.1.12
+[2020-01-12 16:37:51][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:37:52][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:37:52][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:37:52][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2020-01-12 16:37:52][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2020-01-12 16:37:52][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 10
+[2020-01-12 16:37:53][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:38:03][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:38:04][GRAVE  ][me.elhoussam.core.connection:209]getRemoteObj (192.168.1.12):Not connected
+[2020-01-12 16:38:08][INFOS  ][me.elhoussam.core.Pc:225]Start Pc Applicaion
+[2020-01-12 16:38:09][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2020-01-12 16:38:09][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:38:09][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2020-01-12 16:38:09][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2020-01-12 16:38:09][INFOS  ][me.elhoussam.core.Pc:195]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:38:12][INFOS  ][me.elhoussam.core.Pc:208]Pc Ip Address : 192.168.1.6
+[2020-01-12 16:38:12][INFOS  ][me.elhoussam.core.Pc:213]Provider PC is ready.
+[2020-01-12 16:38:12][INFOS  ][me.elhoussam.core.Pc:234]ip of the manager 192.168.1.12
+[2020-01-12 16:38:12][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:38:13][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:38:13][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:38:13][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:38:13][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2020-01-12 16:38:13][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2020-01-12 16:38:14][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 10
+[2020-01-12 16:38:14][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:38:24][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:38:27][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:38:46][INFOS  ][me.elhoussam.core.Pc:225]Start Pc Applicaion
+[2020-01-12 16:38:47][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2020-01-12 16:38:47][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:38:47][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2020-01-12 16:38:47][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2020-01-12 16:38:47][INFOS  ][me.elhoussam.core.Pc:195]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:38:50][INFOS  ][me.elhoussam.core.Pc:208]Pc Ip Address : 192.168.1.6
+[2020-01-12 16:38:50][INFOS  ][me.elhoussam.core.Pc:213]Provider PC is ready.
+[2020-01-12 16:38:50][INFOS  ][me.elhoussam.core.Pc:234]ip of the manager 192.168.1.12
+[2020-01-12 16:38:50][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:38:51][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:38:52][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:38:52][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:38:52][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2020-01-12 16:38:52][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2020-01-12 16:38:52][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 10
+[2020-01-12 16:38:55][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:39:02][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:39:05][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:39:15][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:39:18][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:39:36][INFOS  ][me.elhoussam.core.Pc:225]Start Pc Applicaion
+[2020-01-12 16:39:36][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2020-01-12 16:39:36][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:39:36][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2020-01-12 16:39:37][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2020-01-12 16:39:37][INFOS  ][me.elhoussam.core.Pc:195]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:39:39][INFOS  ][me.elhoussam.core.Pc:208]Pc Ip Address : 192.168.1.6
+[2020-01-12 16:39:39][INFOS  ][me.elhoussam.core.Pc:213]Provider PC is ready.
+[2020-01-12 16:39:39][INFOS  ][me.elhoussam.core.Pc:234]ip of the manager 192.168.1.12
+[2020-01-12 16:39:40][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:39:40][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:39:41][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:39:41][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:39:41][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2020-01-12 16:39:41][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2020-01-12 16:39:41][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 10
+[2020-01-12 16:39:42][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:39:51][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:39:54][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:40:04][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:40:07][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:40:18][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:40:20][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:40:44][INFOS  ][me.elhoussam.core.Pc:225]Start Pc Applicaion
+[2020-01-12 16:40:44][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2020-01-12 16:40:44][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:40:44][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2020-01-12 16:40:44][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2020-01-12 16:40:44][INFOS  ][me.elhoussam.core.Pc:195]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:40:47][INFOS  ][me.elhoussam.core.Pc:208]Pc Ip Address : 192.168.1.6
+[2020-01-12 16:40:47][INFOS  ][me.elhoussam.core.Pc:213]Provider PC is ready.
+[2020-01-12 16:40:47][INFOS  ][me.elhoussam.core.Pc:234]ip of the manager 192.168.1.12
+[2020-01-12 16:40:47][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:40:48][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:40:48][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:40:48][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2020-01-12 16:40:49][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2020-01-12 16:40:49][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 10
+[2020-01-12 16:40:49][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:41:05][INFOS  ][me.elhoussam.core.Pc:225]Start Pc Applicaion
+[2020-01-12 16:41:05][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2020-01-12 16:41:05][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:41:05][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2020-01-12 16:41:06][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2020-01-12 16:41:06][INFOS  ][me.elhoussam.core.Pc:195]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:41:08][INFOS  ][me.elhoussam.core.Pc:208]Pc Ip Address : 192.168.1.6
+[2020-01-12 16:41:08][INFOS  ][me.elhoussam.core.Pc:213]Provider PC is ready.
+[2020-01-12 16:41:09][INFOS  ][me.elhoussam.core.Pc:234]ip of the manager 192.168.1.12
+[2020-01-12 16:41:09][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:41:09][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:41:10][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:41:10][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:41:10][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2020-01-12 16:41:10][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2020-01-12 16:41:10][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 10
+[2020-01-12 16:41:11][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:41:20][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:41:23][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:41:38][INFOS  ][me.elhoussam.core.Pc:225]Start Pc Applicaion
+[2020-01-12 16:41:39][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2020-01-12 16:41:39][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:41:39][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2020-01-12 16:41:39][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2020-01-12 16:41:39][INFOS  ][me.elhoussam.core.Pc:195]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:41:42][INFOS  ][me.elhoussam.core.Pc:208]Pc Ip Address : 192.168.1.6
+[2020-01-12 16:41:42][INFOS  ][me.elhoussam.core.Pc:213]Provider PC is ready.
+[2020-01-12 16:41:42][INFOS  ][me.elhoussam.core.Pc:234]ip of the manager 192.168.1.12
+[2020-01-12 16:41:42][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:41:43][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:41:43][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:41:43][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2020-01-12 16:41:43][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2020-01-12 16:41:44][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 10
+[2020-01-12 16:41:44][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:41:54][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:41:57][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:42:01][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:42:07][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:42:09][GRAVE  ][me.elhoussam.core.connection:209]getRemoteObj (192.168.1.12):Not connected
+[2020-01-12 16:42:18][INFOS  ][me.elhoussam.core.Pc:225]Start Pc Applicaion
+[2020-01-12 16:42:18][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2020-01-12 16:42:18][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:42:19][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2020-01-12 16:42:19][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2020-01-12 16:42:19][INFOS  ][me.elhoussam.core.Pc:195]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:42:21][INFOS  ][me.elhoussam.core.Pc:208]Pc Ip Address : 192.168.1.6
+[2020-01-12 16:42:22][INFOS  ][me.elhoussam.core.Pc:213]Provider PC is ready.
+[2020-01-12 16:42:22][INFOS  ][me.elhoussam.core.Pc:234]ip of the manager 192.168.1.12
+[2020-01-12 16:42:22][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:42:23][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:42:24][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:42:24][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:42:24][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2020-01-12 16:42:24][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2020-01-12 16:42:24][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 10
+[2020-01-12 16:42:25][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:42:34][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:42:37][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:42:48][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:42:51][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:43:01][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:43:04][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:43:14][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:43:16][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:43:17][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:43:27][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:43:30][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:43:40][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:43:43][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:43:53][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:44:05][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:44:12][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:44:15][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:44:18][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:44:28][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:44:31][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:44:42][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:44:45][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:44:55][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:44:58][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:45:07][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:45:08][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:45:11][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:45:21][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:45:24][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:45:27][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:45:28][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:45:34][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:46:02][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:46:28][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:46:38][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:46:41][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:46:59][INFOS  ][me.elhoussam.core.Pc:225]Start Pc Applicaion
+[2020-01-12 16:47:00][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2020-01-12 16:47:00][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:47:00][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2020-01-12 16:47:00][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2020-01-12 16:47:00][INFOS  ][me.elhoussam.core.Pc:195]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:47:03][INFOS  ][me.elhoussam.core.Pc:208]Pc Ip Address : 192.168.1.6
+[2020-01-12 16:47:03][INFOS  ][me.elhoussam.core.Pc:213]Provider PC is ready.
+[2020-01-12 16:47:03][INFOS  ][me.elhoussam.core.Pc:234]ip of the manager 192.168.1.12
+[2020-01-12 16:47:03][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:47:04][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:47:04][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:47:04][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:47:04][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2020-01-12 16:47:04][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2020-01-12 16:47:05][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 10
+[2020-01-12 16:47:05][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:47:15][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:47:36][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:47:53][INFOS  ][me.elhoussam.core.Pc:225]Start Pc Applicaion
+[2020-01-12 16:47:53][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2020-01-12 16:47:54][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:47:54][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2020-01-12 16:47:54][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2020-01-12 16:47:54][INFOS  ][me.elhoussam.core.Pc:195]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:47:56][INFOS  ][me.elhoussam.core.Pc:208]Pc Ip Address : 192.168.1.6
+[2020-01-12 16:47:57][INFOS  ][me.elhoussam.core.Pc:213]Provider PC is ready.
+[2020-01-12 16:47:57][INFOS  ][me.elhoussam.core.Pc:234]ip of the manager 192.168.1.12
+[2020-01-12 16:47:57][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:47:57][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:47:58][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:47:58][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:47:58][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2020-01-12 16:47:58][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2020-01-12 16:47:59][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 10
+[2020-01-12 16:47:59][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:48:09][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:48:12][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:48:22][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:48:25][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:48:35][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:48:38][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:48:46][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:48:48][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:48:52][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:49:02][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:49:05][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:49:15][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:49:18][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:49:28][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:49:31][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:49:41][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:49:41][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:49:44][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:49:54][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:49:57][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:50:07][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:50:10][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:50:20][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:50:23][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:50:33][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:50:36][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:50:37][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:50:47][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:50:50][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:51:01][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:51:02][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:51:04][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:51:04][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:51:25][INFOS  ][me.elhoussam.core.Pc:225]Start Pc Applicaion
+[2020-01-12 16:51:25][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2020-01-12 16:51:25][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:51:26][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2020-01-12 16:51:26][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2020-01-12 16:51:26][INFOS  ][me.elhoussam.core.Pc:195]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 16:51:28][INFOS  ][me.elhoussam.core.Pc:208]Pc Ip Address : 192.168.1.6
+[2020-01-12 16:51:28][INFOS  ][me.elhoussam.core.Pc:213]Provider PC is ready.
+[2020-01-12 16:51:28][INFOS  ][me.elhoussam.core.Pc:234]ip of the manager 192.168.1.12
+[2020-01-12 16:51:29][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:51:29][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:51:30][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:51:30][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:51:30][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2020-01-12 16:51:30][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2020-01-12 16:51:30][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 10
+[2020-01-12 16:51:31][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:51:41][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:51:43][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:51:54][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:51:56][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:52:07][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:52:09][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:52:15][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 16:52:20][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:52:22][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:52:33][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:52:36][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:52:46][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:52:49][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 16:52:59][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 16:53:02][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:07:27][INFOS  ][me.elhoussam.core.Pc:225]Start Pc Applicaion
+[2020-01-12 17:07:28][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2020-01-12 17:07:28][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 17:07:28][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2020-01-12 17:07:28][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2020-01-12 17:07:28][INFOS  ][me.elhoussam.core.Pc:195]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 17:07:31][INFOS  ][me.elhoussam.core.Pc:208]Pc Ip Address : 192.168.1.6
+[2020-01-12 17:07:31][INFOS  ][me.elhoussam.core.Pc:213]Provider PC is ready.
+[2020-01-12 17:07:31][INFOS  ][me.elhoussam.core.Pc:234]ip of the manager 192.168.1.12
+[2020-01-12 17:07:31][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:07:32][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 17:07:32][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:07:32][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:07:32][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2020-01-12 17:07:33][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2020-01-12 17:07:33][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 10
+[2020-01-12 17:07:33][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:07:43][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:07:46][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 17:07:46][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:07:56][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:07:59][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:08:09][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:08:12][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:08:22][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:08:26][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:09:58][INFOS  ][me.elhoussam.core.Pc:225]Start Pc Applicaion
+[2020-01-12 17:09:58][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2020-01-12 17:09:58][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 17:09:58][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2020-01-12 17:09:59][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2020-01-12 17:09:59][INFOS  ][me.elhoussam.core.Pc:195]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 17:10:01][INFOS  ][me.elhoussam.core.Pc:208]Pc Ip Address : 192.168.1.6
+[2020-01-12 17:10:01][INFOS  ][me.elhoussam.core.Pc:213]Provider PC is ready.
+[2020-01-12 17:10:01][INFOS  ][me.elhoussam.core.Pc:234]ip of the manager 192.168.1.12
+[2020-01-12 17:10:02][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:10:02][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 17:10:02][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:10:03][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:10:03][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2020-01-12 17:10:03][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2020-01-12 17:10:03][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 10
+[2020-01-12 17:10:03][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:10:13][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:10:16][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:10:26][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:10:29][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:10:40][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:10:43][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:10:46][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 17:10:53][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:10:56][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:11:06][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:11:09][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:11:19][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:11:22][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:11:32][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:11:35][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:11:41][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 17:11:46][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:11:48][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:11:59][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:12:01][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:15:09][INFOS  ][me.elhoussam.core.Pc:225]Start Pc Applicaion
+[2020-01-12 17:15:09][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2020-01-12 17:15:09][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 17:15:09][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2020-01-12 17:15:09][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2020-01-12 17:15:09][INFOS  ][me.elhoussam.core.Pc:195]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 17:15:12][INFOS  ][me.elhoussam.core.Pc:208]Pc Ip Address : 192.168.1.6
+[2020-01-12 17:15:12][INFOS  ][me.elhoussam.core.Pc:213]Provider PC is ready.
+[2020-01-12 17:15:12][INFOS  ][me.elhoussam.core.Pc:234]ip of the manager 192.168.1.12
+[2020-01-12 17:15:12][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:15:13][GRAVE  ][me.elhoussam.core.connection:209]getRemoteObj (192.168.1.12):Not connected
+[2020-01-12 17:15:13][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:15:13][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2020-01-12 17:15:13][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2020-01-12 17:15:13][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 10
+[2020-01-12 17:15:14][GRAVE  ][me.elhoussam.core.connection:209]getRemoteObj (192.168.1.12):Not connected
+[2020-01-12 17:15:14][GRAVE  ][me.elhoussam.core.connection$2:176]PC launchLocalClock :java.lang.NullPointerException
+[2020-01-12 17:15:15][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:15:16][GRAVE  ][me.elhoussam.core.connection:209]getRemoteObj (192.168.1.12):Not connected
+[2020-01-12 17:15:16][GRAVE  ][me.elhoussam.core.connection$2:176]PC launchLocalClock :java.lang.NullPointerException
+[2020-01-12 17:15:17][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:15:18][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =null
+[2020-01-12 17:15:18][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 17:15:23][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:15:26][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:15:36][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:15:38][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:16:39][INFOS  ][me.elhoussam.core.Pc:225]Start Pc Applicaion
+[2020-01-12 17:16:40][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2020-01-12 17:16:40][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 17:16:40][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2020-01-12 17:16:40][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2020-01-12 17:16:40][INFOS  ][me.elhoussam.core.Pc:195]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 17:16:42][INFOS  ][me.elhoussam.core.Pc:208]Pc Ip Address : 192.168.1.6
+[2020-01-12 17:16:42][INFOS  ][me.elhoussam.core.Pc:213]Provider PC is ready.
+[2020-01-12 17:16:42][INFOS  ][me.elhoussam.core.Pc:234]ip of the manager 192.168.1.12
+[2020-01-12 17:16:42][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:16:43][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 17:16:44][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:16:44][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:16:44][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2020-01-12 17:16:44][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2020-01-12 17:16:44][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 10
+[2020-01-12 17:16:44][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:16:54][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:16:57][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:18:00][INFOS  ][me.elhoussam.core.Pc:225]Start Pc Applicaion
+[2020-01-12 17:18:00][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2020-01-12 17:18:00][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 17:18:00][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2020-01-12 17:18:00][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2020-01-12 17:18:00][INFOS  ][me.elhoussam.core.Pc:195]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 17:18:03][INFOS  ][me.elhoussam.core.Pc:208]Pc Ip Address : 192.168.1.6
+[2020-01-12 17:18:03][INFOS  ][me.elhoussam.core.Pc:213]Provider PC is ready.
+[2020-01-12 17:18:03][INFOS  ][me.elhoussam.core.Pc:234]ip of the manager 192.168.1.12
+[2020-01-12 17:18:03][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:18:04][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:18:04][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:18:05][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2020-01-12 17:18:05][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2020-01-12 17:18:05][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 10
+[2020-01-12 17:18:06][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:18:11][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 17:18:13][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 17:18:15][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:18:19][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:18:19][INFOS  ][me.elhoussam.implementation.info:44]info screenshot done:
+[2020-01-12 17:18:20][INFOS  ][me.elhoussam.implementation.info:123]info login done:
+[2020-01-12 17:18:20][INFOS  ][me.elhoussam.implementation.info:60]info screenshotNow done:
+[2020-01-12 17:18:29][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:18:32][GRAVE  ][me.elhoussam.core.connection:209]getRemoteObj (192.168.1.12):Not connected
+[2020-01-12 17:18:42][INFOS  ][me.elhoussam.core.Pc:225]Start Pc Applicaion
+[2020-01-12 17:18:42][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2020-01-12 17:18:42][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 17:18:42][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2020-01-12 17:18:43][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2020-01-12 17:18:43][INFOS  ][me.elhoussam.core.Pc:195]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 17:18:45][INFOS  ][me.elhoussam.core.Pc:208]Pc Ip Address : 192.168.1.6
+[2020-01-12 17:18:45][INFOS  ][me.elhoussam.core.Pc:213]Provider PC is ready.
+[2020-01-12 17:18:46][INFOS  ][me.elhoussam.core.Pc:234]ip of the manager 192.168.1.12
+[2020-01-12 17:18:46][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:18:47][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 17:18:48][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:18:48][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:18:48][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2020-01-12 17:18:48][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2020-01-12 17:18:49][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 10
+[2020-01-12 17:18:50][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:18:59][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:19:02][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:19:12][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:19:15][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:19:25][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:19:28][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:19:36][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 17:19:38][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:19:41][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:19:51][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:19:54][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:25:03][INFOS  ][me.elhoussam.core.Pc:225]Start Pc Applicaion
+[2020-01-12 17:25:03][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2020-01-12 17:25:03][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 17:25:03][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2020-01-12 17:25:03][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2020-01-12 17:25:03][INFOS  ][me.elhoussam.core.Pc:195]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupPC/target/classes/conf/sec.policy
+[2020-01-12 17:25:06][INFOS  ][me.elhoussam.core.Pc:208]Pc Ip Address : 192.168.1.6
+[2020-01-12 17:25:06][INFOS  ][me.elhoussam.core.Pc:213]Provider PC is ready.
+[2020-01-12 17:25:06][INFOS  ][me.elhoussam.core.Pc:234]ip of the manager 192.168.1.12
+[2020-01-12 17:25:06][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:25:07][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 17:25:07][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:25:07][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:25:07][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2020-01-12 17:25:08][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2020-01-12 17:25:08][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 10
+[2020-01-12 17:25:08][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:25:18][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:25:21][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:25:23][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 17:25:31][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:25:34][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:25:44][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:25:47][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:25:57][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:26:00][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:26:10][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:26:13][INFOS  ][me.elhoussam.core.connection:206]getRemoteObj res =msg is recieved
+
+[2020-01-12 17:26:18][INFOS  ][me.elhoussam.implementation.info:74]info getter Triggered
+[2020-01-12 17:26:23][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:26:24][GRAVE  ][me.elhoussam.core.connection:209]getRemoteObj (192.168.1.12):Not connected
+[2020-01-12 17:26:35][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:26:36][GRAVE  ][me.elhoussam.core.connection:209]getRemoteObj (192.168.1.12):Not connected
+[2020-01-12 17:26:46][INFOS  ][me.elhoussam.core.connection:200]getRemoteObj try to reach Manager 
+[2020-01-12 17:26:47][GRAVE  ][me.elhoussam.core.connection:209]getRemoteObj (192.168.1.12):Not connected
