@@ -1,0 +1,1 @@
+mvn -f $PWD/setupManager clean package
