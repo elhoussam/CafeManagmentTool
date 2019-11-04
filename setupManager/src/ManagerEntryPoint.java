@@ -46,22 +46,18 @@ public class ManagerEntryPoint {
 		Tracking.setFolderName("ManagerApp");
 		
 		ActivePc  managerWait = managerWaiting();
-		/*
-		 * // limit for test purpose 
+		// limit for test purpose 
 		int limit = (int)( ( argv.length == 0 )?1:Integer.valueOf( argv[0] )) ;
-		byte activePcs = 0; 
+		int activePcs = 0; 
+	
 		while( activePcs < limit ) {
-
-			byte currentActivePc = (byte) managerWait.getListeActivePc().size() ;
-			if( activePcs != currentActivePc) {
-				Tracking.info( Integer.toString(currentActivePc)+" Active Users"  ) ;
-				
-				activePcs = currentActivePc ;
-			}
+			Tracking.info("Waiting for Pcs");
+			activePcs = managerWait.getListeActivePc().size();
+			if( activePcs > 0 )
+				controlPcs( managerWait.getListeActivePc().get(0) );
+			TimeUnit.SECONDS.sleep(20);
+		
 		}
-		 */
-		TimeUnit.SECONDS.sleep(5);
-		controlPcs( managerWait.getListeActivePc().get(0) );
 		//RegistryInspector(argv[1]);
 		//controlPcs( managerWait.getListeActivePc().get(0) );  // request the Pc func as CLIENT
 	}

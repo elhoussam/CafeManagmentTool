@@ -41,11 +41,11 @@ public class PcEntryPoint {
 	public static void main (String[] args) {
 		
 		Tracking.setFolderName("PcApp");
-		
+		providerWaiting();
 		Tracking.info("ip of the manager"+args[0]);		
 		reachManager(args[0]); // reach manager by his fixed LOCAL_IP
 		
-		providerWaiting();
+		
 	}
 	
 
