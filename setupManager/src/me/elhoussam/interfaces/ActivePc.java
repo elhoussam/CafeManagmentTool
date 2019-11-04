@@ -7,14 +7,21 @@ import me.elhoussam.util.Tracking;
  
 public class ActivePc extends UnicastRemoteObject
 implements ActivePcInterface  {
-	
+	/*
+	*	ArrayList IpOfPcs  contain all the ip of connect pcs
+	*/
 	private ArrayList<String> IpOfPcs = new ArrayList<String>();
-
-	
+	/*
+	*	ArrayList<String> getListeActivePc() : 
+	*	public method return the Array of all ip
+	*/
 	public ArrayList<String> getListeActivePc() {
 		return IpOfPcs;
 	}
-	
+	/*
+	*	addNewIp(String ipNewActivePc) : 
+	*	public method return the Array of all ip
+	*/
 	private void addNewIp(String ipNewActivePc ) {
 		IpOfPcs.add(ipNewActivePc);
 	}

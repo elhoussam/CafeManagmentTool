@@ -12,27 +12,46 @@ import me.elhoussam.interfaces.ActivePc;
 import me.elhoussam.interfaces.infoInterface;
 import me.elhoussam.util.Tracking;
 
-public class ManagerEntryPoint {	
+public class ManagerEntryPoint {
+	/*	String myLocalIp() : 
+	*	static method that return the ip of the machine 
+	*	in the current network
+	*/	
 	public static String myLocalIp() throws UnknownHostException, SocketException {
+		//java.net.Authenticator  -- .preferIPv4Stack=true
 		String ip = "none";
 		DatagramSocket socket = new DatagramSocket(); 
+		// by using any ip address and any port, then return the current ip
 		socket.connect(InetAddress.getByName("8.8.8.8"), 10002);
 		ip = socket.getLocalAddress().getHostAddress();
 		return ip ;
 	}
-	
+	/*	void setupSecurityPolicy() : 
+	*	static method that load the 
+	*	security policy file and setup
+	*	the security manager 
+	*/
 	private static void setupSecurityPolicy() throws Exception {
 			String res = SecurityHandler.instance.LoadSecurityPolicy()  ;
 			Tracking.info("Security State : "+ res ) ; 
-	}
+	}	
+	/*	void managerWaiting() : 
+	*	static method create the object
+	*	which represent the service then start 
+	*	the LocalRegistry in server
+	*	and finaly bind the service object with
+	*	a public name in the localregistry
+	*/	
 	private static ActivePc managerWaiting() {
 		try { 
 			setupSecurityPolicy()  ;
 			
 			String res =  myLocalIp() ;
+			// set server.hostname to IP_MANAGER
 			System.setProperty("java.rmi.server.hostname", res );
-			Tracking.info("Manager Ip Address : "+ res ) ;
-			
+			Tracking.info("Manager Ip Address : "+ res ) ; 
+			// 
+			System.setProperty("java.net.preferIPv4Stack", "true");
 						
 			ActivePc  ManagerWait = new ActivePc();		
 			LocateRegistry.createRegistry(1099);
@@ -45,7 +64,10 @@ public class ManagerEntryPoint {
 			return null; 
 		}
 	}
-
+	/*	void main(String[] args) :  
+	*	this method call other methodes
+	*	to construct the pieces of the app
+	*/	
 	public static void main (String[] argv) throws InterruptedException { 
 		Tracking.setFolderName("ManagerApp");
 		
@@ -64,8 +86,16 @@ public class ManagerEntryPoint {
 		}
 		//RegistryInspector(argv[1]);
 		//controlPcs( managerWait.getListeActivePc().get(0) );  // request the Pc func as CLIENT
-	}
-
+	}	
+	
+	/*	void controlPcs(String providerIp) : 
+	*	static method that allow the Manager
+	*	controls the connected Pcs, by lookup
+	*	for the remote object that represent 
+	*	the service in the other side (Pcs),
+	* 	then gain the full acces according 
+	*	to the available methode in the Remote Object.
+	*/	
 	private static void controlPcs(String providerIp) {
 		try {
 
@@ -81,7 +111,12 @@ public class ManagerEntryPoint {
 			Tracking.error("Manager get Failed:" + e.getStackTrace());
 		}
 	}
-
+	/*	void RegistryInspector(String  args) : 
+	*	take String args represent 
+	*	the Ip of the RmiRegistry 
+	*	the list all names binded 
+	*	to the rmiregistry server
+	*/	
     public static void RegistryInspector(String  args) {
         String registry = args;
         try {
