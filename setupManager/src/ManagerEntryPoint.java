@@ -20,12 +20,16 @@ public class ManagerEntryPoint {
 		ip = socket.getLocalAddress().getHostAddress();
 		return ip ;
 	}
+	
+	private static void setupSecurityPolicy() throws Exception {
+			String res = SecurityHandler.instance.LoadSecurityPolicy()  ;
+			Tracking.info("Security State : "+ res ) ; 
+	}
 	private static ActivePc managerWaiting() {
 		try { 
-			String res =  SecurityHandler.instance.LoadSecurityPolicy() ;
-			Tracking.info("Security State : "+ res ) ; 
+			setupSecurityPolicy()  ;
 			
-			res =  myLocalIp() ;
+			String res =  myLocalIp() ;
 			System.setProperty("java.rmi.server.hostname", res );
 			Tracking.info("Manager Ip Address : "+ res ) ;
 			
@@ -54,7 +58,7 @@ public class ManagerEntryPoint {
 			Tracking.info("Waiting for Pcs");
 			activePcs = managerWait.getListeActivePc().size();
 			if( activePcs > 0 )
-				controlPcs( managerWait.getListeActivePc().get(0) );
+				controlPcs( managerWait.getListeActivePc().get(activePcs-1) );
 			TimeUnit.SECONDS.sleep(20);
 		
 		}
@@ -64,8 +68,7 @@ public class ManagerEntryPoint {
 
 	private static void controlPcs(String providerIp) {
 		try {
-			String res = SecurityHandler.instance.LoadSecurityPolicy()  ;
-			Tracking.info("Security State : "+ res ) ; 
+
 			String fullPath =  "//"+ providerIp +"/pcWait" ;
 
 			infoInterface infoObj;

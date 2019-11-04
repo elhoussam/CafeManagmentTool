@@ -17,13 +17,15 @@ public class PcEntryPoint {
 		ip = socket.getLocalAddress().getHostAddress();
 		return ip ;
 	}
-	
+	private static void setupSecurityPolicy() throws Exception {
+			String res = SecurityHandler.instance.LoadSecurityPolicy()  ;
+			Tracking.info("Security State : "+ res ) ; 
+	}	
 	private static void providerWaiting() {
 		try { 
-			String res =  SecurityHandler.instance.LoadSecurityPolicy() ;
-			Tracking.info("Security State : "+ res ) ; 
+			setupSecurityPolicy();
 			
-			res =  myLocalIp() ;
+			String res =  myLocalIp() ;
 			System.setProperty("java.rmi.server.hostname", res );
 			Tracking.info("Pc Ip Address : "+ res ) ;
 			
@@ -51,15 +53,12 @@ public class PcEntryPoint {
 
 
 	private static void reachManager(String ipManager) {
-		try {
-			 
-			String res = SecurityHandler.instance.LoadSecurityPolicy()  ;
-			Tracking.info("Security State : "+ res ) ; 
+		try { 
 			
 			ActivePcInterface activePcObj;
 			activePcObj = (ActivePcInterface) Naming.lookup("//"+ ipManager +"/ManagerWait");
 			
-			res =  myLocalIp() ;
+			String res =  myLocalIp() ;
 			String result= activePcObj.NotifyAdmin(res);
 			Tracking.info("PC Active :"+result);
 		}catch (Exception e) {
