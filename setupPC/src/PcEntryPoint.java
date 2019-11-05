@@ -41,11 +41,11 @@ public class PcEntryPoint {
 		try { 
 			setupSecurityPolicy();
 			String res =  myLocalIp() ;
+			
+			
 			System.setProperty("java.rmi.server.hostname", res );
 			Tracking.info("Pc Ip Address : "+ res ) ;
 
-			// for java to use preferIp version = 4 
-			System.setProperty("java.net.preferIPv4Stack", "true");
 		
 			info  provideWait = new info();		
 			LocateRegistry.createRegistry(1099);
@@ -62,6 +62,11 @@ public class PcEntryPoint {
 	*/	
 	
 	public static void main (String[] args) {
+
+		// for java to use preferIp version = 4 
+		//java.net.preferIPv4Stack
+		System.setProperty("java.net.preferIPv6Addresses", "true");
+		
 		
 		Tracking.setFolderName("PcApp");
 		providerWaiting();

@@ -10,9 +10,9 @@ public class SecurityHandler {
 	private String securityPolicyPath = "config/security.policy" ;
 	public static SecurityHandler instance = new SecurityHandler(); 
 	private SecurityHandler() {}
-	
 	/*
 	 * InitSecurityPolicy() method load the security policy
+	 * by adding security.policy property into the system 
 	 * */
 	private String InitSecurityPolicy() {
 		try {

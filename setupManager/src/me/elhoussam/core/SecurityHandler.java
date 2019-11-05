@@ -13,9 +13,11 @@ public class SecurityHandler {
 	
 	/*
 	 * InitSecurityPolicy() method load the security policy
+	 * by adding security.policy property into the system 
 	 * */
 	private String InitSecurityPolicy() {
 		try {
+			
 			String DynamicPath =  getClass().getClassLoader().getResource( securityPolicyPath ).toString();
 			if ( DynamicPath.isEmpty() ) {return DynamicPath ;}
 			System.setProperty( "java.security.policy",DynamicPath );

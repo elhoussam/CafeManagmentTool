@@ -46,12 +46,11 @@ public class ManagerEntryPoint {
 		try { 
 			setupSecurityPolicy()  ;
 			
+
 			String res =  myLocalIp() ;
 			// set server.hostname to IP_MANAGER
 			System.setProperty("java.rmi.server.hostname", res );
 			Tracking.info("Manager Ip Address : "+ res ) ; 
-			// 
-			System.setProperty("java.net.preferIPv4Stack", "true");
 						
 			ActivePc  ManagerWait = new ActivePc();		
 			LocateRegistry.createRegistry(1099);
@@ -69,7 +68,13 @@ public class ManagerEntryPoint {
 	*	to construct the pieces of the app
 	*/	
 	public static void main (String[] argv) throws InterruptedException { 
+		// for java to use preferIp version = 4 
+		//java.net.preferIPv4Stack
+		System.setProperty("java.net.preferIPv6Addresses", "true");
+		
+		
 		Tracking.setFolderName("ManagerApp");
+
 		
 		ActivePc  managerWait = managerWaiting();
 		// limit for test purpose 

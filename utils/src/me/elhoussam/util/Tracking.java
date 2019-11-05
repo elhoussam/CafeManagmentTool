@@ -11,36 +11,72 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 public class Tracking {
-	
+	/*
+	* these two logFolderName, logFolderNameChange to save
+	*	the chosing name of logfolder and insure will not 
+	*	be modified more then one time.
+	*/
 	private static String logFolderName ="logFolder";
 	private static Boolean logFolderNameChange = false ;
+	/*
+	* these two className, lineNumber to follow the Tracking 
+	*	funcionality by saving the last className and lineNumber
+	*	to make sure there is one instance of the Logger instance 
+	*/	
 	private static String className = "";
 	private static int lineNumber = -1;
+	/*
+	* instance, fh, ch : use to save and show all 
+	*	event that happend in the system into specific
+	*	file and show the update in the console.
+	*/	
 	private static Logger  instance = null;
 	private static Handler fh;
 	private static Handler ch; 
-
+	/*
+	* void info(String infoMsg)
+	*	public method which trace the infos of the system
+	*/	
 	public static void info(String infoMsg) {
 		String[] parts = Tracking.LineNb().split("-")  ;
 		Tracking.getInstance(parts[0],Integer.valueOf(parts[1]) ).info( infoMsg );
 		fh.close();
 	}
+	/*
+	* void warning(String infoMsg)
+	*	public method which trace the warning of the system
+	*/
 	public static void warning(String warningMsg) {
 		String[] parts = Tracking.LineNb().split("-")  ;
 		Tracking.getInstance(parts[0],Integer.valueOf(parts[1]) ).warning( warningMsg );
 		fh.close();
 	}
+	/*
+	* void error(String infoMsg)
+	*	public method which trace the errors of the system
+	*/
 	public static void error(String errorMsg) {
 		String[] parts = Tracking.LineNb().split("-")  ;
 		Tracking.getInstance( parts[0],Integer.valueOf(parts[1])).severe(errorMsg);
 		fh.close();
 	}
-
+	/*
+	* void setFolderName(String name)
+	*	public method : allow you to set new name folder
+	*	that contain the log file just for one time.
+	*/
 	public static void setFolderName(String name) {
 		
-		if ( !logFolderNameChange && !name.trim().isEmpty()  && ! name.trim().equalsIgnoreCase(logFolderName) ) { // default
+		if ( !logFolderNameChange && !name.trim().isEmpty()  && ! name.trim().equalsIgnoreCase(logFolderName) ) {  
 			logFolderName = name.trim(); logFolderNameChange = true; }
 	}
+	/*
+	* Logger (String ClassName, int lineNb )
+	*	private method : that return new Logger object 
+	*	if its the first you invoke this method, or will 
+	*	setup new formatter if the className, lineNumber 
+	*	is changed.
+	*/
 	private static Logger getInstance(String ClassName, int lineNb ) {
 		if( instance == null || !Tracking.className.equals(ClassName) || !(Tracking.lineNumber==lineNb) )  {
 			instance = setUpLogger( setUpFormatter(ClassName, lineNb) );
@@ -48,7 +84,11 @@ public class Tracking {
 		}	
 		return instance;
 	}
-
+	/*
+	*	SimpleFormatter setUpFormatter(String ClassName, int LineNb )
+	*	private method : that return new SimpleFormatter object 
+	*	that corresponding to the the className, lineNumber. 
+	*/
 	private static SimpleFormatter setUpFormatter(String ClassName, int LineNb ) {
 		return   new SimpleFormatter() {
 			private String format ="[%1$tF %1$tT] [%2$-7s] [%3$s:%4$d] %5$s %n";
@@ -64,8 +104,13 @@ public class Tracking {
 						);
 			}
 		};
-	}
-
+	}	
+	/*
+	*	Logger setUpLogger( SimpleFormatter SP )
+	*	private method : that return new Logger object 
+	*	if is the first time, or set new formatter to 
+	*	the existing logger object.
+	*/
 	private static Logger setUpLogger( SimpleFormatter SP ) {
 
 		Logger lg = Logger.getLogger("MyLOgger") ;
@@ -119,7 +164,7 @@ public class Tracking {
 	 * after understanding the magic :D in side  "___8drrd3148796d_Xaf "
 	 * i make same changes to return the lineNumber also the className of
 	 * any Method that calls :
-	 * Track.info(), Track.error() 
+	 * Track.info(), Track.warning() , Track.error() 
 	 * to simplify the reuse of this class in the future ;)
 	 * */
 	private static String ___8drrd3148796d_Xaf() {
