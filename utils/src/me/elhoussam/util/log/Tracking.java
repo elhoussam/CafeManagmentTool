@@ -1,4 +1,4 @@
-package me.elhoussam.util;
+package me.elhoussam.util.log;
 
 import java.io.File;
 import java.net.InetAddress;
@@ -79,39 +79,19 @@ public class Tracking {
 	*/
 	private static Logger getInstance(String ClassName, int lineNb ) {
 		if( instance == null || !Tracking.className.equals(ClassName) || !(Tracking.lineNumber==lineNb) )  {
-			instance = setUpLogger( setUpFormatter(ClassName, lineNb) );
+			instance = setUpLogger(  ClassName, lineNb  );
 			Tracking.className = ClassName;  Tracking.lineNumber =lineNb ;
 		}	
 		return instance;
 	}
-	/*
-	*	SimpleFormatter setUpFormatter(String ClassName, int LineNb )
-	*	private method : that return new SimpleFormatter object 
-	*	that corresponding to the the className, lineNumber. 
-	*/
-	private static SimpleFormatter setUpFormatter(String ClassName, int LineNb ) {
-		return   new SimpleFormatter() {
-			private String format ="[%1$tF %1$tT] [%2$-7s] [%3$s:%4$d] %5$s %n";
 
-			@Override
-			public synchronized String format(LogRecord lr) {
-						return String.format(format,
-						new Date(lr.getMillis()),
-						lr.getLevel().getLocalizedName(),
-						ClassName,
-						LineNb, 
-						lr.getMessage()
-						);
-			}
-		};
-	}	
 	/*
 	*	Logger setUpLogger( SimpleFormatter SP )
 	*	private method : that return new Logger object 
 	*	if is the first time, or set new formatter to 
 	*	the existing logger object.
 	*/
-	private static Logger setUpLogger( SimpleFormatter SP ) {
+	private static Logger setUpLogger( String ClassName, int LineNb ) {
 
 		Logger lg = Logger.getLogger("MyLOgger") ;
 		try{
@@ -127,11 +107,11 @@ public class Tracking {
 			lg.setUseParentHandlers(false);
 
 			ch = new ConsoleHandler();
-			ch.setFormatter(SP) ;
+			ch.setFormatter(new Formatter(ClassName, LineNb, "[%2$-7s][%3$s:%4$d]%5$s%n"  )) ;
 			lg.addHandler( ch );
 
 			fh = new FileHandler( logDirName+"/"+"file.log" ,true )  ;
-			fh.setFormatter(SP);			
+			fh.setFormatter(new Formatter(ClassName, LineNb, "[%1$tF %1$tT][%2$-7s][%3$s:%4$d]%5$s%n"  ));			
 			lg.addHandler(fh);
 
 		}catch( Exception e) {
@@ -140,12 +120,9 @@ public class Tracking {
 		return  lg;
 	}
 
-	public static void echo(Object obj) { 
+	private static void echo(Object obj) { 
 		System.out.println(obj.toString());
 	}
-
-
-
 
 	/** @return The line number of the code that ran this method
 	 * @author Brian_Entei */
