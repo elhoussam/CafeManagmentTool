@@ -1,8 +1,9 @@
-package me.elhoussam.interfaces;
+package me.elhoussam.implementation;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import me.elhoussam.interfaces.ActivePcInterface;
 import me.elhoussam.util.log.Tracking;
  
 public class ActivePc extends UnicastRemoteObject

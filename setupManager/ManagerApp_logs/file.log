@@ -68,3 +68,13 @@
 [2019-11-03 09:59:09] [INFOS  ] [me.elhoussam.core.Security:38] The Security policy setup 
 [2019-11-03 09:59:09] [INFOS  ] [ManagerEntryPoint:13] Security State : jar:file:/C:/Users/Administrateur/eclipse-workspace/setupManager/target/setupManager-0.0.1-SNAPSHOT-jar-with-dependencies.jar!/config/security.policy 
 [2019-11-03 09:59:09] [INFOS  ] [ManagerEntryPoint:19] Manager Server is ready. 
+[2019-11-08 19:51:46][INFOS  ][me.elhoussam.core.SecurityHandler:24]The Security policy is initialized
+[2019-11-08 19:51:46][INFOS  ][me.elhoussam.core.SecurityHandler:40]The Security policy setup
+[2019-11-08 19:51:46][INFOS  ][ManagerEntryPoint:36]Security State : jar:file:/C:/Users/Administrateur/eclipse-workspace/setupManager/target/setupManager-0.0.1-SNAPSHOT-jar-with-dependencies.jar!/config/security.policy
+[2019-11-08 19:51:46][INFOS  ][ManagerEntryPoint:53]Manager Ip Address : 192.168.1.2
+[2019-11-08 19:51:47][INFOS  ][ManagerEntryPoint:59]Manager Server is ready.
+[2019-11-08 19:51:47][INFOS  ][ManagerEntryPoint:85]Waiting for Pcs
+[2019-11-08 19:51:49][INFOS  ][me.elhoussam.implementation.ActivePc:45]the (192.168.1.6) was recieved
+[2019-11-08 19:52:07][INFOS  ][ManagerEntryPoint:85]Waiting for Pcs
+[2019-11-08 19:52:07][INFOS  ][ManagerEntryPoint:112]Manager lookup for //192.168.1.6/pcWait
+[2019-11-08 19:52:07][INFOS  ][ManagerEntryPoint:114]Manager get info :Linux

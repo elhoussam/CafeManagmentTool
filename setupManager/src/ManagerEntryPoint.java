@@ -8,7 +8,7 @@ import java.rmi.registry.LocateRegistry;
 import java.util.concurrent.TimeUnit;
 
 import me.elhoussam.core.SecurityHandler;
-import me.elhoussam.interfaces.ActivePc;
+import me.elhoussam.implementation.ActivePc;
 import me.elhoussam.interfaces.infoInterface;
 import me.elhoussam.util.log.Tracking;
 

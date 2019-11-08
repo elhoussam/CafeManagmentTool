@@ -1,8 +1,9 @@
-package me.elhoussam.interfaces;
+package me.elhoussam.implementation;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import me.elhoussam.interfaces.infoInterface;
 import me.elhoussam.util.log.Tracking;
 
 public class info extends UnicastRemoteObject implements infoInterface {

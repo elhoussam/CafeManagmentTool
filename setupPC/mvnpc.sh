@@ -1,1 +1,0 @@
-mvn -f $PWD/setupPC clean package
