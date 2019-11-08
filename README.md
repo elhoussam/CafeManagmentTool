@@ -13,4 +13,11 @@ mvn clean package
 cd ../setupPc
 mvn clean package
 ```
+Build
+----
+to build the entire app with one command
+```
+make all
+```
+
 Enjoy.
