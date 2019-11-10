@@ -7,10 +7,11 @@ import java.rmi.Remote;
 import java.rmi.registry.LocateRegistry;
 import java.util.concurrent.TimeUnit;
 
-import me.elhoussam.core.SecurityHandler;
 import me.elhoussam.implementation.ActivePc;
 import me.elhoussam.interfaces.infoInterface;
 import me.elhoussam.util.log.Tracking;
+import me.elhoussam.util.sys.ExceptionHandler;
+import me.elhoussam.util.sys.SecurityHandler;
 
 public class ManagerEntryPoint {
 	/*	String myLocalIp() : 
@@ -32,7 +33,7 @@ public class ManagerEntryPoint {
 	*	the security manager 
 	*/
 	private static void setupSecurityPolicy() throws Exception {
-			String res = SecurityHandler.instance.LoadSecurityPolicy()  ;
+			String res = SecurityHandler.instance.LoadSecurityPolicy("")  ;
 			Tracking.info("Security State : "+ res ) ; 
 	}	
 	/*	void managerWaiting() : 
@@ -59,7 +60,7 @@ public class ManagerEntryPoint {
 			Tracking.info("Manager Server is ready.");
 			return ManagerWait ;
 		}catch (Exception e) {
-			Tracking.error("Manager App failed: " + e);
+			Tracking.error("Manager App failed: " + ExceptionHandler.getMessage(e));
 			return null; 
 		}
 	}
@@ -68,12 +69,14 @@ public class ManagerEntryPoint {
 	*	to construct the pieces of the app
 	*/	
 	public static void main (String[] argv) throws InterruptedException { 
-		// for java to use preferIp version = 4 
-		//java.net.preferIPv4Stack
-		System.setProperty("java.net.preferIPv6Addresses", "true");
-		
-		
 		Tracking.setFolderName("ManagerApp");
+		Tracking.info("Start Manager Applicaion");
+		// for java to use preferIp version = 4 
+		//java.net.preferIPv6Addresses : to use only
+		System.setProperty("java.net.preferIPv4Stack", "true");
+		
+		
+		
 
 		
 		ActivePc  managerWait = managerWaiting();
@@ -86,7 +89,7 @@ public class ManagerEntryPoint {
 			activePcs = managerWait.getListeActivePc().size();
 			if( activePcs > 0 )
 				controlPcs( managerWait.getListeActivePc().get(activePcs-1) );
-			TimeUnit.SECONDS.sleep(20);
+			TimeUnit.SECONDS.sleep(5);
 		
 		}
 		//RegistryInspector(argv[1]);
@@ -113,7 +116,7 @@ public class ManagerEntryPoint {
 			String result= infoObj.getter();
 			Tracking.info("Manager get info :"+result);
 		}catch (Exception e) {
-			Tracking.error("Manager get Failed:" + e.getStackTrace());
+			Tracking.error("Manager get Failed:" + ExceptionHandler.getMessage(e));
 		}
 	}
 	/*	void RegistryInspector(String  args) : 
@@ -139,7 +142,7 @@ public class ManagerEntryPoint {
                 }
             }
         } catch (Exception e) {
-           Tracking.error( "RegistryInspector failed "+e) ;
+           Tracking.error( "RegistryInspector failed "+ ExceptionHandler.getMessage(e)) ;
         }
     }
 }

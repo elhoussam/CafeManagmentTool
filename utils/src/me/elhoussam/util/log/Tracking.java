@@ -10,6 +10,8 @@ import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+import me.elhoussam.util.sys.SecurityHandler;
+
 public class Tracking {
 	/*
 	* these two logFolderName, logFolderNameChange to save
@@ -17,7 +19,7 @@ public class Tracking {
 	*	be modified more then one time.
 	*/
 	private static String logFolderName ="logFolder";
-	private static Boolean logFolderNameChange = false ;
+	private static Boolean logFolderNameChange = false ; 
 	/*
 	* these two className, lineNumber to follow the Tracking 
 	*	funcionality by saving the last className and lineNumber
@@ -33,11 +35,14 @@ public class Tracking {
 	private static Logger  instance = null;
 	private static Handler fh;
 	private static Handler ch; 
+	
 	/*
 	* void info(String infoMsg)
 	*	public method which trace the infos of the system
 	*/	
+
 	public static void info(String infoMsg) {
+		 
 		String[] parts = Tracking.LineNb().split("-")  ;
 		Tracking.getInstance(parts[0],Integer.valueOf(parts[1]) ).info( infoMsg );
 		fh.close();
@@ -47,6 +52,7 @@ public class Tracking {
 	*	public method which trace the warning of the system
 	*/
 	public static void warning(String warningMsg) {
+		 
 		String[] parts = Tracking.LineNb().split("-")  ;
 		Tracking.getInstance(parts[0],Integer.valueOf(parts[1]) ).warning( warningMsg );
 		fh.close();
@@ -56,6 +62,7 @@ public class Tracking {
 	*	public method which trace the errors of the system
 	*/
 	public static void error(String errorMsg) {
+		 
 		String[] parts = Tracking.LineNb().split("-")  ;
 		Tracking.getInstance( parts[0],Integer.valueOf(parts[1])).severe(errorMsg);
 		fh.close();
@@ -66,7 +73,7 @@ public class Tracking {
 	*	that contain the log file just for one time.
 	*/
 	public static void setFolderName(String name) {
-		
+		 
 		if ( !logFolderNameChange && !name.trim().isEmpty()  && ! name.trim().equalsIgnoreCase(logFolderName) ) {  
 			logFolderName = name.trim(); logFolderNameChange = true; }
 	}
@@ -84,7 +91,6 @@ public class Tracking {
 		}	
 		return instance;
 	}
-
 	/*
 	*	Logger setUpLogger( SimpleFormatter SP )
 	*	private method : that return new Logger object 
@@ -96,6 +102,7 @@ public class Tracking {
 		Logger lg = Logger.getLogger("MyLOgger") ;
 		try{
 			String logDirName = logFolderName+"_logs";
+			System.out.println(logDirName );
 			File logDir = new File(logDirName+"/"); 
 			if( !(logDir.exists()) )
 				logDir.mkdir();
@@ -115,12 +122,12 @@ public class Tracking {
 			lg.addHandler(fh);
 
 		}catch( Exception e) {
-			echo("Exception Utilities"+e.getMessage() );
+			echo("Exception Utilities "+e.getMessage() );
 		}
 		return  lg;
 	}
 
-	private static void echo(Object obj) { 
+	public static void echo(Object obj) { 
 		System.out.println(obj.toString());
 	}
 

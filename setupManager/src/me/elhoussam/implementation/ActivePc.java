@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import me.elhoussam.interfaces.ActivePcInterface;
 import me.elhoussam.util.log.Tracking;
+import me.elhoussam.util.sys.ExceptionHandler;
  
 public class ActivePc extends UnicastRemoteObject
 implements ActivePcInterface  {
@@ -50,7 +51,7 @@ implements ActivePcInterface  {
 			return "msg was not delivered\n";
 		}
 		}catch(Exception e ) {
-			Tracking.error("some thing happened:"+e);
+			Tracking.error("some thing happened:"+ ExceptionHandler.getMessage(e));
 			return null ;
 		}
 		

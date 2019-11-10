@@ -6,8 +6,9 @@ import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 import me.elhoussam.implementation.info;
 import me.elhoussam.interfaces.*;
-import me.elhoussam.provide.SecurityHandler;
 import me.elhoussam.util.log.Tracking;
+import me.elhoussam.util.sys.ExceptionHandler;
+import me.elhoussam.util.sys.SecurityHandler;
 
 public class PcEntryPoint {
 	/*	String myLocalIp() : 
@@ -27,7 +28,7 @@ public class PcEntryPoint {
 	*	the security manager 
 	*/
 	private static void setupSecurityPolicy() throws Exception {
-			String res = SecurityHandler.instance.LoadSecurityPolicy()  ;
+			String res = SecurityHandler.instance.LoadSecurityPolicy("")  ;
 			Tracking.info("Security State : "+ res ) ; 
 	}
 	/*	void providerWaiting() : 
@@ -53,7 +54,7 @@ public class PcEntryPoint {
 			Naming.rebind("//"+res+"/pcWait", provideWait);
 			Tracking.info("Provider PC is ready."); 
 		}catch (Exception e) {
-			Tracking.error("Provider PC failed: " + e); 
+			Tracking.error("Provider PC failed: " + ExceptionHandler.getMessage(e) ); 
 		}		
 	}
 	/*	void main(String[] args) :  
@@ -62,7 +63,7 @@ public class PcEntryPoint {
 	*/	
 	
 	public static void main (String[] args) {
-
+		Tracking.info("Start Pc Applicaion");
 		// for java to use preferIp version = 4 
 		//java.net.preferIPv4Stack
 		System.setProperty("java.net.preferIPv6Addresses", "true");
@@ -92,7 +93,7 @@ public class PcEntryPoint {
 			Tracking.info("PC Active :"+result);
 		}catch (Exception e) {
  
-			Tracking.error("PC App Failed:" + e);
+			Tracking.error("PC App Failed:"   + ExceptionHandler.getMessage(e) );
 		}
 	}
 
