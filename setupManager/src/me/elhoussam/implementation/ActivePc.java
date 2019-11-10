@@ -3,6 +3,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import me.elhoussam.core.connection;
 import me.elhoussam.interfaces.ActivePcInterface;
 import me.elhoussam.util.log.Tracking;
 import me.elhoussam.util.sys.ExceptionHandler;
@@ -43,7 +44,10 @@ implements ActivePcInterface  {
 		if( !myInfo.trim().isEmpty() ) {
 			String ipOfPc =  myInfo.trim();
 			addNewIp(ipOfPc);
+			connection.getNotifier().run(); 
+			
 			Tracking.info("the ("+ipOfPc+") was recieved");
+			
 			return "msg is recieved\n";
 		}else {
 

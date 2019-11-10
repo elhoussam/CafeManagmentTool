@@ -1,3 +1,4 @@
+package me.elhoussam.core;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
@@ -13,20 +14,9 @@ import me.elhoussam.util.log.Tracking;
 import me.elhoussam.util.sys.ExceptionHandler;
 import me.elhoussam.util.sys.SecurityHandler;
 
-public class ManagerEntryPoint {
-	/*	String myLocalIp() : 
-	*	static method that return the ip of the machine 
-	*	in the current network
-	*/	
-	public static String myLocalIp() throws UnknownHostException, SocketException {
-		//java.net.Authenticator  -- .preferIPv4Stack=true
-		String ip = "none";
-		DatagramSocket socket = new DatagramSocket(); 
-		// by using any ip address and any port, then return the current ip
-		socket.connect(InetAddress.getByName("8.8.8.8"), 10002);
-		ip = socket.getLocalAddress().getHostAddress();
-		return ip ;
-	}
+public class Manager {
+	private static ActivePc onlyObjectProvide = null;
+
 	/*	void setupSecurityPolicy() : 
 	*	static method that load the 
 	*	security policy file and setup
@@ -47,8 +37,7 @@ public class ManagerEntryPoint {
 		try { 
 			setupSecurityPolicy()  ;
 			
-
-			String res =  myLocalIp() ;
+			String res =  SecurityHandler.myLocalIp() ;
 			// set server.hostname to IP_MANAGER
 			System.setProperty("java.rmi.server.hostname", res );
 			Tracking.info("Manager Ip Address : "+ res ) ; 
@@ -64,34 +53,49 @@ public class ManagerEntryPoint {
 			return null; 
 		}
 	}
+	/*
+	 * return ActivePc object, the only 
+	 * */
+	public static ActivePc get() {
+		return onlyObjectProvide;
+	}
 	/*	void main(String[] args) :  
 	*	this method call other methodes
 	*	to construct the pieces of the app
 	*/	
-	public static void main (String[] argv) throws InterruptedException { 
-		Tracking.setFolderName("ManagerApp");
-		Tracking.info("Start Manager Applicaion");
-		// for java to use preferIp version = 4 
-		//java.net.preferIPv6Addresses : to use only
-		System.setProperty("java.net.preferIPv4Stack", "true");
-		
-		
-		
+	public static void start (){ 
+		try {
+			Tracking.setFolderName("ManagerApp");
+			Tracking.info("Start Manager Applicaion");
+			//java.net.preferIPv6Addresses : to use only
+			System.setProperty("java.net.preferIPv4Stack", "true");
+			
+			onlyObjectProvide = managerWaiting();
+			
+			// Lunch the Thread = (ConnNotifier)
+			connection.connNotifier();
 
+			Tracking.info("Manager launch Notifier thread");
+			// then launch the thread = connChecker
+			
+			
+		} catch (Exception e) {
+
+			Tracking.error("Manager start :" + ExceptionHandler.getMessage(e));
+		}
 		
-		ActivePc  managerWait = managerWaiting();
 		// limit for test purpose 
-		int limit = (int)( ( argv.length == 0 )?1:Integer.valueOf( argv[0] )) ;
+		/*int limit = 3 ;
 		int activePcs = 0; 
 	
 		while( activePcs < limit ) {
 			Tracking.info("Waiting for Pcs");
-			activePcs = managerWait.getListeActivePc().size();
+			activePcs = onlyObjectProvide.getListeActivePc().size();
 			if( activePcs > 0 )
-				controlPcs( managerWait.getListeActivePc().get(activePcs-1) );
+				controlPcs( onlyObjectProvide.getListeActivePc().get(activePcs-1) );
 			TimeUnit.SECONDS.sleep(5);
 		
-		}
+		}*/
 		//RegistryInspector(argv[1]);
 		//controlPcs( managerWait.getListeActivePc().get(0) );  // request the Pc func as CLIENT
 	}	

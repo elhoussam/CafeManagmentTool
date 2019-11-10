@@ -40,7 +40,7 @@
 					<!-- MainClass in mainfest make a executable jar -->
 					<archive>
 						<manifest>
-							<mainClass>ManagerEntryPoint</mainClass>
+							<mainClass>ManagerMain</mainClass>
 						</manifest>
 					</archive>
 
