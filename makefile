@@ -13,13 +13,13 @@ managerpackage:
 	@echo $(MANAGER_DIR)" packaging succeed " 
 pcpackage:
 	cd $(PC_DIR)  && $(M) package > /dev/null
-	@echo $(PC_DIR)" packaging succeed " 	
+	@echo $(PC_DIR)" packaging succeed " 
 copystubs: rmicc
 	cd $(MANAGER_DIR)    && ./copystubs.sh
 	cd $(PC_DIR)    && ./copystubs.sh
 rmicc: compile
-	cd $(MANAGER_DIR)    && ./rmic.sh
-	cd $(PC_DIR)    && ./rmic.sh
+	cd $(MANAGER_DIR) && ./rmic.sh
+	cd $(PC_DIR) && ./rmic.sh
 compile: installutils pccompile managercompile
 	@echo "compile phase is done"
 managercompile:
@@ -32,14 +32,5 @@ installutils: cleanall
 	cd $(UTILS_DIR)  && $(M) install > /dev/null
 	@echo $(UTILS_DIR)" installation succeed " 
 cleanall:
-	cd $(MANAGER_DIR)    && ./cleanall.sh
-	@echo $(MANAGER_DIR)" Cleaning done "
-	cd $(PC_DIR)    && ./cleanall.sh
-	@echo $(PC_DIR)" Cleaning done "
-	
-
-	
-
-
-
-	
+	./cleanall.sh
+	@echo " Cleaning done "
