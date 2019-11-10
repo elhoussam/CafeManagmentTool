@@ -1,5 +1,7 @@
 grant {
-   permission java.io.FilePermission "ManagerApp_logs", "read, write"; 
-   permission java.io.FilePermission "ManagerApp_logs\file.log", "read, write"; 
-   permission java.util.logging.LoggingPermission   "control";
+	permission java.io.FilePermission "PcApp_logs/*", "read, write, delete"; 
+	permission java.io.FilePermission "PcApp_logs", "read, write"; 
+	permission java.util.logging.LoggingPermission   "control";
+	permission java.util.PropertyPermission "java.rmi.server.hostname", "write";
+	permission java.net.SocketPermission "*:1024-", "accept,connect,resolve,listen";	
 };

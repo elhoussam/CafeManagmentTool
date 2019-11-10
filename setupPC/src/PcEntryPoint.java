@@ -63,13 +63,13 @@ public class PcEntryPoint {
 	*/	
 	
 	public static void main (String[] args) {
+
+		Tracking.setFolderName("PcApp");
 		Tracking.info("Start Pc Applicaion");
 		// for java to use preferIp version = 4 
 		//java.net.preferIPv4Stack
 		System.setProperty("java.net.preferIPv6Addresses", "true");
 		
-		
-		Tracking.setFolderName("PcApp");
 		providerWaiting();
 		Tracking.info("ip of the manager"+args[0]);		
 		reachManager(args[0]); // reach manager by his fixed LOCAL_IP
