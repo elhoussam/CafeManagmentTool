@@ -102,7 +102,7 @@ public class Tracking {
 		Logger lg = Logger.getLogger("MyLOgger") ;
 		try{
 			String logDirName = logFolderName+"_logs";
-			System.out.println(logDirName );
+			//System.out.println(logDirName );
 			File logDir = new File(logDirName+"/"); 
 			if( !(logDir.exists()) )
 				logDir.mkdir();
