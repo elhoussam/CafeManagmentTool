@@ -24,21 +24,25 @@ public class connection {
 						while( true ) {
 							int listsize = Manager.get().getListeActivePc().size() ;
 							if( listsize > 0 ) {
-								try {
-									String fullPath =  "//"+ 
-									Manager.get().getListeActivePc().get(listsize-1) +"/pcWait" ;
-		
-									infoInterface infoObj;
-									infoObj = (infoInterface) Naming.lookup( fullPath );
-		
-									Tracking.info("Thread Checker lookup for "+fullPath);
-									String result= infoObj.getter();
-									Tracking.info("Thread Checker get info :"+result);
-									Thread.sleep(20*1000);
-								}catch (Exception e) {
-									Tracking.error("Thread Checker Failed:" + ExceptionHandler.getMessage(e));
+								String ip = "" ;
+								for( short i = 0; i <listsize ; i++) {
+									ip = Manager.get().getListeActivePc().get(i);
+									try {
+									
+										String fullPath =  "//"+ ip  +"/pcWait" ;
+			
+										infoInterface infoObj;
+										infoObj = (infoInterface) Naming.lookup( fullPath );
+			
+										Tracking.info("Thread Checker lookup for "+fullPath);
+										String result= infoObj.getter();
+										Tracking.info("Thread Checker get info :"+result+" from "+ip);
+									}catch (Exception e) {
+										Tracking.error("Thread Checker Failed("+ip+"):" + ExceptionHandler.getMessage(e));
+									}
 								}
 							}
+							Thread.sleep(60*1000);
 						}
 					}catch (Exception e){ 
 						Tracking.error("Thread Checker Failed:" + ExceptionHandler.getMessage(e));
