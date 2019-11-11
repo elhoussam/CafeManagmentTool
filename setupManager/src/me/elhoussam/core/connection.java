@@ -1,5 +1,8 @@
 package me.elhoussam.core;
 
+import java.rmi.Naming;
+
+import me.elhoussam.interfaces.infoInterface;
 import me.elhoussam.util.log.Tracking;
 import me.elhoussam.util.sys.ExceptionHandler;
 
@@ -18,8 +21,27 @@ public class connection {
 			connectionChecker = new Thread("ConnectionChecker") {
 				public void run(){ 
 					try{  
+						while( true ) {
+							int listsize = Manager.get().getListeActivePc().size() ;
+							if( listsize > 0 ) {
+								try {
+									String fullPath =  "//"+ 
+									Manager.get().getListeActivePc().get(listsize-1) +"/pcWait" ;
+		
+									infoInterface infoObj;
+									infoObj = (infoInterface) Naming.lookup( fullPath );
+		
+									Tracking.info("Thread Checker lookup for "+fullPath);
+									String result= infoObj.getter();
+									Tracking.info("Thread Checker get info :"+result);
+									Thread.sleep(20*1000);
+								}catch (Exception e) {
+									Tracking.error("Thread Checker Failed:" + ExceptionHandler.getMessage(e));
+								}
+							}
+						}
 					}catch (Exception e){ 
-						Tracking.error("Thread connChecker Failed:" + ExceptionHandler.getMessage(e));
+						Tracking.error("Thread Checker Failed:" + ExceptionHandler.getMessage(e));
 					} 
 				} 
 			}; 

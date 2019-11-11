@@ -77,8 +77,9 @@ public class Manager {
 
 			Tracking.info("Manager launch Notifier thread");
 			// then launch the thread = connChecker
-			
-			
+			connection.connChecker();
+
+			Tracking.info("Manager launch Checker thread");
 		} catch (Exception e) {
 
 			Tracking.error("Manager start :" + ExceptionHandler.getMessage(e));

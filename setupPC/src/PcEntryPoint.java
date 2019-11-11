@@ -11,17 +11,7 @@ import me.elhoussam.util.sys.ExceptionHandler;
 import me.elhoussam.util.sys.SecurityHandler;
 
 public class PcEntryPoint {
-	/*	String myLocalIp() : 
-	*	static method that return the ip of the machine 
-	*	in the current network
-	*/
-	public static String myLocalIp() throws UnknownHostException, SocketException {
-		String ip = "none";
-		DatagramSocket socket = new DatagramSocket(); 
-		socket.connect(InetAddress.getByName("8.8.8.8"), 10002);
-		ip = socket.getLocalAddress().getHostAddress();
-		return ip ;
-	}
+
 	/*	void setupSecurityPolicy() : 
 	*	static method that load the 
 	*	security policy file and setup
@@ -41,7 +31,7 @@ public class PcEntryPoint {
 	private static void providerWaiting() {
 		try { 
 			setupSecurityPolicy();
-			String res =  myLocalIp() ;
+			String res =  SecurityHandler.myLocalIp() ;
 			
 			
 			System.setProperty("java.rmi.server.hostname", res );
@@ -88,7 +78,7 @@ public class PcEntryPoint {
 			ActivePcInterface activePcObj;
 			activePcObj = (ActivePcInterface) Naming.lookup("//"+ ipManager +"/ManagerWait");
 			
-			String res =  myLocalIp() ;
+			String res =  SecurityHandler.myLocalIp() ;
 			String result= activePcObj.NotifyAdmin(res);
 			Tracking.info("PC Active :"+result);
 		}catch (Exception e) {
