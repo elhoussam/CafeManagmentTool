@@ -9,7 +9,7 @@ public class Main {
 	}
 	public static void main(String[] args) {
 		
-		Tracking.setFolderName("main");	
+		Tracking.setFolderName("main",false);	
 
 		Tracking.error(" error ");
 		try {

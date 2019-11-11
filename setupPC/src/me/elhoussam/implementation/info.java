@@ -15,9 +15,8 @@ public class info extends UnicastRemoteObject implements infoInterface {
 	*	information about the active pc, 
 	*	and it represent the sevice in PC side.
 	*/
-	public String getter()  throws RemoteException{
-
-		String str = System.getProperty("os.name");
+	public String get(String property)  throws RemoteException{
+		String str = System.getProperty(property);
 		Tracking.info("info getter Triggered");
 		return str ;
 	}

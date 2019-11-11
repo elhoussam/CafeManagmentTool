@@ -54,7 +54,7 @@ public class PcEntryPoint {
 	
 	public static void main (String[] args) {
 
-		Tracking.setFolderName("PcApp");
+		Tracking.setFolderName("PcApp",false);
 		Tracking.info("Start Pc Applicaion");
 		// for java to use preferIp version = 4 
 		//java.net.preferIPv4Stack

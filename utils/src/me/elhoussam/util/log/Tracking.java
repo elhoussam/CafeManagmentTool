@@ -1,6 +1,7 @@
 package me.elhoussam.util.log;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.util.Date;
 import java.util.logging.ConsoleHandler;
@@ -13,6 +14,7 @@ import java.util.logging.SimpleFormatter;
 import me.elhoussam.util.sys.SecurityHandler;
 
 public class Tracking {
+	 
 	/*
 	* these two logFolderName, logFolderNameChange to save
 	*	the chosing name of logfolder and insure will not 
@@ -20,6 +22,7 @@ public class Tracking {
 	*/
 	private static String logFolderName ="logFolder";
 	private static Boolean logFolderNameChange = false ; 
+	private static Boolean consoleToggle = false ; 
 	/*
 	* these two className, lineNumber to follow the Tracking 
 	*	funcionality by saving the last className and lineNumber
@@ -41,7 +44,7 @@ public class Tracking {
 	*	public method which trace the infos of the system
 	*/	
 
-	public static void info(String infoMsg) {
+	public static void info(String infoMsg ) {
 		 
 		String[] parts = Tracking.LineNb().split("-")  ;
 		Tracking.getInstance(parts[0],Integer.valueOf(parts[1]) ).info( infoMsg );
@@ -72,10 +75,11 @@ public class Tracking {
 	*	public method : allow you to set new name folder
 	*	that contain the log file just for one time.
 	*/
-	public static void setFolderName(String name) {
+	public static void setFolderName(String name, Boolean consoleSwitch) {
 		 
 		if ( !logFolderNameChange && !name.trim().isEmpty()  && ! name.trim().equalsIgnoreCase(logFolderName) ) {  
 			logFolderName = name.trim(); logFolderNameChange = true; }
+		consoleToggle = consoleSwitch; 
 	}
 	/*
 	* Logger (String ClassName, int lineNb )
@@ -101,25 +105,19 @@ public class Tracking {
 
 		Logger lg = Logger.getLogger("MyLOgger") ;
 		try{
-			String logDirName = logFolderName+"_logs";
+			String logDirName = "logs_"+logFolderName;
 			//System.out.println(logDirName );
 			File logDir = new File(logDirName+"/"); 
 			if( !(logDir.exists()) )
 				logDir.mkdir();
-
-			for( Handler elem : lg.getHandlers()) {
-				lg.removeHandler( elem );
-			}
-
+			
+			clearAllHandler(lg);
+			
 			lg.setUseParentHandlers(false);
-
-			ch = new ConsoleHandler();
-			ch.setFormatter(new Formatter(ClassName, LineNb, "[%2$-7s][%3$s:%4$d]%5$s%n"  )) ;
-			lg.addHandler( ch );
-
-			fh = new FileHandler( logDirName+"/"+"file.log" ,true )  ;
-			fh.setFormatter(new Formatter(ClassName, LineNb, "[%1$tF %1$tT][%2$-7s][%3$s:%4$d]%5$s%n"  ));			
-			lg.addHandler(fh);
+			if( consoleToggle )
+				lg.addHandler( newConsoleHandler( ClassName, LineNb) );
+			
+			lg.addHandler( newFileHandler(ClassName, LineNb,logDirName ) );
 
 		}catch( Exception e) {
 			echo("Exception Utilities "+e.getMessage() );
@@ -127,6 +125,23 @@ public class Tracking {
 		return  lg;
 	}
 
+	private static void clearAllHandler( Logger obj ) {
+
+		for( Handler elem : obj.getHandlers()) {
+			obj.removeHandler( elem );
+		}
+
+	}
+	private static ConsoleHandler newConsoleHandler( String ClassName, int LineNb) {
+		ch = new ConsoleHandler();
+		ch.setFormatter(new Formatter(ClassName, LineNb, "[%3$s:%4$d]%5$s%n"  )) ;
+		return (ConsoleHandler) ch;
+	}
+	private static FileHandler newFileHandler( String ClassName, int LineNb, String folder) throws SecurityException, IOException {
+		fh = new FileHandler( folder+"/"+"file.log" ,true )  ;
+		fh.setFormatter(new Formatter(ClassName, LineNb, "[%1$tF %1$tT][%2$-7s][%3$s:%4$d]%5$s%n"  ));	
+		return (FileHandler) fh;
+	}
 	public static void echo(Object obj) { 
 		System.out.println(obj.toString());
 	}

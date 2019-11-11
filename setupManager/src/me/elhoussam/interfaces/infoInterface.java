@@ -9,5 +9,5 @@ public interface infoInterface extends java.rmi.Remote {
 	*	information about the active pc, 
 	*	and it represent the sevice in PC side.
 	*/
-	public String getter()  throws RemoteException;
+	public String get(String property) throws RemoteException;
 }

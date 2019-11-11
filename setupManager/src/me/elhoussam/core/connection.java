@@ -9,10 +9,10 @@ import me.elhoussam.util.sys.ExceptionHandler;
 public class connection {
 	private static Boolean connCheckerStarted = false ;
 	private static Boolean connNotifierStarted = false ;
-	
+
 	private static Thread connectionChecker = null;
 	private static Thread connectionNotifier = null;
-	
+
 	public static Thread getNotifier() {
 		return connectionNotifier ;
 	} 
@@ -28,17 +28,18 @@ public class connection {
 								for( short i = 0; i <listsize ; i++) {
 									ip = Manager.get().getListeActivePc().get(i);
 									try {
-									
+
 										String fullPath =  "//"+ ip  +"/pcWait" ;
-			
+
 										infoInterface infoObj;
 										infoObj = (infoInterface) Naming.lookup( fullPath );
-			
-										Tracking.info("Thread Checker lookup for "+fullPath);
-										String result= infoObj.getter();
-										Tracking.info("Thread Checker get info :"+result+" from "+ip);
+
+										//Tracking.info("Thread Checker lookup for "+fullPath);
+										String result= infoObj.get("os.name");
+										//Tracking.info("Thread Checker get info :"+result+" from "+ip);
 									}catch (Exception e) {
-										Tracking.error("Thread Checker Failed("+ip+"):" + ExceptionHandler.getMessage(e));
+										Tracking.error("Thread Checker ("+ip+"):Not connected"  );
+										//ExceptionHandler.getMessage(e)
 									}
 								}
 							}
@@ -55,27 +56,16 @@ public class connection {
 	}
 	public static void connNotifier() {
 		if( ! connNotifierStarted ) {
-			  connectionNotifier = new Thread("Connection Notifier") {
+			connectionNotifier = new Thread("Connection Notifier") {
 				public void run(){ 
 					try{ 
 						int listsize = Manager.get().getListeActivePc().size() -1 ;
 						if( listsize >= 0 ) {
 							String ip =  Manager.get().getListeActivePc().get( listsize );
-							Tracking.info("Connection Notifier: New Conn ip: "+ip );
+							//Tracking.info("Connection Notifier: New Conn ip: "+ip );
 						}else {
-							Tracking.info("Connection Notifier: Waiting");
+							//Tracking.info("Connection Notifier: Waiting");
 						}
-						
-						/*int activePcs = 0; 
-						while( true ) {
-							if( activePcs !=  Manager.get().getListeActivePc().size() ) {
-								
-							}
-							Thread.currentThread().interrupt();*/
-							
-								//controlPcs( Manager.get().getListeActivePc().get(activePcs-1) );
-							//TimeUnit.SECONDS.sleep(60);
-						
 					}catch (Exception e) { 
 						Tracking.error("Thread Notifier Failed:" + ExceptionHandler.getMessage(e));
 					} 
