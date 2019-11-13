@@ -33,4 +33,4 @@ installutils: cleanall
 	@echo $(UTILS_DIR)" installation succeed " 
 cleanall:
 	./cleanall.sh
-	@echo " Cleaning done "
+	@echo "Cleaning  process is done"
