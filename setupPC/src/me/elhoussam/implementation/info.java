@@ -17,7 +17,7 @@ public class info extends UnicastRemoteObject implements infoInterface {
 	*/
 	public String get(String property)  throws RemoteException{
 		String str = System.getProperty(property);
-		Tracking.info("info getter Triggered");
+		Tracking.info(false,"info getter Triggered");
 		return str ;
 	}
 

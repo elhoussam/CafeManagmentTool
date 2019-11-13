@@ -1,6 +1,7 @@
 package me.elhoussam.core;
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
+import java.util.Scanner;
 
 import me.elhoussam.implementation.ActivePc;
 import me.elhoussam.util.log.Tracking;
@@ -9,15 +10,17 @@ import me.elhoussam.util.sys.SecurityHandler;
 
 public class Manager {
 	private static ActivePc onlyObjectProvide = null;
-
+ 
 	/*	void setupSecurityPolicy() : 
 	*	static method that load the 
 	*	security policy file and setup
 	*	the security manager 
 	*/
+	
+
 	private static void setupSecurityPolicy() throws Exception {
 			String res = SecurityHandler.instance.LoadSecurityPolicy("")  ;
-			Tracking.info("Security State : "+ res ) ; 
+			Tracking.info(false,"Security State : "+ res ) ; 
 	}	
 	/*	void managerWaiting() : 
 	*	static method create the object
@@ -33,16 +36,16 @@ public class Manager {
 			String res =  SecurityHandler.myLocalIp() ;
 			// set server.hostname to IP_MANAGER
 			System.setProperty("java.rmi.server.hostname", res );
-			Tracking.info("Manager Ip Address : "+ res ) ; 
+			Tracking.info(false,"Manager Ip Address : "+ res ) ; 
 						
 			ActivePc  ManagerWait = new ActivePc();		
 			LocateRegistry.createRegistry(1099);
 			Naming.rebind("//"+res+"/ManagerWait", ManagerWait);
 
-			Tracking.info("Manager Server is ready.");
+			Tracking.info(false,"Manager Server is ready.");
 			return ManagerWait ;
 		}catch (Exception e) {
-			Tracking.error("Manager App failed: " + ExceptionHandler.getMessage(e));
+			Tracking.error(false,"Manager App failed: " + ExceptionHandler.getMessage(e));
 			return null; 
 		}
 	}
@@ -59,7 +62,7 @@ public class Manager {
 	public static void start (){ 
 		try {
 			Tracking.setFolderName("ManagerApp",false);
-			Tracking.info("Start Manager Applicaion");
+			Tracking.info(false,"Start Manager Applicaion");
 			//java.net.preferIPv6Addresses : to use only
 			System.setProperty("java.net.preferIPv4Stack", "true");
 			
@@ -68,14 +71,15 @@ public class Manager {
 			// Lunch the Thread = (ConnNotifier)
 			connection.connNotifier();
 
-			Tracking.info("Manager launch Notifier thread");
+			Tracking.info(false,"Manager launch Notifier thread");
 			// then launch the thread = connChecker
 			connection.connChecker();
 
-			Tracking.info("Manager launch Checker thread");
+			Tracking.info(false,"Manager launch Checker thread");
+			new cli();
 		} catch (Exception e) {
 
-			Tracking.error("Manager start :" + ExceptionHandler.getMessage(e));
+			Tracking.error(false,"Manager start :" + ExceptionHandler.getMessage(e));
 		}
 	}	
 }

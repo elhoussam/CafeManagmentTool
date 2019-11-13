@@ -46,16 +46,16 @@ implements ActivePcInterface  {
 			addNewIp(ipOfPc);
 			connection.getNotifier().run(); 
 			
-			Tracking.info("the ("+ipOfPc+") was recieved");
+			Tracking.info(false,"the ("+ipOfPc+") was recieved");
 			
 			return "msg is recieved\n";
 		}else {
 
-			Tracking.warning("the msg was badly received");
+			Tracking.warning(false,"the msg was badly received");
 			return "msg was not delivered\n";
 		}
 		}catch(Exception e ) {
-			Tracking.error("some thing happened:"+ ExceptionHandler.getMessage(e));
+			Tracking.error(false,"some thing happened:"+ ExceptionHandler.getMessage(e));
 			return null ;
 		}
 		

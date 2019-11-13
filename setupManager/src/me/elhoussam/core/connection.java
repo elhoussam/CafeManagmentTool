@@ -34,11 +34,11 @@ public class connection {
 										infoInterface infoObj;
 										infoObj = (infoInterface) Naming.lookup( fullPath );
 
-										//Tracking.info("Thread Checker lookup for "+fullPath);
+										//Tracking.info(false,"Thread Checker lookup for "+fullPath);
 										String result= infoObj.get("os.name");
-										//Tracking.info("Thread Checker get info :"+result+" from "+ip);
+										//Tracking.info(false,"Thread Checker get info :"+result+" from "+ip);
 									}catch (Exception e) {
-										Tracking.error("Thread Checker ("+ip+"):Not connected"  );
+										Tracking.error(false,"Thread Checker ("+ip+"):Not connected"  );
 										//ExceptionHandler.getMessage(e)
 									}
 								}
@@ -46,7 +46,7 @@ public class connection {
 							Thread.sleep(60*1000);
 						}
 					}catch (Exception e){ 
-						Tracking.error("Thread Checker Failed:" + ExceptionHandler.getMessage(e));
+						Tracking.error(false,"Thread Checker Failed:" + ExceptionHandler.getMessage(e));
 					} 
 				} 
 			}; 
@@ -62,12 +62,12 @@ public class connection {
 						int listsize = Manager.get().getListeActivePc().size() -1 ;
 						if( listsize >= 0 ) {
 							String ip =  Manager.get().getListeActivePc().get( listsize );
-							//Tracking.info("Connection Notifier: New Conn ip: "+ip );
+							//Tracking.info(false,"Connection Notifier: New Conn ip: "+ip );
 						}else {
-							//Tracking.info("Connection Notifier: Waiting");
+							//Tracking.info(false,"Connection Notifier: Waiting");
 						}
 					}catch (Exception e) { 
-						Tracking.error("Thread Notifier Failed:" + ExceptionHandler.getMessage(e));
+						Tracking.error(false,"Thread Notifier Failed:" + ExceptionHandler.getMessage(e));
 					} 
 				} 
 			}; 

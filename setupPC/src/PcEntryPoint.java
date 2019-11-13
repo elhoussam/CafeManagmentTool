@@ -19,7 +19,7 @@ public class PcEntryPoint {
 	*/
 	private static void setupSecurityPolicy() throws Exception {
 			String res = SecurityHandler.instance.LoadSecurityPolicy("")  ;
-			Tracking.info("Security State : "+ res ) ; 
+			Tracking.info(false,"Security State : "+ res ) ; 
 	}
 	/*	void providerWaiting() : 
 	*	static method create the object
@@ -35,16 +35,16 @@ public class PcEntryPoint {
 			
 			
 			System.setProperty("java.rmi.server.hostname", res );
-			Tracking.info("Pc Ip Address : "+ res ) ;
+			Tracking.info(false,"Pc Ip Address : "+ res ) ;
 
 		
 			info  provideWait = new info();		
 			LocateRegistry.createRegistry(1099);
 			
 			Naming.rebind("//"+res+"/pcWait", provideWait);
-			Tracking.info("Provider PC is ready."); 
+			Tracking.info(false,"Provider PC is ready."); 
 		}catch (Exception e) {
-			Tracking.error("Provider PC failed: " + ExceptionHandler.getMessage(e) ); 
+			Tracking.error(false,"Provider PC failed: " + ExceptionHandler.getMessage(e) ); 
 		}		
 	}
 	/*	void main(String[] args) :  
@@ -55,13 +55,13 @@ public class PcEntryPoint {
 	public static void main (String[] args) {
 
 		Tracking.setFolderName("PcApp",false);
-		Tracking.info("Start Pc Applicaion");
+		Tracking.info(false,"Start Pc Applicaion");
 		// for java to use preferIp version = 4 
 		//java.net.preferIPv4Stack
 		System.setProperty("java.net.preferIPv6Addresses", "true");
 		
 		providerWaiting();
-		Tracking.info("ip of the manager"+args[0]);		
+		Tracking.info(false,"ip of the manager"+args[0]);		
 		reachManager(args[0]); // reach manager by his fixed LOCAL_IP
 		
 		
@@ -80,10 +80,10 @@ public class PcEntryPoint {
 			
 			String res =  SecurityHandler.myLocalIp() ;
 			String result= activePcObj.NotifyAdmin(res);
-			Tracking.info("PC Active :"+result);
+			Tracking.info(false,"PC Active :"+result);
 		}catch (Exception e) {
  
-			Tracking.error("PC App Failed:"   + ExceptionHandler.getMessage(e) );
+			Tracking.error(false,"PC App Failed:"   + ExceptionHandler.getMessage(e) );
 		}
 	}
 
