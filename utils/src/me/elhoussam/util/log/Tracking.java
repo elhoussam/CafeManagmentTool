@@ -8,7 +8,7 @@ import java.util.logging.Handler;
 import java.util.logging.Logger;
 
 public class Tracking {
-
+	public static Boolean globalSwitcher = true ;
 	/*
 	 * these two logFolderName, logFolderNameChange to save
 	 *	the chosing name of logfolder and insure will not 
@@ -41,13 +41,14 @@ public class Tracking {
 
 		String[] parts = Tracking.LineNb().split("-")  ;
 		//Tracking.getInstance(parts[0],Integer.valueOf(parts[1]) ).info( infoMsg );
-		Toggle(enable,parts[0],Integer.valueOf(parts[1])) ;
+		
+		Toggle(globalSwitcher && enable,parts[0],Integer.valueOf(parts[1])) ;
 		instance.info( infoMsg );
 		//fh.close();
 	}
 
 	private static void Toggle(Boolean sw, String classname, int linenumber) { 
-
+		 
 		ConsoleHandler chLocal = (ConsoleHandler) instance.getHandlers()[0];
 		if( sw ) { // enaable console handler by add it IF NOT EXIST
 			((Formatter)chLocal.getFormatter()).setClassName(classname);
@@ -55,8 +56,7 @@ public class Tracking {
 			((Formatter)chLocal.getFormatter()).setFormat( "[%3$s:%4$d]%5$s%n" );			
 		}else {
 			((Formatter)chLocal.getFormatter()).setFormat("");
-		}
-		stateOfHandler = sw ;
+		} 
 
 		FileHandler fhLocal = (FileHandler) instance.getHandlers()[1];
 		((Formatter)fhLocal.getFormatter()).setClassName(classname);
@@ -70,19 +70,19 @@ public class Tracking {
 
 		String[] parts = Tracking.LineNb().split("-")  ;
 		//Tracking.getInstance(parts[0],Integer.valueOf(parts[1]) ).warning( warningMsg );
-		Toggle(enable,parts[0],Integer.valueOf(parts[1])) ;
+		Toggle(globalSwitcher && enable,parts[0],Integer.valueOf(parts[1])) ;
 		instance.warning( warningMsg );
 		//fh.close();
 	}
 	/*
-	 * void error(false,String infoMsg)
+	 * void error(true,String infoMsg)
 	 *	public method which trace the errors of the system
 	 */
 	public static void error(Boolean enable, String errorMsg ) {
-
+		enable = true;
 		String[] parts = Tracking.LineNb().split("-")  ;
 		//Tracking.getInstance( parts[0],Integer.valueOf(parts[1])).severe(errorMsg);
-		Toggle(enable,parts[0],Integer.valueOf(parts[1])) ;
+		Toggle(enable ,parts[0],Integer.valueOf(parts[1])) ;
 		instance.severe(errorMsg);
 		//fh.close();
 	}
@@ -178,7 +178,7 @@ public class Tracking {
 	 * after understanding the magic :D in side  "___8drrd3148796d_Xaf "
 	 * i make same changes to return the lastlinenumber also the lastclassname of
 	 * any Method that calls :
-	 * Track.info(), Track.warning() , Track.error(false,) 
+	 * Track.info(), Track.warning() , Track.error(true,) 
 	 * to simplify the reuse of this class in the future ;)
 	 * */
 	private static String ___8drrd3148796d_Xaf() {

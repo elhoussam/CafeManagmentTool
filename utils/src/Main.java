@@ -7,11 +7,11 @@ public class Main {
 		return a/b;
 	}
 	public static void main(String[] args) {
-		
+		Tracking.globalSwitcher = true ;
 		Tracking.setFolderName("main",false);	
-		Tracking.error (true," error OFF" );
+		Tracking.error (false ," error OFF" );
 		Tracking.error (false," error OFF" ); 
-		Tracking.warning (false," warningMsg ON ");
+		Tracking.info (true," warningMsg ON ");
 		Tracking.warning (true," warningMsg2 ON ");
 	}
 
