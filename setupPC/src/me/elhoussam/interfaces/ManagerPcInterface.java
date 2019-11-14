@@ -1,7 +1,7 @@
 package me.elhoussam.interfaces;
 import java.rmi.*;
 
-public interface ActivePcInterface extends Remote {	
+public interface ManagerPcInterface extends Remote {	
 	/*
 	*	String NotifyAdmin(String myInfo) : 
 	*	private method To inform the manager 

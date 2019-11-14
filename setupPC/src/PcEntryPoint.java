@@ -4,6 +4,8 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
+
+import me.elhoussam.core.connection;
 import me.elhoussam.implementation.info;
 import me.elhoussam.interfaces.*;
 import me.elhoussam.util.log.Tracking;
@@ -19,7 +21,7 @@ public class PcEntryPoint {
 	*/
 	private static void setupSecurityPolicy() throws Exception {
 			String res = SecurityHandler.instance.LoadSecurityPolicy("")  ;
-			Tracking.info(false,"Security State : "+ res ) ; 
+			Tracking.info(true,"Security State : "+ res ) ; 
 	}
 	/*	void providerWaiting() : 
 	*	static method create the object
@@ -35,16 +37,16 @@ public class PcEntryPoint {
 			
 			
 			System.setProperty("java.rmi.server.hostname", res );
-			Tracking.info(false,"Pc Ip Address : "+ res ) ;
+			Tracking.info(true,"Pc Ip Address : "+ res ) ;
 
 		
 			info  provideWait = new info();		
 			LocateRegistry.createRegistry(1099);
 			
 			Naming.rebind("//"+res+"/pcWait", provideWait);
-			Tracking.info(false,"Provider PC is ready."); 
+			Tracking.info(true,"Provider PC is ready."); 
 		}catch (Exception e) {
-			Tracking.error(false,"Provider PC failed: " + ExceptionHandler.getMessage(e) ); 
+			Tracking.error(true,"Provider PC failed: " + ExceptionHandler.getMessage(e) ); 
 		}		
 	}
 	/*	void main(String[] args) :  
@@ -55,36 +57,19 @@ public class PcEntryPoint {
 	public static void main (String[] args) {
 
 		Tracking.setFolderName("PcApp",false);
-		Tracking.info(false,"Start Pc Applicaion");
+		Tracking.info(true,"Start Pc Applicaion");
 		// for java to use preferIp version = 4 
 		//java.net.preferIPv4Stack
 		System.setProperty("java.net.preferIPv6Addresses", "true");
 		
+		String ipManager = (args.length == 0)?"192.168.1.2":args[0];
 		providerWaiting();
-		Tracking.info(false,"ip of the manager"+args[0]);		
-		reachManager(args[0]); // reach manager by his fixed LOCAL_IP
+		Tracking.info(true,"ip of the manager "+ipManager);
 		
+		  
+		connection.reachManager(ipManager);
+		connection.getThread().run();
 		
-	}
-	/*	void reachManager(String ipManager) :  
-	*	this method try to connect to the ManagerComputer
-	*	using the ipManager that giving by the user 
-	*	to send the current ip of the PcComputer into
-	*	ManagerComputer throws the remote object ActivePc 
-	*/
-	private static void reachManager(String ipManager) {
-		try { 
-			
-			ActivePcInterface activePcObj;
-			activePcObj = (ActivePcInterface) Naming.lookup("//"+ ipManager +"/ManagerWait");
-			
-			String res =  SecurityHandler.myLocalIp() ;
-			String result= activePcObj.NotifyAdmin(res);
-			Tracking.info(false,"PC Active :"+result);
-		}catch (Exception e) {
- 
-			Tracking.error(false,"PC App Failed:"   + ExceptionHandler.getMessage(e) );
-		}
-	}
+	} 
 
 }
