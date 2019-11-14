@@ -90,9 +90,9 @@ public class cli {
 			infoInterface infoObj;
 			infoObj = (infoInterface) Naming.lookup( fullPath );
 
-			//Tracking.info(false,"Thread Checker lookup for "+fullPath);
+			//Tracking.info(true,"Thread Checker lookup for "+fullPath);
 			String result= infoObj.get("os.name");
-			//Tracking.info(false,"Thread Checker get info :"+result+" from "+ip);
+			//Tracking.info(true,"Thread Checker get info :"+result+" from "+ip);
 			Tracking.echo( result ) ;
 		}catch (Exception e) {
 			Tracking.error(true,"Thread Checker ("+ip+"):Not connected"  );

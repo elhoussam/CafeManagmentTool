@@ -3,23 +3,28 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import me.elhoussam.core.Pc;
 import me.elhoussam.core.connection;
-import me.elhoussam.interfaces.ActivePcInterface;
+import me.elhoussam.interfaces.ManagerPcInterface;
 import me.elhoussam.util.log.Tracking;
 import me.elhoussam.util.sys.ExceptionHandler;
  
-public class ActivePc extends UnicastRemoteObject
-implements ActivePcInterface  {
+public class ManagerPc extends UnicastRemoteObject
+implements ManagerPcInterface  {
 	/*
 	*	ArrayList IpOfPcs  contain all the ip of connect pcs
 	*/
 	private ArrayList<String> IpOfPcs = new ArrayList<String>();
+	private ArrayList<Pc> listOfPcs = new ArrayList<Pc>();
 	/*
 	*	ArrayList<String> getListeActivePc() : 
 	*	public method return the Array of all ip
 	*/
 	public ArrayList<String> getListeActivePc() {
 		return IpOfPcs;
+	}
+	public ArrayList<Pc> getListePcs() {
+		return listOfPcs;
 	}
 	/*
 	*	addNewIp(String ipNewActivePc) : 
@@ -29,7 +34,7 @@ implements ActivePcInterface  {
 		IpOfPcs.add(ipNewActivePc);
 	}
 	
-	public ActivePc() throws RemoteException {}
+	public ManagerPc() throws RemoteException {}
 	/*
 	*	String NotifyAdmin(String myInfo) : 
 	*	private method To inform the manager 
@@ -40,22 +45,22 @@ implements ActivePcInterface  {
 
 	public String NotifyAdmin(String myInfo){
 		try {
-		
-		if( !myInfo.trim().isEmpty() ) {
-			String ipOfPc =  myInfo.trim();
+		myInfo = myInfo.trim();
+		if( !myInfo.isEmpty()   ) {
+			String ipOfPc =  myInfo ;
 			addNewIp(ipOfPc);
 			connection.getNotifier().run(); 
 			
-			Tracking.info(false,"the ("+ipOfPc+") was recieved");
+			Tracking.info(true,"the ("+ipOfPc+") was recieved");
 			
 			return "msg is recieved\n";
 		}else {
 
-			Tracking.warning(false,"the msg was badly received");
+			Tracking.warning(true,"the msg was badly received");
 			return "msg was not delivered\n";
 		}
 		}catch(Exception e ) {
-			Tracking.error(false,"some thing happened:"+ ExceptionHandler.getMessage(e));
+			Tracking.error(true,"some thing happened:"+ ExceptionHandler.getMessage(e));
 			return null ;
 		}
 		

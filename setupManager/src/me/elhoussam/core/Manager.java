@@ -3,13 +3,13 @@ import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 import java.util.Scanner;
 
-import me.elhoussam.implementation.ActivePc;
+import me.elhoussam.implementation.ManagerPc;
 import me.elhoussam.util.log.Tracking;
 import me.elhoussam.util.sys.ExceptionHandler;
 import me.elhoussam.util.sys.SecurityHandler;
 
 public class Manager {
-	private static ActivePc onlyObjectProvide = null;
+	private static ManagerPc onlyObjectProvide = null;
  
 	/*	void setupSecurityPolicy() : 
 	*	static method that load the 
@@ -20,7 +20,7 @@ public class Manager {
 
 	private static void setupSecurityPolicy() throws Exception {
 			String res = SecurityHandler.instance.LoadSecurityPolicy("")  ;
-			Tracking.info(false,"Security State : "+ res ) ; 
+			Tracking.info(true,"Security State : "+ res ) ; 
 	}	
 	/*	void managerWaiting() : 
 	*	static method create the object
@@ -29,30 +29,30 @@ public class Manager {
 	*	and finaly bind the service object with
 	*	a public name in the localregistry
 	*/	
-	private static ActivePc managerWaiting() {
+	private static ManagerPc managerWaiting() {
 		try { 
 			setupSecurityPolicy()  ;
 			
 			String res =  SecurityHandler.myLocalIp() ;
 			// set server.hostname to IP_MANAGER
 			System.setProperty("java.rmi.server.hostname", res );
-			Tracking.info(false,"Manager Ip Address : "+ res ) ; 
+			Tracking.info(true,"Manager Ip Address : "+ res ) ; 
 						
-			ActivePc  ManagerWait = new ActivePc();		
+			ManagerPc  ManagerWait = new ManagerPc();		
 			LocateRegistry.createRegistry(1099);
 			Naming.rebind("//"+res+"/ManagerWait", ManagerWait);
 
-			Tracking.info(false,"Manager Server is ready.");
+			Tracking.info(true,"Manager Server is ready.");
 			return ManagerWait ;
 		}catch (Exception e) {
-			Tracking.error(false,"Manager App failed: " + ExceptionHandler.getMessage(e));
+			Tracking.error(true,"Manager App failed: " + ExceptionHandler.getMessage(e));
 			return null; 
 		}
 	}
 	/*
-	 * return ActivePc object, the only 
+	 * return ManagerPc object, the only 
 	 * */
-	public static ActivePc get() {
+	public static ManagerPc get() {
 		return onlyObjectProvide;
 	}
 	/*	void main(String[] args) :  
@@ -62,7 +62,7 @@ public class Manager {
 	public static void start (){ 
 		try {
 			Tracking.setFolderName("ManagerApp",false);
-			Tracking.info(false,"Start Manager Applicaion");
+			Tracking.info(true,"Start Manager Applicaion");
 			//java.net.preferIPv6Addresses : to use only
 			System.setProperty("java.net.preferIPv4Stack", "true");
 			
@@ -71,15 +71,15 @@ public class Manager {
 			// Lunch the Thread = (ConnNotifier)
 			connection.connNotifier();
 
-			Tracking.info(false,"Manager launch Notifier thread");
+			Tracking.info(true,"Manager launch Notifier thread");
 			// then launch the thread = connChecker
 			connection.connChecker();
 
-			Tracking.info(false,"Manager launch Checker thread");
-			new cli();
+			Tracking.info(true,"Manager launch Checker thread");
+			// new cli(); // Launch Command Ligne Interface
 		} catch (Exception e) {
 
-			Tracking.error(false,"Manager start :" + ExceptionHandler.getMessage(e));
+			Tracking.error(true,"Manager start :" + ExceptionHandler.getMessage(e));
 		}
 	}	
 }
