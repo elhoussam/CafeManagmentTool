@@ -3,7 +3,7 @@ package me.elhoussam.core;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import java.util.concurrent.TimeUnit;
 import me.elhoussam.interfaces.infoInterface;
 
 public class Pc {
@@ -38,9 +38,15 @@ public class Pc {
 	}
 	public String getLastconnection() {
 
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 		return dateFormat.format( this.lastconnection );
+		
 	} 
+	public Long getTimeFromLastConn() {
+	  Date now = new Date();
+	  long time = Math.abs( now.getTime() - this.lastconnection.getTime());
+      return  TimeUnit.SECONDS.convert(time, TimeUnit.MILLISECONDS);
+	}
 	public void updateLastconnection() {
 		Date date = new Date();
 		this.lastconnection  = date ;		

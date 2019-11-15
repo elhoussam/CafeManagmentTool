@@ -70,12 +70,16 @@ public class Manager {
 			
 			// Lunch the Thread = (ConnNotifier)
 			connection.connNotifier();
-
 			Tracking.info(true,"Manager launch Notifier thread");
+
 			// then launch the thread = connChecker
 			connection.connChecker();
-
 			Tracking.info(true,"Manager launch Checker thread");
+
+			// then launch the thread = Eliminator
+			connection.eliminatorThread();
+			Tracking.info(true,"Manager launch Eliminator thread");
+
 			// new cli(); // Launch Command Ligne Interface
 		} catch (Exception e) {
 
