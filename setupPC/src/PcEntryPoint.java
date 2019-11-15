@@ -68,7 +68,7 @@ public class PcEntryPoint {
 		
 		  
 		connection.reachManager(ipManager);
-		connection.getThread().run();
+		//connection.getThread().run();
 		
 	} 
 
