@@ -26,7 +26,7 @@ public class SecurityHandler {
 			// this used to load the file from resourceFolder in side jar file
 			//String DynamicPath =  getClass().getClassLoader().getResource( securityPolicyPath ).toString();
 			
-			String DynamicPath =  Paths.get(".").toAbsolutePath().normalize().toString() +"\\sec.policy" ;
+			String DynamicPath =  Paths.get(".").toAbsolutePath().normalize().toString()+File.pathSeparator +"sec.policy" ;
 			File policyfile = new File(DynamicPath); 
 			if( !(policyfile.exists()) )
 				DynamicPath =  getClass().getClassLoader().getResource( securityPolicyPath ).toString(); 
