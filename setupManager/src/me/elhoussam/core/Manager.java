@@ -1,22 +1,17 @@
 package me.elhoussam.core;
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
-import java.util.ArrayList;
-import java.util.Scanner;
-
+import java.util.Vector;
 import me.elhoussam.implementation.ManagerPc;
 import me.elhoussam.util.log.Tracking;
 import me.elhoussam.util.sys.ExceptionHandler;
 import me.elhoussam.util.sys.SecurityHandler;
 
 public class Manager {
-  /*
+   /*
    *    ArrayList IpOfPcs  contain all the ip of connect pcs
-   */
-  //private ArrayList<String> IpOfPcs = new ArrayList<String>();
-  private static ArrayList<Pc> listOfPcs = new ArrayList<Pc>();
-
-  private static ManagerPc onlyObjectProvide = null;
+   */ 
+  private static Vector<Pc> listOfPcs = new  Vector<Pc>(); 
 
   /*	void setupSecurityPolicy() : 
    *	static method that load the 
@@ -29,7 +24,7 @@ public class Manager {
     Pc connectedPc =new Pc(ip);
     Manager.listOfPcs.add( connectedPc );
   }
-  private static void setupSecurityPolicy() throws Exception {
+  public static void setupSecurityPolicy() throws Exception {
     String res = SecurityHandler.instance.LoadSecurityPolicy("")  ;
     Tracking.info(true,"Security State : "+ res ) ; 
   }	
@@ -63,7 +58,7 @@ public class Manager {
   /*
    * return ManagerPc object, the only 
    * */
-  public static ArrayList<Pc> get() {
+  public static Vector<Pc> get() {
     return listOfPcs;
   }
   public static int indexOf(String ipAddress) {
@@ -80,25 +75,14 @@ public class Manager {
    */	
   public static void start (){ 
     try {
-      Tracking.setFolderName("ManagerApp",false);
+      Tracking.setFolderName("ManagerApp");
       Tracking.info(true,"Start Manager Applicaion");
       //java.net.preferIPv6Addresses : to use only
       System.setProperty("java.net.preferIPv4Stack", "true");
 
-      onlyObjectProvide = managerWaiting();
-
-      // Lunch the Thread = (ConnNotifier)
-      connection.connNotifier();
-      Tracking.info(true,"Manager launch Notifier thread");
-
-      // then launch the thread = connChecker
-      connection.connChecker();
-      Tracking.info(true,"Manager launch Checker thread");
-
-      // then launch the thread = Eliminator
-      connection.eliminatorThread();
-      Tracking.info(true,"Manager launch Eliminator thread");
-
+      managerWaiting();
+      // launch threads (Notifier, Checker, Eliminator)
+      connection.init();
       // new cli(); // Launch Command Ligne Interface
     } catch (Exception e) {
 

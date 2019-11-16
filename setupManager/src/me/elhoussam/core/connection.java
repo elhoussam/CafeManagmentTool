@@ -1,10 +1,10 @@
 package me.elhoussam.core;
 
 import java.rmi.Naming;
-
 import me.elhoussam.interfaces.infoInterface;
 import me.elhoussam.util.log.Tracking;
 import me.elhoussam.util.sys.ExceptionHandler;
+import me.elhoussam.util.sys.PropertyHandler;
 
 public class connection {
   private static Boolean connCheckerStarted = false ;
@@ -15,10 +15,34 @@ public class connection {
   private static Thread connectionNotifier = null;
   private static Thread pcEliminator = null;
 
+  private static int threadPeriodInSecond = 120; 
+  public static void init() {
+    // read property file
+    threadPeriodInSecond = connection.getValue("thread.period");
+    // Lunch the Thread = (ConnNotifier)
+    connection.connNotifier();
+    Tracking.info(true,"Connection launch Notifier thread");
+
+    // then launch the thread = connChecker
+    connection.connChecker();
+    Tracking.info(true,"Manager launch Checker thread");
+
+    // then launch the thread = Eliminator
+    connection.eliminatorThread();
+    Tracking.info(true,"Manager launch Eliminator thread");
+
+  }
+
   public static Thread getNotifier() {
     return connectionNotifier ;
   } 
-  public static void connChecker() { 
+  private static int getValue(String str) {
+    PropertyHandler ph = new PropertyHandler("config/config.properties");
+    String s = ph.getPropetry( str ); //"thread.period"
+    if(s!=null)  return Integer.valueOf(s);
+    else return -1;
+  }
+  private static void connChecker() { 
     if( ! connCheckerStarted ) {
       connectionChecker = new Thread("ConnectionChecker") {
         public void run(){ 
@@ -42,7 +66,7 @@ public class connection {
                   }
                 }
               }
-              Thread.sleep(3*60*1000);
+              Thread.sleep(threadPeriodInSecond*1000);
             }
           }catch (Exception e){ 
             Tracking.error(true,"Thread Checker Failed:" + ExceptionHandler.getMessage(e));
@@ -53,24 +77,26 @@ public class connection {
       connCheckerStarted = true ;
     }
   }
-  public static void eliminatorThread() { 
+  private static void eliminatorThread() { 
     if( ! connection.pcEliminatorStarted ) {
       connection.pcEliminator = new Thread("pcEliminator") {
         public void run(){ 
           try{  
             while( true ) {
+              int residMorethanSeconds = connection.getValue("time.eliminat");
+              residMorethanSeconds = (residMorethanSeconds == -1)?180:residMorethanSeconds;
               int listsize = Manager.get().size() ;
               if( listsize > 0 ) { 
                 for( short i = 0; i <listsize ; i++) {
                   if( !Manager.get().get(i).getPcState() ) {
-                    if ( Manager.get().get(i).getTimeFromLastConn() >= 3*60 ) {
+                    if ( Manager.get().get(i).getTimeFromLastConn() >=residMorethanSeconds ) {
                       Manager.get().remove(i);
                       Tracking.info(true, "Thread Eliminator remove the Pc("+i+")");
                     }
-                    }
                   }
+                }
               }
-              Thread.sleep(60*1000);
+              Thread.sleep(threadPeriodInSecond*1000);
             }
           }catch (Exception e){ 
             Tracking.error(true,"Thread Eliminator Failed:" + ExceptionHandler.getMessage(e));
@@ -81,7 +107,7 @@ public class connection {
       pcEliminatorStarted = true ;
     }
   }
-  public static void connNotifier() {
+  private static void connNotifier() {
     if( ! connNotifierStarted ) {
       connectionNotifier = new Thread("Connection Notifier") {
         public void run() {
