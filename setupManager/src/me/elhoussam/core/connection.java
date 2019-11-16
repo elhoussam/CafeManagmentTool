@@ -24,20 +24,20 @@ public class connection {
         public void run(){ 
           try{  
             while( true ) {
-              int listsize = Manager.get().getListeActivePc().size() ;
+              int listsize = Manager.get().size() ;
               if( listsize > 0 ) {
                 String ip = "" ;
                 for( short i = 0; i <listsize ; i++) {
-                  ip = Manager.get().getListeActivePc().get(i);
+                  ip = Manager.get().get(i).getIpAddress();
                   infoInterface localRef = connection.getRemoteObj(ip);
                   // if the ref is not NULL means the RemoteObject is ACTIVE
                   if( localRef != null ) {
-                    Manager.get().getListePcs().get(i).setPcState(true);
-                    Manager.get().getListePcs().get(i).setRef(localRef);
+                    Manager.get().get(i).setPcState(true);
+                    Manager.get().get(i).setRef(localRef);
                     Tracking.info(true,"Connection Checker:"+ip+" connected" );
                   }else {
-                    Manager.get().getListePcs().get(i).setPcState(false);
-                    Manager.get().getListePcs().get(i).setRef(null);
+                    Manager.get().get(i).setPcState(false);
+                    Manager.get().get(i).setRef(null);
                     Tracking.info(true,"Connection Checker:"+ip+" not connected" );
                   }
                 }
@@ -59,12 +59,12 @@ public class connection {
         public void run(){ 
           try{  
             while( true ) {
-              int listsize = Manager.get().getListePcs().size() ;
+              int listsize = Manager.get().size() ;
               if( listsize > 0 ) { 
                 for( short i = 0; i <listsize ; i++) {
-                  if( !Manager.get().getListePcs().get(i).getPcState() ) {
-                    if ( Manager.get().getListePcs().get(i).getTimeFromLastConn() >= 3*60 ) {
-                      Manager.get().getListePcs().remove(i);
+                  if( !Manager.get().get(i).getPcState() ) {
+                    if ( Manager.get().get(i).getTimeFromLastConn() >= 3*60 ) {
+                      Manager.get().remove(i);
                       Tracking.info(true, "Thread Eliminator remove the Pc("+i+")");
                     }
                     }
@@ -87,26 +87,24 @@ public class connection {
         public void run() {
           try{ 
             // base on ip list 
-            int listsize = Manager.get().getListeActivePc().size() -1 ;
+            int listsize = Manager.get().size() -1 ;
             if( listsize >= 0 ) {
 
-              String ip = Manager.get().getListeActivePc().get(listsize);
-              Manager.get().getListeActivePc().remove(listsize);
-              int exist = Manager.get().getListeActivePc().indexOf(ip);
+              String ip = Manager.get().get(listsize).getIpAddress();
+              Manager.get().remove(listsize);
+              int exist = Manager.indexOf(ip);
 
               Tracking.info(true,"Connection Notifier: New Conn ip: "+ip );
               if( exist == -1 ) { // does not exist 
                 // add new pc element, and reInsert ip in the ipList
-                Pc newConnectedPc = new Pc();
-                newConnectedPc.setIpAddress(ip);
+                Pc newConnectedPc = new Pc(ip); 
                 newConnectedPc.setRef( getRemoteObj(ip) );
                 newConnectedPc.updateLastconnection();
-                Manager.get().getListePcs().add( newConnectedPc );
-                Manager.get().getListeActivePc().add(ip);
+                Manager.get().add( newConnectedPc ); 
                 Tracking.info(true,"Connection Notifier:"+ip+" is new for me" );
               }else { // exist meas update state and Date
-                Manager.get().getListePcs().get(exist).setPcState(true);
-                Manager.get().getListePcs().get(exist).updateLastconnection();
+                Manager.get().get(exist).setPcState(true);
+                Manager.get().get(exist).updateLastconnection();
                 Tracking.info(true,"Connection Notifier:"+ip+" is Aready listed" );
               }
 

@@ -50,7 +50,7 @@ public class cli {
 
 	private void listActivePc(int i) {
 		currentOptions+="listActivePc>";
-		int numberOfActivePcs = Manager.get().getListeActivePc().size();
+		int numberOfActivePcs = Manager.get().size();
 		String option = "";
 		for( i=0;i<numberOfActivePcs;i++ ) {
 			option+="\t"+(i+1)+"-Pc("+i+1+")\n\t";
@@ -83,7 +83,7 @@ public class cli {
 	}
 	private void __osName(int pcn) {
 
-		String ip = Manager.get().getListeActivePc().get(pcn);
+		String ip = Manager.get().get(pcn).getIpAddress();
 		try {
 			String fullPath =  "//"+ ip  +"/pcWait" ;
 

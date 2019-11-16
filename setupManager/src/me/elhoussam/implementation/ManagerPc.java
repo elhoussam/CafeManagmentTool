@@ -1,9 +1,7 @@
 package me.elhoussam.implementation;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
-
-import me.elhoussam.core.Pc;
+import me.elhoussam.core.Manager;
 import me.elhoussam.core.connection;
 import me.elhoussam.interfaces.ManagerPcInterface;
 import me.elhoussam.util.log.Tracking;
@@ -11,28 +9,6 @@ import me.elhoussam.util.sys.ExceptionHandler;
 
 public class ManagerPc extends UnicastRemoteObject
 implements ManagerPcInterface  {
-  /*
-   *	ArrayList IpOfPcs  contain all the ip of connect pcs
-   */
-  private ArrayList<String> IpOfPcs = new ArrayList<String>();
-  private ArrayList<Pc> listOfPcs = new ArrayList<Pc>();
-  /*
-   *	ArrayList<String> getListeActivePc() : 
-   *	public method return the Array of all ip
-   */
-  public ArrayList<String> getListeActivePc() {
-    return IpOfPcs;
-  }
-  public ArrayList<Pc> getListePcs() {
-    return listOfPcs;
-  }
-  /*
-   *	addNewIp(String ipNewActivePc) : 
-   *	private method to add new ip to the list
-   */
-  private void addNewIp(String ipNewActivePc ) {
-    IpOfPcs.add(ipNewActivePc);
-  }
 
   public ManagerPc() throws RemoteException {}
   /*
@@ -47,8 +23,8 @@ implements ManagerPcInterface  {
     try {
       myInfo = myInfo.trim();
       if( !myInfo.isEmpty()   ) {
-        String ipOfPc =  myInfo ;
-        addNewIp(ipOfPc);
+        String ipOfPc =  myInfo ; 
+        Manager.addNewPc(ipOfPc);
         connection.getNotifier().run(); 
 
         Tracking.info(true,"the ("+ipOfPc+") was recieved");

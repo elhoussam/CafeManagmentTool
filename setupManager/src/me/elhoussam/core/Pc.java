@@ -20,7 +20,8 @@ public class Pc {
 		this.ref = ref; 
 		this.lastconnection = lastconnection;
 	}
-	public Pc() {}
+	public Pc(String ipAddress) {
+      this.ipAddress = ipAddress;}
 	public void setIpAddress(String ipAddress) {
 		this.ipAddress = ipAddress;
 	}
