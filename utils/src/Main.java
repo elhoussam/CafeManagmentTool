@@ -1,6 +1,7 @@
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import me.elhoussam.util.log.Tracking;
+import me.elhoussam.util.sys.PropertyHandler;
 import me.elhoussam.util.sys.SecurityHandler;
 public class Main {
 
@@ -12,8 +13,13 @@ public class Main {
 	public static void main(String[] args) throws UnknownHostException, SocketException {
 		Tracking.globalSwitcher = true ;
 	    Tracking.setFolderName("utils");
-		Tracking.info(true,"Start Here"); 
-		Tracking.error (false ," error qsdfsqdqsdf" +SecurityHandler.myLocalIp() );
+	    
+	    //Tracking.echo( PropertyHandler.loadExternalConfig() );
+	    PropertyHandler ph = new PropertyHandler("");
+	    Tracking.echo( ph.getPropetry("ip.test" ) );
+	    
+	    
+		 
 	}
 
 }
