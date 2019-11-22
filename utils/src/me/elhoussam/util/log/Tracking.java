@@ -5,53 +5,47 @@ import java.io.IOException;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
-import me.elhoussam.util.log.Formatter;
 
 public class Tracking {
   public static Boolean globalSwitcher = true ;
   /*
    * these two logFolderName, logFolderNameChange to save
-   *	the chosing name of logfolder and insure will not 
+   *	the chosing name of logfolder and insure will not
    *	be modified more then one time.
    */
   private static String logFolderName ="logFolder";
-  private static Boolean logFolderNameChange = false ;  
+  private static Boolean logFolderNameChange = false ;
 
   /*
-   * instance, fh, ch : use to save and show all 
+   * instance, fh, ch : use to save and show all
    *	event that happend in the system into specific
    *	file and show the update in the console.
-   */	
+   */
   private static Logger  instance = null;
   /*
    * void info(String infoMsg)
    *	public method which trace the infos of the system
-   */	
+   */
 
   public static synchronized void info(Boolean enable, String infoMsg) {
-
     String[] parts = Tracking.LineNb().split("-")  ;
-    //Tracking.getInstance(parts[0],Integer.valueOf(parts[1]) ).info( infoMsg );
-
     Toggle(globalSwitcher && enable,parts[0],Integer.valueOf(parts[1])) ;
     instance.info( infoMsg );
     //fh.close();
   }
 
-  private static void Toggle(Boolean sw, String classname, int linenumber) { 
-
+  private static void Toggle(Boolean sw, String classname, int linenumber) {
     ConsoleHandler chLocal = (ConsoleHandler) instance.getHandlers()[0];
     if( sw ) { // enaable console handler by add it IF NOT EXIST
       ((Formatter)chLocal.getFormatter()).setClassName(classname);
-      ((Formatter)chLocal.getFormatter()).setLineNumber(linenumber); 
-      ((Formatter)chLocal.getFormatter()).setFormat( "[%3$s:%4$d]%5$s%n" );			
+      ((Formatter)chLocal.getFormatter()).setLineNumber(linenumber);
+      ((Formatter)chLocal.getFormatter()).setFormat( "[%3$s:%4$d]%5$s%n" );
     }else {
       ((Formatter)chLocal.getFormatter()).setFormat("");
-    } 
-
+    }
     FileHandler fhLocal = (FileHandler) instance.getHandlers()[1];
     ((Formatter)fhLocal.getFormatter()).setClassName(classname);
-    ((Formatter)fhLocal.getFormatter()).setLineNumber(linenumber); 
+    ((Formatter)fhLocal.getFormatter()).setLineNumber(linenumber);
   }
   /*
    * void warning(String infoMsg)
@@ -60,7 +54,6 @@ public class Tracking {
   public static synchronized void warning(Boolean enable, String warningMsg ) {
 
     String[] parts = Tracking.LineNb().split("-")  ;
-    //Tracking.getInstance(parts[0],Integer.valueOf(parts[1]) ).warning( warningMsg );
     Toggle(globalSwitcher && enable,parts[0],Integer.valueOf(parts[1])) ;
     instance.warning( warningMsg );
     //fh.close();
@@ -72,10 +65,8 @@ public class Tracking {
   public static synchronized void error(Boolean enable, String errorMsg ) {
     enable = true;
     String[] parts = Tracking.LineNb().split("-")  ;
-    //Tracking.getInstance( parts[0],Integer.valueOf(parts[1])).severe(errorMsg);
     Toggle(enable ,parts[0],Integer.valueOf(parts[1])) ;
     instance.severe(errorMsg);
-    //fh.close();
   }
   /*
    * void setFolderName(String name)
@@ -83,28 +74,28 @@ public class Tracking {
    *	that contain the log file just for one time.
    */
   public static void setFolderName(String name) {
-    if ( !logFolderNameChange && !name.trim().isEmpty()  && ! name.trim().equalsIgnoreCase(logFolderName) ) {  
+    if ( !logFolderNameChange && !name.trim().isEmpty()  && ! name.trim().equalsIgnoreCase(logFolderName) ) {
       logFolderName = "log_"+name.trim(); logFolderNameChange = true; }
     String[] parts = Tracking.LineNb().split("-")  ;
-    Tracking.getInstance( parts[0],Integer.valueOf(parts[1])) ; 
+    Tracking.getInstance( parts[0],Integer.valueOf(parts[1])) ;
   }
   /*
    * Logger (String ClassName, int lineNb )
-   *	private method : that return new Logger object 
-   *	if its the first you invoke this method, or will 
-   *	setup new formatter if the lastclassname, lastlinenumber 
+   *	private method : that return new Logger object
+   *	if its the first you invoke this method, or will
+   *	setup new formatter if the lastclassname, lastlinenumber
    *	is changed.
    */
   private static Logger getInstance(String className, int lineNumber ) {
     if( instance == null )  {
       instance = setUpLogger(  className, lineNumber  );
-    }	
+    }
     return instance;
   }
   /*
    *	Logger setUpLogger( SimpleFormatter SP )
-   *	private method : that return new Logger object 
-   *	if is the first time, or set new formatter to 
+   *	private method : that return new Logger object
+   *	if is the first time, or set new formatter to
    *	the existing logger object.
    */
   private static Logger setUpLogger( String ClassName, int LineNb ) {
@@ -113,7 +104,7 @@ public class Tracking {
 
       String logDirName = logFolderName;
       //System.out.println(logDirName );
-      File logDir = new File(logDirName+"/"); 
+      File logDir = new File(logDirName+"/");
       if( !(logDir.exists()) )
         logDir.mkdir();
       lg.setUseParentHandlers(false);
@@ -125,18 +116,26 @@ public class Tracking {
     }
     return  lg;
   }
+  /*
+   * newConsoleHandler : create new consoleHandler with new formatter and return it
+   * */
   private static ConsoleHandler newConsoleHandler( String ClassName, int LineNb) {
-
     ConsoleHandler ch = new ConsoleHandler();
     ch.setFormatter(new Formatter(ClassName, LineNb, "[%3$s:%4$d]%5$s%n"  )) ;
-    return (ConsoleHandler) ch;
+    return ch;
   }
+  /*
+   * newFileHandler : create new fileHandler with new formatter and return it
+   * */
   private static FileHandler newFileHandler( String ClassName, int LineNb, String folder) throws SecurityException, IOException {
     FileHandler fh = new FileHandler( folder+"/"+"file.log" ,true );
-    fh.setFormatter(new Formatter(ClassName, LineNb, "[%1$tF %1$tT][%2$-7s][%3$s:%4$d]%5$s%n"  ));	
-    return (FileHandler) fh;
+    fh.setFormatter(new Formatter(ClassName, LineNb, "[%1$tF %1$tT][%2$-7s][%3$s:%4$d]%5$s%n"  ));
+    return fh;
   }
-  public static void echo(Object obj) { 
+  /**
+   * echo : simple printf
+   * */
+  public static void echo(Object obj) {
     String str = obj.toString() ;
     //if( ! str.endsWith("\n") )  str+="\n";
     System.out.println( str );
@@ -153,13 +152,13 @@ public class Tracking {
    * 
    * @return The line number of the code that called the method that called
    *         this method(Should only be called by getLineNumber()).
-   * @author Brian_Entei 
+   * @author Brian_Entei
    *
-   * @Developer elhoussam 
+   * @Developer elhoussam
    * after understanding the magic :D in side  "___8drrd3148796d_Xaf "
    * i make same changes to return the lastlinenumber also the lastclassname of
    * any Method that calls :
-   * Track.info(), Track.warning() , Track.error(true,) 
+   * Track.info(), Track.warning() , Track.error(true,)
    * to simplify the reuse of this class in the future ;)
    * */
   private static String ___8drrd3148796d_Xaf() {
