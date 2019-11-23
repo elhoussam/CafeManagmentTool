@@ -1,4 +1,4 @@
-M=mvn clean
+M=mvn -T 1C clean
 MANAGER_DIR=setupManager
 PC_DIR=setupPc
 UTILS_DIR=utils
