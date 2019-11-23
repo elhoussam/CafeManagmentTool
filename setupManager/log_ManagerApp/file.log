@@ -1,6 +1,0 @@
-[2019-11-16 22:41:57][INFOS  ][me.elhoussam.core.Manager:79]Start Manager Applicaion
-[2019-11-16 22:41:57][INFOS  ][me.elhoussam.util.sys.SecurityHandler:36]The Security policy is initialized
-[2019-11-16 22:41:57][INFOS  ][me.elhoussam.util.sys.SecurityHandler:56]The Security policy setup
-[2019-11-16 22:41:58][INFOS  ][me.elhoussam.core.Manager:29]Security State : C:/Users/Administrateur/eclipse-workspace/setupManager/target/classes/config/security.policy
-[2019-11-16 22:42:00][INFOS  ][me.elhoussam.core.Manager:45]Manager Ip Address : 192.168.1.2
-[2019-11-16 22:42:02][INFOS  ][me.elhoussam.core.Manager:51]Manager Server is ready.
