@@ -2,11 +2,10 @@ package me.elhoussam.implementation;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
 import me.elhoussam.core.Pc;
 import me.elhoussam.interfaces.infoInterface;
 import me.elhoussam.util.log.Tracking;
+import me.elhoussam.util.sys.TimeHandler;
 
 public class info extends UnicastRemoteObject implements infoInterface {
 
@@ -23,19 +22,20 @@ public class info extends UnicastRemoteObject implements infoInterface {
     return str;
   }
 
-
-
   @Override
-  public Long getLifeTime() throws RemoteException {
-    Date now = new Date();
-    long time = Math.abs(now.getTime() - Pc.getStartTime());
-
-    return TimeUnit.SECONDS.convert(time, TimeUnit.MILLISECONDS);
+  public int getLifeTime() throws RemoteException {
+    int startTime = Pc.getStartTime();
+    return TimeHandler.timeDifference(startTime);
   }
 
   @Override
   public String getIpAddress() throws RemoteException {
     return Pc.getMyIp();
+  }
+
+  @Override
+  public int getStartTime() throws RemoteException {
+    return Pc.getStartTime();
   }
 
 }

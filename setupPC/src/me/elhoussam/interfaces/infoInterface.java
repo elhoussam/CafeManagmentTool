@@ -9,7 +9,9 @@ public interface infoInterface extends java.rmi.Remote {
    */
   public String get(String property) throws RemoteException;
 
-  public Long getLifeTime() throws RemoteException;
+  public int getLifeTime() throws RemoteException;
+
+  public int getStartTime() throws RemoteException;
 
   public String getIpAddress() throws RemoteException;
 }
