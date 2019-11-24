@@ -1,39 +1,89 @@
 package me.elhoussam.core;
 
-import java.rmi.Naming;
+import java.rmi.RemoteException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 import me.elhoussam.interfaces.infoInterface;
 import me.elhoussam.util.log.Tracking;
+import me.elhoussam.util.sys.ExceptionHandler;
+import me.elhoussam.util.sys.TimeHandler;
 
 public class cli {
+
   private String options[] = {"\t1-list active pc\n\t2-cmd to all\n\t0-quit\n # choise :", // managerOptions
       "\t1-shutdown all pcs\n\t2-logInAllPcs\n\t3-logOutAllPcs 0-quit\n # choise :", // cmd to all
-      "\t1-shutdown\n\t2-Login\n\t3-logoff\n\t4-os name\n\t0-quit\n # choise :",// option to pcs
+      "\t1-shutdown\n\t2-Login\n\t3-logoff\n\t4-os name\n\t5-life time\n\t6-start time\n\t0-quit\n # choise :",// option to pcs
   };
-  private String currentOptions = "ManagerApp>";
 
+  private String currentOptions = "ManagerApp>";
+  private static Scanner stdin = new Scanner(System.in);
+  public static byte byteInput() {
+    byte a = stdin.nextByte();
+    return a;
+
+  }
   public cli() {
     startCommandLigneInterface((byte) -1);
+    stdin.close();
     Tracking.echo("Exit...\n");
     System.exit(0);
   }
 
-  private void startCommandLigneInterface(byte i) {
-    do {
-      showOption(currentOptions + "\n" + options[0]);
-      i = byteInput();
-      switch (i) {
-        case 1:
-          listActivePc(-1);
-          break;
-        case 2:
-          cmdToAllPcs(-1);
-          break;
-      }
-    } while (i != 0);
+  private void __logInAllPcs() {
+    Tracking.echo("log in all pcs ... done\n");
+  }
+
+  private void __logInPcN(int pcn) {
+    Tracking.echo("log In pc N" + pcn + " ... done\n");
+
+  }
+
+  private void __logOutAllPcs() {
+    Tracking.echo("log out all pcs ... done\n");
+  }
+
+  private void __logOutPcN(int pcn) {
+    Tracking.echo("log Out pc N" + pcn + " ... done\n");
+  }
+
+  private void __osName(int pcn) {
+
+    Manager.get().get(pcn).getIpAddress();
+    try {
+      infoInterface infOBJ = Manager.get().get(pcn).getRef();
+      // Tracking.info(true,"Thread Checker lookup for "+fullPath);
+      String result = infOBJ.get("os.name");
+      // Tracking.info(true,"Thread Checker get info :"+result+" from "+ip);
+      Tracking.echo(result);
+    } catch (Exception e) {
+      Tracking.error(true, "Manager CLI error"+
+          ExceptionHandler.getMessage(e));
+      // ExceptionHandler.getMessage(e)
+    }
+
+  }
+
+  private void __showLifeTime(int pcn) {
+    infoInterface infOBJ = Manager.get().get(pcn).getRef();
+    try {
+      Tracking.echo(
+          TimeHandler.toString(infOBJ.getLifeTime(),true,true,true)
+          );
+    } catch (RemoteException e) {
+      Tracking.error(true, "Manager CLI error"+
+          ExceptionHandler.getMessage(e));
+      // ExceptionHandler.getMessage(e)
+    }
+  }
+
+  private void __shutdownAllPcs() {
+    Tracking.echo("shutdown all pcs ... done\n");
+  }
+
+  private void __shutdownPcN(int pcn) {
+    Tracking.echo("Shutdown pc N" + pcn + " ... done\n");
   }
 
   private void cmdToAllPcs(int i) {
@@ -95,6 +145,12 @@ public class cli {
         case 4:
           __osName(pcn);
           break;
+        case 5:
+          __showLifeTime(pcn);
+          break;
+        case 6:
+          __showStartTime(pcn);
+          break;
       }
 
     } while (i != 0);
@@ -102,24 +158,17 @@ public class cli {
 
   }
 
-  private void __osName(int pcn) {
-
-    String ip = Manager.get().get(pcn).getIpAddress();
+  private void __showStartTime(int pcn) {
+    infoInterface infOBJ = Manager.get().get(pcn).getRef();
     try {
-      String fullPath = "//" + ip + "/pcWait";
-
-      infoInterface infoObj;
-      infoObj = (infoInterface) Naming.lookup(fullPath);
-
-      // Tracking.info(true,"Thread Checker lookup for "+fullPath);
-      String result = infoObj.get("os.name");
-      // Tracking.info(true,"Thread Checker get info :"+result+" from "+ip);
-      Tracking.echo(result);
-    } catch (Exception e) {
-      Tracking.error(true, "Thread Checker (" + ip + "):Not connected");
+      Tracking.echo(
+          TimeHandler.toString(infOBJ.getStartTime(),true,true,true)
+          );
+    } catch (RemoteException e) {
+      Tracking.error(true, "Manager CLI error"+
+          ExceptionHandler.getMessage(e));
       // ExceptionHandler.getMessage(e)
     }
-
   }
 
   private void removeLastOption() {
@@ -130,38 +179,22 @@ public class cli {
     currentOptions = String.join(">", strList);
   }
 
-  private void __logOutPcN(int pcn) {
-    Tracking.echo("log Out pc N" + pcn + " ... done\n");
-  }
-
-  private void __logInPcN(int pcn) {
-    Tracking.echo("log In pc N" + pcn + " ... done\n");
-
-  }
-
-  private void __shutdownPcN(int pcn) {
-    Tracking.echo("Shutdown pc N" + pcn + " ... done\n");
-  }
-
-  private void __logOutAllPcs() {
-    Tracking.echo("log out all pcs ... done\n");
-  }
-
-  private void __logInAllPcs() {
-    Tracking.echo("log in all pcs ... done\n");
-  }
-
-  private void __shutdownAllPcs() {
-    Tracking.echo("shutdown all pcs ... done\n");
-  }
-
-  public static byte byteInput() {
-    Scanner stdin = new Scanner(System.in);
-    stdin.next(); byte a = stdin.nextByte();
-    stdin.close(); return a;
-  }
-
   private void showOption(String options) {
     Tracking.echo(options);
+  }
+
+  private void startCommandLigneInterface(byte i) {
+    do {
+      showOption(currentOptions + "\n" + options[0]);
+      i = byteInput();
+      switch (i) {
+        case 1:
+          listActivePc(-1);
+          break;
+        case 2:
+          cmdToAllPcs(-1);
+          break;
+      }
+    } while (i != 0);
   }
 }

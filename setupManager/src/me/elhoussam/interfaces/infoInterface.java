@@ -8,4 +8,10 @@ public interface infoInterface extends java.rmi.Remote {
    * it represent the sevice in PC side.
    */
   public String get(String property) throws RemoteException;
+
+  public int getLifeTime() throws RemoteException;
+
+  public int getStartTime() throws RemoteException;
+
+  public String getIpAddress() throws RemoteException;
 }

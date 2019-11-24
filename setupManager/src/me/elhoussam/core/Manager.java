@@ -74,6 +74,7 @@ public class Manager {
   public static void start() {
     try {
       Tracking.setFolderName("ManagerApp");
+      Tracking.globalSwitcher = false;
       Tracking.info(true, "Start Manager Applicaion");
       // java.net.preferIPv6Addresses : to use only
       System.setProperty("java.net.preferIPv4Stack", "true");
@@ -81,7 +82,7 @@ public class Manager {
       managerWaiting();
       // launch threads (Notifier, Checker, Eliminator)
       connection.init();
-      // new cli(); // Launch Command Ligne Interface
+      new cli(); // Launch Command Ligne Interface
     } catch (Exception e) {
       Tracking.error(true, "Manager start :" + ExceptionHandler.getMessage(e));
     }
