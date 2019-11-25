@@ -57,14 +57,14 @@ public class Pc {
 
   }
   /*
-   * update the time&date of the last connection with this pc
+   * update the time&date of the last Connection with this pc
    * */
   public void updateLastconnection() {
     //Date date = new Date();
     this.lastconnection = TimeHandler.getCurrentTime();
   }
   /*
-   * compute the difference between NOW and the last connection
+   * compute the difference between NOW and the last Connection
    * */
   public int getTimeFromLastConn() {
     //int rightNow = TimeHandler.getCurrentTime();

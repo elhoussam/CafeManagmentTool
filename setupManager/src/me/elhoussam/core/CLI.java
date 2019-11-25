@@ -10,23 +10,28 @@ import me.elhoussam.util.log.Tracking;
 import me.elhoussam.util.sys.ExceptionHandler;
 import me.elhoussam.util.sys.TimeHandler;
 
-public class cli {
+public class CLI {
 
   private String options[] = {"\t1-list active pc\n\t2-cmd to all\n\t0-quit\n # choise :", // managerOptions
       "\t1-shutdown all pcs\n\t2-logInAllPcs\n\t3-logOutAllPcs 0-quit\n # choise :", // cmd to all
-      "\t1-shutdown\n\t2-Login\n\t3-logoff\n\t4-os name\n\t5-life time\n\t6-start time\n\t0-quit\n # choise :",// option to pcs
+      "\t1-shutdown\n\t2-Login\n\t3-logoff\n\t4-os name\n\t5-life time\n\t6-start time\n\t7-COPYFILE\n\t0-quit\n # choise :",// option to pcs
   };
 
   private String currentOptions = "ManagerApp>";
-  private static Scanner stdin = new Scanner(System.in);
+
   public static byte byteInput() {
+    Scanner stdin = new Scanner(System.in);
     byte a = stdin.nextByte();
     return a;
 
   }
-  public cli() {
+  public static String stringInput() {
+    Scanner stdin = new Scanner(System.in);
+    String a = stdin.nextLine();
+    return a;
+  }
+  public CLI() {
     startCommandLigneInterface((byte) -1);
-    stdin.close();
     Tracking.echo("Exit...\n");
     System.exit(0);
   }
@@ -151,6 +156,9 @@ public class cli {
         case 6:
           __showStartTime(pcn);
           break;
+        case 7:
+          __copyFile(pcn);
+          break;
       }
 
     } while (i != 0);
@@ -158,6 +166,23 @@ public class cli {
 
   }
 
+  private void __copyFile(int pcn) {
+    // choose file to copy into myserver [info.setName]
+
+    // start copy the file methods [login]
+    infoInterface infOBJ = Manager.get().get(pcn).getRef();
+
+
+    //specifie the choosen file
+    Tracking.echo("Enter path file:");
+    String f = stringInput();
+    try { infOBJ.setFile(f);
+    infOBJ.login(Manager.ManagerWait);
+    } catch (RemoteException e) {
+      Tracking.error(true, "Manager CLI error"+
+          ExceptionHandler.getMessage(e));
+    }
+  }
   private void __showStartTime(int pcn) {
     infoInterface infOBJ = Manager.get().get(pcn).getRef();
     try {

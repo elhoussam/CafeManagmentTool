@@ -13,7 +13,7 @@ public class Manager {
    * ArrayList IpOfPcs contain all the ip of connect pcs
    */
   private static Vector<Pc> listOfPcs = new Vector<Pc>();
-
+  public static ManagerPc ManagerWait = null ;
   /*
    * void setupSecurityPolicy() : static method that load the security policy file and setup the
    * security manager
@@ -40,7 +40,7 @@ public class Manager {
       System.setProperty("java.rmi.server.hostname", res);
       Tracking.info(true, "Manager Ip Address : " + res);
 
-      ManagerPc ManagerWait = new ManagerPc();
+      ManagerWait = new ManagerPc();
       LocateRegistry.createRegistry(1099);
       Naming.rebind("//" + res + "/ManagerWait", ManagerWait);
 
@@ -81,8 +81,8 @@ public class Manager {
 
       managerWaiting();
       // launch threads (Notifier, Checker, Eliminator)
-      connection.init();
-      new cli(); // Launch Command Ligne Interface
+      Connection.init();
+      new CLI(); // Launch Command Ligne Interface
     } catch (Exception e) {
       Tracking.error(true, "Manager start :" + ExceptionHandler.getMessage(e));
     }

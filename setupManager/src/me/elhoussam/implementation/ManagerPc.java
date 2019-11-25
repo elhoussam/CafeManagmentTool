@@ -1,9 +1,11 @@
 package me.elhoussam.implementation;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import me.elhoussam.core.Manager;
-import me.elhoussam.core.connection;
+import me.elhoussam.core.Connection;
 import me.elhoussam.interfaces.ManagerPcInterface;
 import me.elhoussam.util.log.Tracking;
 import me.elhoussam.util.sys.ExceptionHandler;
@@ -16,13 +18,14 @@ public class ManagerPc extends UnicastRemoteObject implements ManagerPcInterface
    * Pcs, and send PcIp using this method, is represent the Only service the manager provoide.
    */
 
+  @Override
   public String NotifyAdmin(String myInfo) {
     try {
       myInfo = myInfo.trim();
       if (!myInfo.isEmpty()) {
         String ipOfPc = myInfo;
         Manager.addNewPc(ipOfPc);
-        connection.getNotifier().run();
+        Connection.getNotifier().run();
 
         Tracking.info(true, "the (" + ipOfPc + ") was recieved");
 
@@ -38,5 +41,28 @@ public class ManagerPc extends UnicastRemoteObject implements ManagerPcInterface
     }
 
   }
+  private static final long serialVersionUID = 1L;
+  public String name;
 
+
+  @Override
+  public String getName() throws RemoteException{
+    return name;
+  }
+
+  @Override
+  public boolean sendData(String filename, byte[] data, int len) throws RemoteException{
+    try{
+      File f=new File(filename);
+      f.createNewFile();
+      FileOutputStream out=new FileOutputStream(f,true);
+      out.write(data,0,len);
+      out.flush();
+      out.close();
+      System.out.println("Done writing data...");
+    }catch(Exception e){
+      e.printStackTrace();
+    }
+    return true;
+  }
 }

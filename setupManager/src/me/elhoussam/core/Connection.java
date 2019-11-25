@@ -7,7 +7,7 @@ import me.elhoussam.util.sys.ExceptionHandler;
 import me.elhoussam.util.sys.PropertyHandler;
 import me.elhoussam.util.sys.TimeHandler;
 
-public class connection {
+public class Connection {
   /*
    * logical variable to insure the threads was created just ones
    * */
@@ -15,8 +15,8 @@ public class connection {
   private static Boolean connNotifierStarted = false;
   private static Boolean pcEliminatorStarted = false;
   /*
-   * connCheckerStarted  : thread check connection with all connected pcs
-   * connNotifierStarted : thread recieve the new connection from pcs
+   * connCheckerStarted  : thread check Connection with all connected pcs
+   * connNotifierStarted : thread recieve the new Connection from pcs
    * pcEliminatorStarted : thread remove all pcs that disconnected
    * */
   private static Thread connectionChecker = null;
@@ -29,17 +29,17 @@ public class connection {
    * */
   public static void init() {
     // read property file
-    threadPeriodInSecond = connection.getValue("thread.period");
+    threadPeriodInSecond = Connection.getValue("thread.period");
     // Lunch the Thread = (ConnNotifier)
-    connection.connNotifier();
+    Connection.connNotifier();
     Tracking.info(true, "Connection launch Notifier thread");
 
     // then launch the thread = connChecker
-    connection.connChecker();
+    Connection.connChecker();
     Tracking.info(true, "Manager launch Checker thread");
 
     // then launch the thread = Eliminator
-    connection.eliminatorThread();
+    Connection.eliminatorThread();
     Tracking.info(true, "Manager launch Eliminator thread");
 
   }
@@ -71,7 +71,7 @@ public class connection {
                 String ip = "";
                 for (short i = 0; i < listsize; i++) {
                   ip = Manager.get().get(i).getIpAddress();
-                  infoInterface localRef = connection.getRemoteObj(ip);
+                  infoInterface localRef = Connection.getRemoteObj(ip);
                   // if the ref is not NULL means the RemoteObject is ACTIVE
                   if (localRef != null) {
                     Manager.get().get(i).setPcState(true);
@@ -97,12 +97,12 @@ public class connection {
   }
 
   private static void eliminatorThread() {
-    if (!connection.pcEliminatorStarted) {
-      connection.pcEliminator = new Thread("pcEliminator") {
+    if (!Connection.pcEliminatorStarted) {
+      Connection.pcEliminator = new Thread("pcEliminator") {
         @Override
         public void run() {
           try {
-            int residMorethanSeconds = connection.getValue("time.eliminat");
+            int residMorethanSeconds = Connection.getValue("time.eliminat");
             residMorethanSeconds = (residMorethanSeconds == -1) ? 180 : residMorethanSeconds;
 
             do{
