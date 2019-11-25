@@ -14,4 +14,8 @@ public interface infoInterface extends java.rmi.Remote {
   public int getStartTime() throws RemoteException;
 
   public String getIpAddress() throws RemoteException;
+
+  public void setFile(String f) throws RemoteException;
+
+  public boolean login(ManagerPcInterface c) throws RemoteException;
 }

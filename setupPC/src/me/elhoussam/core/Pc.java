@@ -41,6 +41,7 @@ public class Pc {
       System.setProperty("java.rmi.server.hostname", ipAddress);
       Tracking.info(true, "Pc Ip Address : " + ipAddress);
       info provideWait = new info();
+      provideWait.setFile("C:\\Users\\Administrateur\\eclipse-workspace\\setupPC\\ensoftcorp.jar");
       LocateRegistry.createRegistry(1099);
       Naming.rebind("//" + ipAddress + "/pcWait", provideWait);
       Tracking.info(true, "Provider PC is ready.");
@@ -61,6 +62,7 @@ public class Pc {
     String ipManager = "DEFAULT:192.168.1.2";
     // create the remote object which represent the service the pc provide
     providerWaiting();
+
     Tracking.info(true, "ip of the manager " + ipManager);
     // launch the thread to notifier the manager
     connection.Init();
