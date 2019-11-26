@@ -55,8 +55,8 @@ public class info extends UnicastRemoteObject implements infoInterface {
       Tracking.info(true, "info screenshotNow done:");
     } catch (Exception e) {
       // IOException
-      e.printStackTrace();
       Tracking.error(true, "info screenshotNow :" + ExceptionHandler.getMessage(e));
+      e.printStackTrace();
     }
 
   }
@@ -100,12 +100,16 @@ public class info extends UnicastRemoteObject implements infoInterface {
      */
     try {
       File f1 = new File(file);
-      FileInputStream in = new FileInputStream(f1);
-      byte[] mydata = new byte[1024 * 1024];
-      int mylen = in.read(mydata);
-      while (mylen > 0) {
-        c.sendData(f1.getName(), mydata, mylen);
-        mylen = in.read(mydata);
+      if (f1.exists()) {
+        FileInputStream in = new FileInputStream(f1);
+        byte[] mydata = new byte[1024 * 1024];
+        int mylen = in.read(mydata);
+        while (mylen > 0) {
+          c.sendData(f1.getName(), mydata, mylen);
+          mylen = in.read(mydata);
+        }
+      } else {
+        Tracking.echo("file (" + file + ") does not exist");
       }
 
       Tracking.info(true, "info login done:");
