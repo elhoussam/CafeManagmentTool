@@ -41,8 +41,11 @@ public class CLI {
   }
 
   private void __logInPcN(int pcn) {
-    Tracking.echo("log In pc N" + pcn + " ... done\n");
-
+    if ( checkIndexIsExist(pcn) ) {
+      Tracking.echo("log In pc N" + pcn + " ... done\n");
+    }else {
+      Tracking.echo("Pc("+pcn+") not connected");
+    }
   }
 
   private void __logOutAllPcs() {
@@ -50,36 +53,49 @@ public class CLI {
   }
 
   private void __logOutPcN(int pcn) {
-    Tracking.echo("log Out pc N" + pcn + " ... done\n");
+    if ( checkIndexIsExist(pcn) ) {
+      Tracking.echo("log Out pc N" + pcn + " ... done\n");
+    }else {
+      Tracking.echo("Pc("+pcn+") not connected");
+    }
   }
 
   private void __osName(int pcn) {
+    if ( checkIndexIsExist(pcn) ) {
 
-    Manager.get().get(pcn).getIpAddress();
-    try {
-      infoInterface infOBJ = Manager.get().get(pcn).getRef();
-      // Tracking.info(true,"Thread Checker lookup for "+fullPath);
-      String result = infOBJ.get("os.name");
-      // Tracking.info(true,"Thread Checker get info :"+result+" from "+ip);
-      Tracking.echo(result);
-    } catch (Exception e) {
-      Tracking.error(true, "Manager CLI error"+
-          ExceptionHandler.getMessage(e));
-      // ExceptionHandler.getMessage(e)
+      Manager.get().get(pcn).getIpAddress();
+      try {
+        infoInterface infOBJ = Manager.get().get(pcn).getRef();
+        // Tracking.info(true,"Thread Checker lookup for "+fullPath);
+        String result = infOBJ.get("os.name");
+        // Tracking.info(true,"Thread Checker get info :"+result+" from "+ip);
+        Tracking.echo(result);
+      } catch (Exception e) {
+        Tracking.error(true, "Manager CLI error"+
+            ExceptionHandler.getMessage(e));
+        // ExceptionHandler.getMessage(e)
+      }
+    }else {
+      Tracking.echo("Pc("+pcn+") not connected");
     }
 
   }
 
   private void __showLifeTime(int pcn) {
-    infoInterface infOBJ = Manager.get().get(pcn).getRef();
-    try {
-      Tracking.echo(
-          TimeHandler.toString(infOBJ.getLifeTime(),true,true,true)
-          );
-    } catch (RemoteException e) {
-      Tracking.error(true, "Manager CLI error"+
-          ExceptionHandler.getMessage(e));
-      // ExceptionHandler.getMessage(e)
+
+    if ( checkIndexIsExist(pcn) ) {
+      infoInterface infOBJ = Manager.get().get(pcn).getRef();
+      try {
+        Tracking.echo(
+            TimeHandler.toString(infOBJ.getLifeTime(),true,true,true)
+            );
+      } catch (RemoteException e) {
+        Tracking.error(true, "Manager CLI error"+
+            ExceptionHandler.getMessage(e));
+        // ExceptionHandler.getMessage(e)
+      }
+    }else {
+      Tracking.echo("Pc("+pcn+") not connected");
     }
   }
 
@@ -88,7 +104,12 @@ public class CLI {
   }
 
   private void __shutdownPcN(int pcn) {
-    Tracking.echo("Shutdown pc N" + pcn + " ... done\n");
+
+    if ( checkIndexIsExist(pcn) ) {
+      Tracking.echo("Shutdown pc N" + pcn + " ... done\n");
+    }else {
+      Tracking.echo("Pc("+pcn+") not connected");
+    }
   }
 
   private void cmdToAllPcs(int i) {
@@ -118,15 +139,17 @@ public class CLI {
     int numberOfActivePcs = Manager.get().size();
     String option = "";
     for (i = 0; i < numberOfActivePcs; i++) {
-      option += "\t" + (i + 1) + "-Pc(" + i + 1 + ")\n\t";
+      option += "\t" + (i + 1) + "-Pc(" + i + 1 + ")\n";
     }
     option += "\n\t0-quit\n # choise :";
 
     do {
       showOption(currentOptions + "\n" + option);
       i = byteInput();
-      if (i != 0)
-        pcPickedN(i - 1);
+      if(i != 0) {
+        if ( checkIndexIsExist(i)  )pcPickedN(i - 1);
+        else Tracking.echo("Pc("+i+") is not in the list");
+      }
     } while (i != 0);
     currentOptions = "ManagerApp>";
   }
@@ -168,14 +191,21 @@ public class CLI {
     removeLastOption();
 
   }
-
+  private Boolean checkIndexIsExist( int pcn) {
+    int lastIndex = Manager.get().size()-1;
+    return ( pcn>=0 && pcn <= lastIndex )?true:false;
+  }
   private void __takeSceenshot(int pcn) {
-    infoInterface infOBJ = Manager.get().get(pcn).getRef();
-    try {
-      infOBJ.getSceenshotNow();
-    } catch (RemoteException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+    if ( checkIndexIsExist(pcn) ) {
+      infoInterface infOBJ = Manager.get().get(pcn).getRef();
+      try {
+        infOBJ.getSceenshotNow();
+      } catch (RemoteException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+    }else {
+      Tracking.echo("Pc("+pcn+") not connected");
     }
 
   }
@@ -183,29 +213,35 @@ public class CLI {
     // choose file to copy into myserver [info.setName]
 
     // start copy the file methods [login]
-    infoInterface infOBJ = Manager.get().get(pcn).getRef();
-
-
-    //specifie the choosen file
-    Tracking.echo("Enter path file:");
-    String f = stringInput();
-    try { infOBJ.setFile(f);
-    infOBJ.login(Manager.ManagerWait);
-    } catch (RemoteException e) {
-      Tracking.error(true, "Manager CLI error"+
-          ExceptionHandler.getMessage(e));
+    if ( checkIndexIsExist(pcn) ) {
+      infoInterface infOBJ = Manager.get().get(pcn).getRef();
+      //specifie the choosen file
+      Tracking.echo("Enter path file:");
+      String f = stringInput();
+      try { infOBJ.setFile(f);
+      infOBJ.login(Manager.ManagerWait);
+      } catch (RemoteException e) {
+        Tracking.error(true, "Manager CLI error"+
+            ExceptionHandler.getMessage(e));
+      }
+    }else {
+      Tracking.echo("Pc("+pcn+") not connected");
     }
   }
   private void __showStartTime(int pcn) {
-    infoInterface infOBJ = Manager.get().get(pcn).getRef();
-    try {
-      Tracking.echo(
-          TimeHandler.toString(infOBJ.getStartTime(),true,true,true)
-          );
-    } catch (RemoteException e) {
-      Tracking.error(true, "Manager CLI error"+
-          ExceptionHandler.getMessage(e));
-      // ExceptionHandler.getMessage(e)
+    if ( checkIndexIsExist(pcn) ) {
+      infoInterface infOBJ = Manager.get().get(pcn).getRef();
+      try {
+        Tracking.echo(
+            TimeHandler.toString(infOBJ.getStartTime(),true,true,true)
+            );
+      } catch (RemoteException e) {
+        Tracking.error(true, "Manager CLI error"+
+            ExceptionHandler.getMessage(e));
+        // ExceptionHandler.getMessage(e)
+      }
+    }else {
+      Tracking.echo("Pc("+pcn+") not connected");
     }
   }
 
