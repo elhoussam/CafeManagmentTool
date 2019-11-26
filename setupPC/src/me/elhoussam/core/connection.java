@@ -17,6 +17,19 @@ public class connection {
   private static Boolean threadStarted = false;
   private static Thread Notifier = null;
   private static String ipOfManager = "";
+  private static ManagerPcInterface managerRef = null;
+  private static Boolean managerRefAssigned = false;
+
+  public static ManagerPcInterface getManagerRef() {
+    return managerRef;
+  }
+
+  public static void setManagerRef(ManagerPcInterface managerRef) {
+    if (!connection.managerRefAssigned) {
+      connection.managerRef = managerRef;
+      connection.managerRefAssigned = true;
+    }
+  }
 
   /*
    * getValue : read the properties from external config file
@@ -35,6 +48,9 @@ public class connection {
     String res = connection.getValue("ip.manager");
     ipOfManager = (res != null) ? res : "192.168.1.2";
     // launch the reachManagerThread
+    ManagerPcInterface obj = connection.getRemoteObj(ipOfManager);
+
+    connection.setManagerRef(obj);
     connection.reachManager(ipOfManager);
   }
 
@@ -59,10 +75,10 @@ public class connection {
               int time = TimeHandler.timeDifference(Pc.getStartTime());
               Tracking
                   .echo("PC start at~" + TimeHandler.toString(Pc.getStartTime(), true, true, true)
-                      + "|Right Now~" + TimeHandler.getTimeString()
-                      + "|pc uptime~" + TimeHandler.toString(time, true, true, true)
+                      + "|Right Now~" + TimeHandler.getTimeString() + "|pc uptime~"
+                      + TimeHandler.toString(time, true, true, true)
 
-);
+                  );
 
               // notifier manager every minute
               Thread.sleep(taskPeriod * 1000);

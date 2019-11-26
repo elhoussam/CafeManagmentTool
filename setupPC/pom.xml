@@ -7,7 +7,12 @@
 	<artifactId>setupPC</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>PcApp</name>
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
 	<build>
+
 		<sourceDirectory>src</sourceDirectory>
 		<resources>
 			<resource>
@@ -21,9 +26,7 @@
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>3.1.1</version>
-
 				<configuration>
-
 					<source>1.8</source>
 					<target>1.8</target>
 					<!-- get all project dependencies -->
@@ -36,9 +39,7 @@
 							<mainClass>PcMain</mainClass>
 						</manifest>
 					</archive>
-
 				</configuration>
-
 				<executions>
 					<execution>
 						<id>make-assembly</id>
@@ -49,7 +50,6 @@
 						</goals>
 					</execution>
 				</executions>
-
 			</plugin>
 		</plugins>
 	</build>
