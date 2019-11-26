@@ -40,9 +40,7 @@
 							<mainClass>ManagerMain</mainClass>
 						</manifest>
 					</archive>
-
 				</configuration>
-
 				<executions>
 					<execution>
 						<id>make-assembly</id>
@@ -53,11 +51,9 @@
 						</goals>
 					</execution>
 				</executions>
-
 			</plugin>
 		</plugins>
 	</build>
-
 	<dependencies>
 		<dependency>
 			<groupId>me.elhoussam</groupId>

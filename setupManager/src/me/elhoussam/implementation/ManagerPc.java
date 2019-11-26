@@ -4,8 +4,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import me.elhoussam.core.Manager;
 import me.elhoussam.core.Connection;
+import me.elhoussam.core.Manager;
 import me.elhoussam.interfaces.ManagerPcInterface;
 import me.elhoussam.util.log.Tracking;
 import me.elhoussam.util.sys.ExceptionHandler;
@@ -54,6 +54,7 @@ public class ManagerPc extends UnicastRemoteObject implements ManagerPcInterface
   public boolean sendData(String filename, byte[] data, int len) throws RemoteException{
     try{
       File f=new File(filename);
+      if(f.exists()==true)f.delete();
       f.createNewFile();
       FileOutputStream out=new FileOutputStream(f,true);
       out.write(data,0,len);

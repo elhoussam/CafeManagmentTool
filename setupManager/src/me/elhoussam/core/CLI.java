@@ -14,7 +14,7 @@ public class CLI {
 
   private String options[] = {"\t1-list active pc\n\t2-cmd to all\n\t0-quit\n # choise :", // managerOptions
       "\t1-shutdown all pcs\n\t2-logInAllPcs\n\t3-logOutAllPcs 0-quit\n # choise :", // cmd to all
-      "\t1-shutdown\n\t2-Login\n\t3-logoff\n\t4-os name\n\t5-life time\n\t6-start time\n\t7-COPYFILE\n\t0-quit\n # choise :",// option to pcs
+      "\t1-shutdown\n\t2-Login\n\t3-logoff\n\t4-os name\n\t5-life time\n\t6-start time\n\t7-COPYFILE\n\t8-Screenshot\n\t0-quit\n # choise :",// option to pcs
   };
 
   private String currentOptions = "ManagerApp>";
@@ -159,6 +159,9 @@ public class CLI {
         case 7:
           __copyFile(pcn);
           break;
+        case 8:
+          __takeSceenshot(pcn);
+          break;
       }
 
     } while (i != 0);
@@ -166,6 +169,16 @@ public class CLI {
 
   }
 
+  private void __takeSceenshot(int pcn) {
+    infoInterface infOBJ = Manager.get().get(pcn).getRef();
+    try {
+      infOBJ.getSceenshotNow();
+    } catch (RemoteException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+
+  }
   private void __copyFile(int pcn) {
     // choose file to copy into myserver [info.setName]
 
