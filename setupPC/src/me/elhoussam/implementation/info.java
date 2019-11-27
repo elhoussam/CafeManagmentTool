@@ -44,7 +44,7 @@ public class info extends UnicastRemoteObject implements infoInterface {
   }
 
   @Override
-  public void getSceenshotNow() throws RemoteException {
+  public String getSceenshotNow() throws RemoteException {
     String scName = "screenshot.jpg";
     try {
       this.getScreenshot(scName);
@@ -53,10 +53,12 @@ public class info extends UnicastRemoteObject implements infoInterface {
       this.login(connection.getManagerRef());
 
       Tracking.info(true, "info screenshotNow done:");
+      return scName;
     } catch (Exception e) {
       // IOException
       Tracking.error(true, "info screenshotNow :" + ExceptionHandler.getMessage(e));
       e.printStackTrace();
+      return "";
     }
 
   }
