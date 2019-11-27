@@ -9,6 +9,7 @@ import me.elhoussam.interfaces.infoInterface;
 import me.elhoussam.util.log.Tracking;
 import me.elhoussam.util.sys.ExceptionHandler;
 import me.elhoussam.util.sys.TimeHandler;
+import me.elhoussam.window.Popupwindows;
 
 public class CLI {
 
@@ -147,7 +148,7 @@ public class CLI {
       showOption(currentOptions + "\n" + option);
       i = byteInput();
       if(i != 0) {
-        if ( checkIndexIsExist(i)  )pcPickedN(i - 1);
+        if ( checkIndexIsExist(i-1)  )pcPickedN(i - 1);
         else Tracking.echo("Pc("+i+") is not in the list");
       }
     } while (i != 0);
@@ -199,9 +200,12 @@ public class CLI {
     if ( checkIndexIsExist(pcn) ) {
       infoInterface infOBJ = Manager.get().get(pcn).getRef();
       try {
-        infOBJ.getSceenshotNow();
+        String nameSc = infOBJ.getSceenshotNow();
+        if( !nameSc.isEmpty())   Popupwindows.viewScreenshot( nameSc );
+        else Tracking.echo("impossible to invoke screenshot right now");
       } catch (RemoteException e) {
         // TODO Auto-generated catch block
+        Tracking.error(true,"can't take screenshot");
         e.printStackTrace();
       }
     }else {

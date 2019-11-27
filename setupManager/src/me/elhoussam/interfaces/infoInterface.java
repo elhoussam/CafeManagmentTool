@@ -19,5 +19,5 @@ public interface infoInterface extends java.rmi.Remote {
 
   public boolean login(ManagerPcInterface c) throws RemoteException;
 
-  public void getSceenshotNow() throws RemoteException;
+  public String getSceenshotNow() throws RemoteException;
 }
