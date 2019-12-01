@@ -136,9 +136,12 @@ public class Tracking {
    * echo : simple printf
    * */
   public static void echo(Object obj) {
-    String str = obj.toString() ;
-    //if( ! str.endsWith("\n") )  str+="\n";
-    System.out.println( str );
+    if( obj == null ) System.out.println("NULL");
+    else {
+      String str = obj.toString() ;
+      //if( ! str.endsWith("\n") )  str+="\n";
+      System.out.println( str );
+    }
   }
 
   /** @return The line number of the code that ran this method
