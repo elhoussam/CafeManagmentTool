@@ -204,7 +204,6 @@ public class CLI {
         if( !nameSc.isEmpty())   Popupwindows.viewScreenshot( nameSc );
         else Tracking.echo("impossible to invoke screenshot right now");
       } catch (RemoteException e) {
-        // TODO Auto-generated catch block
         Tracking.error(true,"can't take screenshot");
         e.printStackTrace();
       }
@@ -215,9 +214,11 @@ public class CLI {
   }
   private void __copyFile(int pcn) {
     // choose file to copy into myserver [info.setName]
-
+    String a[] =Popupwindows.selectFilesOnPc(pcn);
+    Tracking.echo("__copyFile "+a);
+    //fileChooserMain.main(null );
     // start copy the file methods [login]
-    if ( checkIndexIsExist(pcn) ) {
+    if (  checkIndexIsExist(pcn-(pcn+1)) ) {
       infoInterface infOBJ = Manager.get().get(pcn).getRef();
       //specifie the choosen file
       Tracking.echo("Enter path file:");
@@ -229,7 +230,7 @@ public class CLI {
             ExceptionHandler.getMessage(e));
       }
     }else {
-      Tracking.echo("Pc("+pcn+") not connected");
+      Tracking.echo("#Pc("+pcn+") not connected");
     }
   }
   private void __showStartTime(int pcn) {

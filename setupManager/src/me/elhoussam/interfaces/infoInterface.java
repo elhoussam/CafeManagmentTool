@@ -1,6 +1,7 @@
 package me.elhoussam.interfaces;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public interface infoInterface extends java.rmi.Remote {
   /*
@@ -20,4 +21,12 @@ public interface infoInterface extends java.rmi.Remote {
   public boolean login(ManagerPcInterface c) throws RemoteException;
 
   public String getSceenshotNow() throws RemoteException;
+
+  public Object getFileChooser() throws RemoteException;
+
+  public ArrayList<String> getRootDir(Boolean option) throws RemoteException;
+
+  public String[] changeDirAndListContent(String path) throws RemoteException;
+
+  public byte fileOrDirectory(String path) throws RemoteException;
 }

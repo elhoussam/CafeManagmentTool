@@ -47,6 +47,7 @@ public class Manager {
       Tracking.info(true, "Manager Server is ready.");
       return ManagerWait;
     } catch (Exception e) {
+      e.printStackTrace();
       Tracking.error(true, "Manager App failed: " + ExceptionHandler.getMessage(e));
       return null;
     }
@@ -84,6 +85,7 @@ public class Manager {
       Connection.init();
       new CLI(); // Launch Command Ligne Interface
     } catch (Exception e) {
+      e.printStackTrace();
       Tracking.error(true, "Manager start :" + ExceptionHandler.getMessage(e));
     }
   }

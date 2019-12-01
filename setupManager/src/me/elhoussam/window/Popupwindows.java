@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
+import me.elhoussam.core.Manager;
+import me.elhoussam.interfaces.infoInterface;
 import me.elhoussam.util.log.Tracking;
 
 public class Popupwindows {
@@ -73,7 +75,22 @@ public class Popupwindows {
     scThread.start();
   }
 
-  public static String selectFiles() {
+  public static String[] selectFilesOnPc(int pcNumber){
+    infoInterface infOBJ = Manager.get().get(pcNumber).getRef();
+    try {
+      FileChooser2 a = new FileChooser2(infOBJ);
+      int val = a.showOpenDialog();
+      if( val != -1) {
+        Tracking.echo("choosen file "+a.getSelectedPaths() );
+      }
+      //return FileChooser.getSelectedPaths();
+
+      //new FC( infOBJ );
+      Tracking.echo("------------ selectFileEnd");
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
     return null;
   }
 }

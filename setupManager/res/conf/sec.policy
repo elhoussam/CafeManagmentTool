@@ -3,7 +3,9 @@ grant {
 	permission java.io.FilePermission "-", "write";  
 	permission java.io.FilePermission "screenshot.jpg", "delete";
 	permission java.util.logging.LoggingPermission   "control";
-	permission java.util.PropertyPermission "java.rmi.server.hostname", "write";
-	permission java.net.SocketPermission "*:1024-", "accept,connect,resolve,listen";
-	permission java.util.PropertyPermission "user.dir", "read, write";	
+	permission java.util.PropertyPermission "*", "write";
+	permission java.util.PropertyPermission "*", "read";
+	permission java.util.PropertyPermission	"user.home", "read";
+	permission java.net.SocketPermission "*:1024-", "accept,connect,resolve,listen";    
+	permission java.awt.AWTPermission "setWindowAlwaysOnTop";
 };
