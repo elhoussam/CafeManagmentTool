@@ -10,7 +10,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileSystemView;
 import me.elhoussam.core.Pc;
 import me.elhoussam.core.connection;
 import me.elhoussam.interfaces.ManagerPcInterface;
@@ -120,6 +123,126 @@ public class info extends UnicastRemoteObject implements infoInterface {
     }
 
     return true;
+  }
+
+  JFileChooser jfc = null;
+
+  @Override
+  public Object getFileChooser() throws RemoteException {
+    if (jfc == null)
+      jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+    jfc.setDialogTitle("Multiple file and directory selection:");
+    jfc.setMultiSelectionEnabled(true);
+    jfc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+
+    Tracking.info(true, "JFC up and ready");
+    return jfc;
+  }
+
+  private static String fixEndingOf(String str) {
+    if (str.endsWith(File.separator)) {
+      return str;
+    } else {
+      return str.concat(File.separator);
+    }
+  }
+
+  static Boolean checkIfExist(String e, ArrayList<String> arr) {
+    for (byte i = 0; i < arr.size(); i++) {
+      if (arr.get(i).equals(e))
+        return true;
+    }
+    return false;
+  }
+
+  private static String separatorsToSystem(String res) {
+    if (res == null)
+      return null;
+    if (File.separatorChar == '\\') {
+      // From Windows to Linux/Mac
+      return res.replace('/', File.separatorChar);
+    } else {
+      // From Linux/Mac to Windows
+      return res.replace('\\', File.separatorChar);
+    }
+  }
+
+  @Override
+  public ArrayList<String> getRootDir(Boolean option) throws RemoteException {
+    FileSystemView mySystemView = FileSystemView.getFileSystemView();;
+
+    // true : paths OR false : names
+    ArrayList<String> here = new ArrayList<String>();
+    // add root directory
+    for (File e : mySystemView.getRoots()) {
+      if (!checkIfExist((option) ? e.getPath() : e.getName(), here))
+        here.add(fixEndingOf((option) ? e.getPath() : e.getName()));
+    }
+    // add home directory
+    if (!checkIfExist(((option == false) ? mySystemView.getHomeDirectory().getName()
+        : mySystemView.getHomeDirectory().getPath()), here))
+      here.add(fixEndingOf((option) ? mySystemView.getHomeDirectory().getPath()
+          : mySystemView.getHomeDirectory().getName()));
+
+    // add drive names
+    File[] drives = File.listRoots();
+    if (drives != null && drives.length > 0) {
+      for (File aDrive : drives) {
+        if (!checkIfExist(aDrive.getPath(), here))
+          here.add(fixEndingOf((option) ? aDrive.getPath() : aDrive.getPath()));
+        // propably 90% getName return empty string
+      }
+    }
+    Tracking.echo(here);
+    return here;
+  }
+
+  @Override
+  public String[] changeDirAndListContent(String path) throws RemoteException {
+    if (path == null)
+      return null;
+    Tracking.echo(path + " Was recieved");
+    path = separatorsToSystem(path);
+
+    Tracking.echo(path + " Checked");
+    File dir = new File(path);
+    if (dir.isDirectory()) {
+      String[] filesList = dir.list();
+      Tracking.echo("##############################" + dir);
+      if (filesList != null && filesList.length > 0) {
+        // Tracking.echo(filesList.toString());
+        for (int i = 0; i < filesList.length; i++) {
+          String st = dir.getPath();
+          String file = filesList[i];
+          st = fixEndingOf(st) + file;
+          if ((new File(st)).isDirectory()) {
+            Tracking.echo(st + File.separator);
+            filesList[i] += File.separator;
+          } else if ((new File(st)).isFile()) {
+            Tracking.echo(st);
+          }
+        }
+      } else {
+        Tracking.echo(dir.getName() + " is Empty");
+      }
+      return filesList;
+    } else {
+      Tracking.echo(dir.getName() + " is not a folder");
+      return null;
+    }
+  }
+
+  @Override
+  public byte fileOrDirectory(String path) throws RemoteException {
+    if (path == null)
+      return -1;
+    path = separatorsToSystem(path);
+    // return 0 if DIR, 1 if FILE, -1 if nether
+    File myfile = (new File(path));
+    if (myfile.exists()) {
+      return (byte) ((myfile.isDirectory()) ? 0 : 1);
+    }
+    return -1;
   }
 
 }
