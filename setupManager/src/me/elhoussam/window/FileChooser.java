@@ -26,7 +26,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import me.elhoussam.interfaces.infoInterface;
 import me.elhoussam.util.log.Tracking;
-
+import me.elhoussam.util.sys.StringHandler;
 public class FileChooser {
 
   private infoInterface currentRemoteObj = null;
@@ -40,7 +40,6 @@ public class FileChooser {
   static String currentPath = "";
   static Boolean lock = true ;
 
-  private byte level = 0;
   private String   finalPaths = ""  ;
   /**
    * Launch the application.
@@ -92,7 +91,7 @@ public class FileChooser {
 
           // Return the tool tip text
 
-          return "Path : " +separatorsToSystem( currentPath  + item);
+          return "Path : " +StringHandler.separatorsToSystem( currentPath  + item);
         }
         return "";
       }
@@ -108,11 +107,11 @@ public class FileChooser {
               if (index >= 0) {
 
                 String selectedElement = theList.getModel().getElementAt(index);
-                selectedElement = separatorsToSystem( selectedElement );
+                selectedElement = StringHandler.separatorsToSystem( selectedElement );
 
                 if ( selectedElement.endsWith(File.separator) ) {
                   // change path
-                  currentPath = fixEndingOf(currentPath) + selectedElement;
+                  currentPath = StringHandler.fixEndingOf(currentPath) + selectedElement;
                   selectedPathLabel.setText("Path:"+currentPath);
                   //change JList Element (model)
                   try {
@@ -128,7 +127,7 @@ public class FileChooser {
                 }else {
                   // change path
 
-                  Tracking.echo("selected file " +   fixEndingOf(currentPath) + selectedElement   );
+                  Tracking.echo("selected file " +   StringHandler.fixEndingOf(currentPath) + selectedElement   );
                 }
 
                 //String a [] = selectedElement.split("*")[1];
@@ -155,7 +154,7 @@ public class FileChooser {
       JComboBox<String> cb = (JComboBox<String>)e.getSource();
       int selectedIndex = cb.getSelectedIndex();
       cb.getSelectedItem();
-      String fullPath = fixEndingOf( separatorsToSystem(rootPaths.get(selectedIndex)) ) ;
+      String fullPath = StringHandler.fixEndingOf( StringHandler.separatorsToSystem(rootPaths.get(selectedIndex)) ) ;
       try {
         currentPath = fullPath ;
         selectedPathLabel.setText("Path:"+currentPath);
@@ -197,7 +196,7 @@ public class FileChooser {
         Tracking.echo("UP\t"+currentPath);
         //
         if( !currentPath.isEmpty() ) {
-          if(  !checkIfExist(currentPath, rootPaths) ) {
+          if(  !StringHandler.checkIfExist(currentPath, rootPaths) ) {
 
             String currentPathParts [] = currentPath.split( Pattern.quote(File.separator) );
             String upDir =( currentPath.startsWith(File.separator) )?File.separator:"";
@@ -244,7 +243,7 @@ public class FileChooser {
       btCopyBtn.addActionListener(e-> {
         String selectedElem = lsListOfCurrentDirAndfile.getSelectedValue();
         selectedElem = ( selectedElem == null )?"":selectedElem;
-        String selectedPath = separatorsToSystem(currentPath+selectedElem ).trim();
+        String selectedPath = StringHandler.separatorsToSystem(currentPath+selectedElem ).trim();
         if( !selectedPath.isEmpty() && !selectedPath.endsWith( File.separator )) {
           finalPaths = selectedPath;
           Tracking.echo("------------ " +finalPaths);
@@ -292,23 +291,7 @@ public class FileChooser {
   public String getSelectedPaths() {
     return finalPaths ;
   }
-  public byte getLevel() {
-    return level ;
-  }
-  static Boolean checkIfExist(String e, ArrayList<String> arr) {
-    for (byte i = 0; i < arr.size(); i++) {
-      if ( separatorsToSystem(arr.get(i)).equals(e))
-        return true;
-    }
-    return false;
-  }
-  private static String fixEndingOf( String str ) {
-    if ( str.endsWith( File.separator ) ) {
-      return str ;
-    }else {
-      return str.concat( File.separator);
-    }
-  }
+
   private static DefaultListModel<String> getNewListModel(String[] arr) {
     if( arr ==  null ) return new DefaultListModel<String>();
     ArrayList<String>  a = new ArrayList<String>( Arrays.asList(arr) );
@@ -326,17 +309,6 @@ public class FileChooser {
       demoList.addElement(a);
     }
     return demoList ;
-  }
-  private static String separatorsToSystem(String res) {
-    if (res == null)
-      return null;
-    if (File.separatorChar == '\\') {
-      // From Windows to Linux/Mac
-      return res.replace('/', File.separatorChar);
-    } else {
-      // From Linux/Mac to Windows
-      return res.replace('\\', File.separatorChar);
-    }
   }
 
 }

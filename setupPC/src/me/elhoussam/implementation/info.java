@@ -20,6 +20,7 @@ import me.elhoussam.interfaces.ManagerPcInterface;
 import me.elhoussam.interfaces.infoInterface;
 import me.elhoussam.util.log.Tracking;
 import me.elhoussam.util.sys.ExceptionHandler;
+import me.elhoussam.util.sys.StringHandler;
 import me.elhoussam.util.sys.TimeHandler;
 
 public class info extends UnicastRemoteObject implements infoInterface {
@@ -94,7 +95,7 @@ public class info extends UnicastRemoteObject implements infoInterface {
 
   @Override
   public void setFile(String f) {
-    file = separatorsToSystem(f);
+    file = StringHandler.separatorsToSystem(f);
   }
 
   @Override
@@ -140,33 +141,7 @@ public class info extends UnicastRemoteObject implements infoInterface {
     return jfc;
   }
 
-  private static String fixEndingOf(String str) {
-    if (str.endsWith(File.separator)) {
-      return str;
-    } else {
-      return str.concat(File.separator);
-    }
-  }
 
-  static Boolean checkIfExist(String e, ArrayList<String> arr) {
-    for (byte i = 0; i < arr.size(); i++) {
-      if (arr.get(i).equals(e))
-        return true;
-    }
-    return false;
-  }
-
-  private static String separatorsToSystem(String res) {
-    if (res == null)
-      return null;
-    if (File.separatorChar == '\\') {
-      // From Windows to Linux/Mac
-      return res.replace('/', File.separatorChar);
-    } else {
-      // From Linux/Mac to Windows
-      return res.replace('\\', File.separatorChar);
-    }
-  }
 
   @Override
   public ArrayList<String> getRootDir(Boolean option) throws RemoteException {
@@ -176,21 +151,23 @@ public class info extends UnicastRemoteObject implements infoInterface {
     ArrayList<String> here = new ArrayList<String>();
     // add root directory
     for (File e : mySystemView.getRoots()) {
-      if (!checkIfExist((option) ? e.getPath() : e.getName(), here))
-        here.add(fixEndingOf((option) ? e.getPath() : e.getName()));
+      if (!StringHandler.checkIfExist((option) ? e.getPath() : e.getName(), here))
+        here.add(StringHandler.fixEndingOf((option) ? e.getPath() : e.getName()));
     }
     // add home directory
-    if (!checkIfExist(fixEndingOf(((option == false) ? mySystemView.getHomeDirectory().getName()
-        : mySystemView.getHomeDirectory().getPath())), here))
-      here.add(fixEndingOf((option) ? mySystemView.getHomeDirectory().getPath()
+    if (!StringHandler.checkIfExist(
+        StringHandler.fixEndingOf(((option == false) ? mySystemView.getHomeDirectory().getName()
+            : mySystemView.getHomeDirectory().getPath())),
+        here))
+      here.add(StringHandler.fixEndingOf((option) ? mySystemView.getHomeDirectory().getPath()
           : mySystemView.getHomeDirectory().getName()));
 
     // add drive names
     File[] drives = File.listRoots();
     if (drives != null && drives.length > 0) {
       for (File aDrive : drives) {
-        if (!checkIfExist(fixEndingOf(aDrive.getPath()), here))
-          here.add(fixEndingOf((option) ? aDrive.getPath() : aDrive.getPath()));
+        if (!StringHandler.checkIfExist(StringHandler.fixEndingOf(aDrive.getPath()), here))
+          here.add(StringHandler.fixEndingOf((option) ? aDrive.getPath() : aDrive.getPath()));
         // propably 90% getName return empty string
       }
     }
@@ -203,7 +180,7 @@ public class info extends UnicastRemoteObject implements infoInterface {
     if (path == null)
       return null;
     Tracking.echo(path + " Was recieved");
-    path = separatorsToSystem(path);
+    path = StringHandler.separatorsToSystem(path);
 
     Tracking.echo(path + " Checked");
     File dir = new File(path);
@@ -215,7 +192,7 @@ public class info extends UnicastRemoteObject implements infoInterface {
         for (int i = 0; i < filesList.length; i++) {
           String st = dir.getPath();
           String file = filesList[i];
-          st = fixEndingOf(st) + file;
+          st = StringHandler.fixEndingOf(st) + file;
           if ((new File(st)).isDirectory()) {
             Tracking.echo(st + File.separator);
             filesList[i] += File.separator;
@@ -237,7 +214,7 @@ public class info extends UnicastRemoteObject implements infoInterface {
   public byte fileOrDirectory(String path) throws RemoteException {
     if (path == null)
       return -1;
-    path = separatorsToSystem(path);
+    path = StringHandler.separatorsToSystem(path);
     // return 0 if DIR, 1 if FILE, -1 if nether
     File myfile = (new File(path));
     if (myfile.exists()) {
