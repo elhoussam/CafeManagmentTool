@@ -32,6 +32,7 @@ public class info extends UnicastRemoteObject implements infoInterface {
    */
 
 
+
   public void getScreenshot(String picName) {
     Rectangle rectangle = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
     try {
@@ -93,7 +94,7 @@ public class info extends UnicastRemoteObject implements infoInterface {
 
   @Override
   public void setFile(String f) {
-    file = f;
+    file = separatorsToSystem(f);
   }
 
   @Override
@@ -179,8 +180,8 @@ public class info extends UnicastRemoteObject implements infoInterface {
         here.add(fixEndingOf((option) ? e.getPath() : e.getName()));
     }
     // add home directory
-    if (!checkIfExist(((option == false) ? mySystemView.getHomeDirectory().getName()
-        : mySystemView.getHomeDirectory().getPath()), here))
+    if (!checkIfExist(fixEndingOf(((option == false) ? mySystemView.getHomeDirectory().getName()
+        : mySystemView.getHomeDirectory().getPath())), here))
       here.add(fixEndingOf((option) ? mySystemView.getHomeDirectory().getPath()
           : mySystemView.getHomeDirectory().getName()));
 
@@ -188,7 +189,7 @@ public class info extends UnicastRemoteObject implements infoInterface {
     File[] drives = File.listRoots();
     if (drives != null && drives.length > 0) {
       for (File aDrive : drives) {
-        if (!checkIfExist(aDrive.getPath(), here))
+        if (!checkIfExist(fixEndingOf(aDrive.getPath()), here))
           here.add(fixEndingOf((option) ? aDrive.getPath() : aDrive.getPath()));
         // propably 90% getName return empty string
       }

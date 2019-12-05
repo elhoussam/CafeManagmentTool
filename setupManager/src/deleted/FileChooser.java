@@ -8,7 +8,6 @@ import java.io.File;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.regex.Pattern;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -16,47 +15,37 @@ import javax.swing.JDialog;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import me.elhoussam.interfaces.infoInterface;
 import me.elhoussam.util.log.Tracking;
 
-public class FileChooser2 {
-
+public class FileChooser extends JDialog {
   private static infoInterface currentRemoteObj = null;
-
-  private JDialog dialog = new JDialog();
   private final JPanel contentPanel = new JPanel();
   static ArrayList<String> filePathsBase = new ArrayList<String>();
   static ArrayList<String> fileNamesBase = new ArrayList<String>();
   static String currentPath = "";
   static Boolean lock = true ;
 
-  private byte level = 0;
-  private String   finalPaths = ""  ;
+  static byte level =0;
+  private static String [] finalPaths = null ;
   /**
    * Launch the application.
    */
-
-  public int showOpenDialog() throws RemoteException{
-    // FileChooser2.currentRemoteObj = selectedObj ;
-    dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-    dialog.setVisible(true);
-    while( lock ) {
-      try {
-        Thread.sleep(2*1000);
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-        return -1;
-      }
-    }
-    return 0;
+  public static String [] getSelectedPaths() {
+    return finalPaths ;
   }
-
+  static Boolean checkIfExist(String e, ArrayList<String> arr) {
+    for (byte i = 0; i < arr.size(); i++) {
+      if (arr.get(i).equals(e))
+        return true;
+    }
+    return false;
+  }
   public static byte showUp(infoInterface selectedObj) throws RemoteException {
-    new FileChooser2(selectedObj);
-    //a.setVisible( true );
-    //a.setModal(true);
+    FileChooser a = new FileChooser(selectedObj);
+    a.setVisible( true );
+    a.setModal(true);
     while( lock ) {
       try {
         Thread.sleep(1000);
@@ -70,17 +59,17 @@ public class FileChooser2 {
   /**
    * Create the dialog.
    */
-  public FileChooser2(infoInterface selectedObj ) throws RemoteException{
-    dialog.setBounds(100, 100, 243, 319);
+  public FileChooser(infoInterface selectedObj ) throws RemoteException{
+    setBounds(100, 100, 243, 319);
 
-    FileChooser2.currentRemoteObj = selectedObj ;
-    ArrayList<String> rootNames = FileChooser2.currentRemoteObj.getRootDir(false);
-    ArrayList<String> rootPaths = FileChooser2.currentRemoteObj.getRootDir(true);
+    FileChooser.currentRemoteObj = selectedObj ;
+    ArrayList<String> rootNames = FileChooser.currentRemoteObj.getRootDir(false);
+    ArrayList<String> rootPaths = FileChooser.currentRemoteObj.getRootDir(true);
     filePathsBase = (ArrayList<String>) rootPaths.clone();
 
-    dialog.getContentPane().setLayout(new BorderLayout());
+    getContentPane().setLayout(new BorderLayout());
     contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-    dialog.getContentPane().add(contentPanel, BorderLayout.CENTER);
+    getContentPane().add(contentPanel, BorderLayout.CENTER);
     contentPanel.setLayout(new BorderLayout(0, 0));
 
 
@@ -100,7 +89,6 @@ public class FileChooser2 {
         return "";
       }
     };
-    lsListOfCurrentDirAndfile.setSelectionMode( ListSelectionModel.SINGLE_SELECTION );
     lsListOfCurrentDirAndfile.addMouseListener(
         new MouseAdapter() {
           @Override
@@ -119,7 +107,7 @@ public class FileChooser2 {
                   //change JList Element (model)
                   try {
                     Tracking.echo("list#Current Path `"+currentPath+"`" );
-                    String [] newItems = FileChooser2.currentRemoteObj.changeDirAndListContent(currentPath);
+                    String [] newItems = FileChooser.currentRemoteObj.changeDirAndListContent(currentPath);
 
                     DefaultListModel<String> model = getNewListModel( newItems ) ;
                     filePathsBase = new ArrayList<String>( Arrays.asList( newItems) );
@@ -159,7 +147,7 @@ public class FileChooser2 {
       try {
         currentPath = fullPath ;
         Tracking.echo("Current Path `"+currentPath+"`" );
-        String [] newItems = FileChooser2.currentRemoteObj.changeDirAndListContent(fullPath);
+        String [] newItems = FileChooser.currentRemoteObj.changeDirAndListContent(fullPath);
 
         DefaultListModel<String> model = getNewListModel( newItems ) ;
         filePathsBase = new ArrayList<String>( Arrays.asList( newItems) );
@@ -178,35 +166,28 @@ public class FileChooser2 {
       JPanel buttonPane = new JPanel();
       JButton btUpBtn = new JButton("UP");
       btUpBtn.addActionListener(e-> {
-
         Tracking.echo("UP\t"+currentPath);
-        //
         if( !currentPath.isEmpty() ) {
-          if(  !checkIfExist(currentPath, rootPaths) ) {
-            String currentPathParts [] = currentPath.split( Pattern.quote(File.separator) );
-            String upDir = "";//( currentPath.startsWith(File.separator) )?File.separator:""
-            for( String el : currentPathParts ) {
-              if( !currentPathParts[ currentPathParts.length-1 ].trim().equals(el) ) {
-                upDir += el+((el.trim().isEmpty())?"":File.separator)   ;
-              }
+          String currentPathParts [] = currentPath.split( File.separator+File.separator );
+          String upDir = ( currentPath.startsWith(File.separator) )?File.separator:"";
+          for( String el : currentPathParts ) {
+            if( !currentPathParts[ currentPathParts.length-1 ].trim().equals(el) ) {
+              upDir += el+((el.trim().isEmpty())?"":File.separator)   ;
             }
-            currentPath = upDir ;
-            Tracking.echo(currentPath);
-            try {
-              String [] newItems = FileChooser2.currentRemoteObj.changeDirAndListContent(currentPath);
+          }
+          currentPath = upDir ;
+          Tracking.echo(currentPath);
+          try {
+            String [] newItems = FileChooser.currentRemoteObj.changeDirAndListContent(currentPath);
 
-              DefaultListModel<String> model = getNewListModel( newItems ) ;
-              filePathsBase = new ArrayList<String>( Arrays.asList( newItems) );
-              lsListOfCurrentDirAndfile.setModel(  model  );
-            } catch (RemoteException e1) {
-              e1.printStackTrace();
-            }
-          }else {
-
-            Tracking.echo(currentPath+" Root directory");
+            DefaultListModel<String> model = getNewListModel( newItems ) ;
+            filePathsBase = new ArrayList<String>( Arrays.asList( newItems) );
+            lsListOfCurrentDirAndfile.setModel(  model  );
+          } catch (RemoteException e1) {
+            e1.printStackTrace();
           }
         }else{
-          Tracking.echo("Explore my friend");
+          Tracking.echo(currentPath+" Root directory");
         }
       }
           );
@@ -217,55 +198,31 @@ public class FileChooser2 {
 
       JButton btCopyBtn = new JButton("Copy");
       btCopyBtn.addActionListener(e-> {
-        String selectedElem = lsListOfCurrentDirAndfile.getSelectedValue();
-        selectedElem = ( selectedElem == null )?"":selectedElem;
-        String selectedPath = separatorsToSystem(currentPath+selectedElem ).trim();
-        if( !selectedPath.isEmpty() && !selectedPath.endsWith( File.separator )) {
-          finalPaths = selectedPath;
-          Tracking.echo("------------ " +finalPaths);
+        //synchronized (FileChooser) { }
 
-          //Tracking.echo(" level "+level);
-          synchronized (FileChooser2.class) {
-            lock = false ;
-          }
-          dialog.dispose();
-        }
       });
       buttonPane.add(btCopyBtn);
 
 
 
       buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-      dialog.getContentPane().add(buttonPane, BorderLayout.SOUTH);
+      getContentPane().add(buttonPane, BorderLayout.SOUTH);
 
     }
-    dialog.setDefaultCloseOperation( dialog.DISPOSE_ON_CLOSE );
+    setDefaultCloseOperation( DISPOSE_ON_CLOSE );
     //setModal(true);
-    dialog.setContentPane( dialog.getContentPane() );
+    setContentPane( getContentPane() );
     //pack();
     //this.setModalityType(DEFAULT_MODALITY_TYPE);
-    dialog.setLocationRelativeTo(null);
-    dialog.requestFocus();
-    dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+    setLocationRelativeTo(null);
+    this.requestFocus();
+    setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
-    dialog.setAlwaysOnTop(true);
-    dialog.setResizable(false);
+    setAlwaysOnTop(true);
+    setResizable(false);
 
 
 
-  }
-  public String getSelectedPaths() {
-    return finalPaths ;
-  }
-  public byte getLevel() {
-    return level ;
-  }
-  static Boolean checkIfExist(String e, ArrayList<String> arr) {
-    for (byte i = 0; i < arr.size(); i++) {
-      if ( separatorsToSystem(arr.get(i)).equals(e))
-        return true;
-    }
-    return false;
   }
   private static String fixEndingOf( String str ) {
     if ( str.endsWith( File.separator ) ) {
