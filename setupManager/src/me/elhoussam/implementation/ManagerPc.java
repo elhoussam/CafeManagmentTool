@@ -53,8 +53,14 @@ public class ManagerPc extends UnicastRemoteObject implements ManagerPcInterface
   @Override
   public boolean sendData(String filename, byte[] data, int len) throws RemoteException{
     try{
-      File f=new File(filename);
-      if(f.exists()==true)f.delete();
+      short nb = 1 ;
+      File f = new File(filename);
+      while( f.exists() ){
+        Tracking.echo(f.getName()+" exist");
+        f=new File(nb+"_"+filename);
+        nb++;
+      }
+
       f.createNewFile();
       FileOutputStream out=new FileOutputStream(f,true);
       out.write(data,0,len);

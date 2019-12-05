@@ -140,7 +140,7 @@ public class CLI {
     int numberOfActivePcs = Manager.get().size();
     String option = "";
     for (i = 0; i < numberOfActivePcs; i++) {
-      option += "\t" + (i + 1) + "-Pc(" + i + 1 + ")\n";
+      option += "\t" + (i + 1) + "-Pc(" +( i + 1 )+ ")\n";
     }
     option += "\n\t0-quit\n # choise :";
 
@@ -201,7 +201,8 @@ public class CLI {
       infoInterface infOBJ = Manager.get().get(pcn).getRef();
       try {
         String nameSc = infOBJ.getSceenshotNow();
-        if( !nameSc.isEmpty())   Popupwindows.viewScreenshot( nameSc );
+        if( !nameSc.isEmpty())   Popupwindows.showScreenshot(nameSc);
+        //Popupwindows.viewScreenshot( nameSc );
         else Tracking.echo("impossible to invoke screenshot right now");
       } catch (RemoteException e) {
         Tracking.error(true,"can't take screenshot");
@@ -214,23 +215,29 @@ public class CLI {
   }
   private void __copyFile(int pcn) {
     // choose file to copy into myserver [info.setName]
-    String a[] =Popupwindows.selectFilesOnPc(pcn);
-    Tracking.echo("__copyFile "+a);
+    String filePath = Popupwindows.selectFilesOnPc(pcn);
+    //Tracking.echo("__copyFile ["+filePath+"]");
     //fileChooserMain.main(null );
     // start copy the file methods [login]
-    if (  checkIndexIsExist(pcn-(pcn+1)) ) {
-      infoInterface infOBJ = Manager.get().get(pcn).getRef();
-      //specifie the choosen file
-      Tracking.echo("Enter path file:");
-      String f = stringInput();
-      try { infOBJ.setFile(f);
-      infOBJ.login(Manager.ManagerWait);
-      } catch (RemoteException e) {
-        Tracking.error(true, "Manager CLI error"+
-            ExceptionHandler.getMessage(e));
+    if( !filePath.trim().isEmpty() ) {
+      if (  checkIndexIsExist(pcn)  ) {
+        infoInterface infOBJ = Manager.get().get(pcn).getRef();
+        //specifie the choosen file
+        //Tracking.echo("Enter path file:");
+        //String f = stringInput();
+        try {
+          infOBJ.setFile(filePath);
+          infOBJ.login(Manager.ManagerWait);
+        } catch (RemoteException e) {
+          Tracking.error(true, "Manager CLI error"+
+              ExceptionHandler.getMessage(e));
+        }
+      }else {
+        Tracking.echo("#Pc("+pcn+") not connected");
       }
     }else {
-      Tracking.echo("#Pc("+pcn+") not connected");
+
+      Tracking.echo("you haven't choose file");
     }
   }
   private void __showStartTime(int pcn) {

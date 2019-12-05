@@ -13,8 +13,22 @@ import me.elhoussam.interfaces.infoInterface;
 import me.elhoussam.util.log.Tracking;
 
 public class Popupwindows {
+  private static FileChooser myFileChooser = null;
 
 
+  private static void initFileChooser( infoInterface remoteObj )  {
+    try {
+      if( myFileChooser == null || !myFileChooser.getCurrentRef().equals(remoteObj)  )
+        myFileChooser = new FileChooser(remoteObj);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void showScreenshot(String args) {
+    Screenshot obj = new Screenshot(args);
+    obj.showOpenDialog();
+  }
 
   public static void viewScreenshot(String args) {
     Thread scThread = new Thread("scThread") {
@@ -75,22 +89,16 @@ public class Popupwindows {
     scThread.start();
   }
 
-  public static String[] selectFilesOnPc(int pcNumber){
+  public static String selectFilesOnPc(int pcNumber){
     infoInterface infOBJ = Manager.get().get(pcNumber).getRef();
-    try {
-      FileChooser2 a = new FileChooser2(infOBJ);
-      int val = a.showOpenDialog();
-      if( val != -1) {
-        Tracking.echo("choosen file "+a.getSelectedPaths() );
-      }
-      //return FileChooser.getSelectedPaths();
-
-      //new FC( infOBJ );
-      Tracking.echo("------------ selectFileEnd");
-
-    } catch (Exception e) {
-      e.printStackTrace();
+    initFileChooser(infOBJ);
+    int val = myFileChooser.showOpenDialog();
+    if( val != -1) {
+      String path = myFileChooser.getSelectedPaths();
+      Tracking.echo("selectFilesOnPc ["+path +"]");
+      return path;
     }
-    return null;
+
+    return "";
   }
 }
