@@ -12,4 +12,5 @@ public interface ManagerPcInterface   extends Remote {
   public String NotifyAdmin(String myInfo) throws RemoteException;
   public boolean sendData(String filename, byte[] data, int len) throws RemoteException;
   public String getName() throws RemoteException;
+  public int getCurrentTime() throws RemoteException;
 }

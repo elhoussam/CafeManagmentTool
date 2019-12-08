@@ -9,15 +9,23 @@ import me.elhoussam.core.Manager;
 import me.elhoussam.interfaces.ManagerPcInterface;
 import me.elhoussam.util.log.Tracking;
 import me.elhoussam.util.sys.ExceptionHandler;
+import me.elhoussam.util.sys.TimeHandler;
 
 public class ManagerPc extends UnicastRemoteObject implements ManagerPcInterface {
-
-  public ManagerPc() throws RemoteException {}
+  private String name;
+  public ManagerPc(String str) throws RemoteException { this.name = str ;}
   /*
    * String NotifyAdmin(String myInfo) : private method To inform the manager of the arrival new
    * Pcs, and send PcIp using this method, is represent the Only service the manager provoide.
    */
-
+  @Override
+  public String getName() throws RemoteException{
+    return name;
+  }
+  @Override
+  public int getCurrentTime() throws RemoteException {
+    return TimeHandler.getCurrentTime();
+  }
   @Override
   public String NotifyAdmin(String myInfo) {
     try {
@@ -41,35 +49,22 @@ public class ManagerPc extends UnicastRemoteObject implements ManagerPcInterface
     }
 
   }
-  private static final long serialVersionUID = 1L;
-  public String name;
-
-
-  @Override
-  public String getName() throws RemoteException{
-    return name;
-  }
 
   @Override
   public boolean sendData(String filename, byte[] data, int len) throws RemoteException{
+    File f = new File(filename);
     try{
-      short nb = 1 ;
-      File f = new File(filename);
-      while( f.exists() ){
-        Tracking.echo(f.getName()+" exist");
-        f=new File(nb+"_"+filename);
-        nb++;
-      }
-
-      f.createNewFile();
+      if( ! f.exists() )  f.createNewFile();
       FileOutputStream out=new FileOutputStream(f,true);
       out.write(data,0,len);
       out.flush();
       out.close();
       System.out.println("Done writing data...");
     }catch(Exception e){
+      Tracking.error(true,"sendData"+e.getLocalizedMessage());
       e.printStackTrace();
     }
     return true;
   }
+
 }

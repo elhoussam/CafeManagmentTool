@@ -11,46 +11,57 @@ public class Connection {
   /*
    * logical variable to insure the threads was created just ones
    * */
-  private static Boolean connCheckerStarted = false;
-  private static Boolean connNotifierStarted = false;
-  private static Boolean pcEliminatorStarted = false;
+  private Boolean connCheckerStarted = false;
+  private Boolean pcEliminatorStarted = false;
+  private Boolean connNotifierStarted = false ;
+  private static Boolean launchThreads = false ;
+  private static Connection obj = null ;
   /*
    * connCheckerStarted  : thread check Connection with all connected pcs
    * connNotifierStarted : thread recieve the new Connection from pcs
    * pcEliminatorStarted : thread remove all pcs that disconnected
    * */
-  private static Thread connectionChecker = null;
-  private static Thread connectionNotifier = null;
-  private static Thread pcEliminator = null;
+  private Thread connectionChecker = null;
+  private Thread connectionNotifier = null;
+  private Thread pcEliminator = null;
+  private int threadPeriodInSecond = 120;
 
-  private static int threadPeriodInSecond = 120;
+  public static byte launchThreads() {
+    if( !Connection.launchThreads ) {
+      obj = new Connection();
+      Connection.launchThreads = true ;
+      return obj.init() ;
+    }
+    return 0;
+  }
   /*
    * setup the env for the thread
    * */
-  public static void init() {
+  public byte init() {
     // read property file
-    threadPeriodInSecond = Connection.getValue("thread.period");
+    threadPeriodInSecond = getValue("thread.period");
     // Lunch the Thread = (ConnNotifier)
-    Connection.connNotifier();
+    connNotifier();
     Tracking.info(true, "Connection launch Notifier thread");
 
     // then launch the thread = connChecker
-    Connection.connChecker();
+    connChecker();
     Tracking.info(true, "Manager launch Checker thread");
 
     // then launch the thread = Eliminator
-    Connection.eliminatorThread();
+    eliminatorThread();
     Tracking.info(true, "Manager launch Eliminator thread");
+    return 1;
 
   }
 
   public static Thread getNotifier() {
-    return connectionNotifier;
+    return  obj.connectionNotifier;
   }
   /*
    * read properties from external config file if exist
    * */
-  private static int getValue(String str) {
+  private int getValue(String str) {
     PropertyHandler ph = new PropertyHandler("");
     String s = ph.getPropetry(str); // "thread.period"
     if (s != null)
@@ -59,27 +70,27 @@ public class Connection {
       return -1;
   }
 
-  private static void connChecker() {
+  private void connChecker() {
     if (!connCheckerStarted) {
       connectionChecker = new Thread("ConnectionChecker") {
         @Override
         public void run() {
           try {
             while (true) {
-              int listsize = Manager.get().size();
+              int listsize = Manager.getListofPcs().size();
               if (listsize > 0) {
                 String ip = "";
                 for (short i = 0; i < listsize; i++) {
-                  ip = Manager.get().get(i).getIpAddress();
+                  ip = Manager.getListofPcs().get(i).getIpAddress();
                   infoInterface localRef = Connection.getRemoteObj(ip);
                   // if the ref is not NULL means the RemoteObject is ACTIVE
                   if (localRef != null) {
-                    Manager.get().get(i).setPcState(true);
-                    Manager.get().get(i).setRef(localRef);
+                    Manager.getListofPcs().get(i).setPcState(true);
+                    Manager.getListofPcs().get(i).setRef(localRef);
                     Tracking.info(true, "Connection Checker:" + ip + " connected");
                   } else {
-                    Manager.get().get(i).setPcState(false);
-                    Manager.get().get(i).setRef(null);
+                    Manager.getListofPcs().get(i).setPcState(false);
+                    Manager.getListofPcs().get(i).setRef(null);
                     Tracking.info(true, "Connection Checker:" + ip + " not connected");
                   }
                 }
@@ -96,24 +107,24 @@ public class Connection {
     }
   }
 
-  private static void eliminatorThread() {
-    if (!Connection.pcEliminatorStarted) {
-      Connection.pcEliminator = new Thread("pcEliminator") {
+  private void eliminatorThread() {
+    if (!pcEliminatorStarted) {
+      pcEliminator = new Thread("pcEliminator") {
         @Override
         public void run() {
           try {
-            int residMorethanSeconds = Connection.getValue("time.eliminat");
+            int residMorethanSeconds = getValue("time.eliminat");
             residMorethanSeconds = (residMorethanSeconds == -1) ? 180 : residMorethanSeconds;
 
             do{
-              int listsize = Manager.get().size();
+              int listsize = Manager.getListofPcs().size();
               if (listsize > 0) {
                 for (short i = 0; i < listsize; i++) {
-                  if (!Manager.get().get(i).getPcState()) {
-                    if (Manager.get().get(i).getTimeFromLastConn() >= residMorethanSeconds) {
-                      Tracking.echo("PC("+i+") lastconn~"+ Manager.get().get(i).getLastconnection()
+                  if (!Manager.getListofPcs().get(i).getPcState()) {
+                    if (Manager.getListofPcs().get(i).getTimeFromLastConn() >= residMorethanSeconds) {
+                      Tracking.echo("PC("+i+") lastconn~"+ Manager.getListofPcs().get(i).getLastconnection()
                           +"|RightNow~"+TimeHandler.toString(TimeHandler.getCurrentTime(),true,true,true)   );
-                      Manager.get().remove(i);
+                      Manager.getListofPcs().remove(i);
                       Tracking.info(true, "Thread Eliminator remove the Pc(" + i + ")");
                     }
                   }
@@ -131,18 +142,18 @@ public class Connection {
     }
   }
 
-  private static void connNotifier() {
+  private void connNotifier() {
     if (!connNotifierStarted) {
       connectionNotifier = new Thread("Connection Notifier") {
         @Override
         public void run() {
           try {
             // base on ip list
-            int listsize = Manager.get().size() - 1;
+            int listsize = Manager.getListofPcs().size() - 1;
             if (listsize >= 0) {
 
-              String ip = Manager.get().get(listsize).getIpAddress();
-              Manager.get().remove(listsize);
+              String ip = Manager.getListofPcs().get(listsize).getIpAddress();
+              Manager.getListofPcs().remove(listsize);
               int exist = Manager.indexOf(ip);
 
               Tracking.info(true, "Connection Notifier: New Conn ip: " + ip);
@@ -151,11 +162,11 @@ public class Connection {
                 Pc newConnectedPc = new Pc(ip);
                 newConnectedPc.setRef(getRemoteObj(ip));
                 newConnectedPc.updateLastconnection();
-                Manager.get().add(newConnectedPc);
+                Manager.getListofPcs().add(newConnectedPc);
                 Tracking.info(true, "Connection Notifier:" + ip + " is new for me");
               } else { // exist meas update state and Date
-                Manager.get().get(exist).setPcState(true);
-                Manager.get().get(exist).updateLastconnection();
+                Manager.getListofPcs().get(exist).setPcState(true);
+                Manager.getListofPcs().get(exist).updateLastconnection();
                 Tracking.info(true, "Connection Notifier:" + ip + " is Aready listed");
               }
 
@@ -168,7 +179,7 @@ public class Connection {
         }
       };
       connectionNotifier.start();
-      connNotifierStarted = true;
+      connNotifierStarted = true ;
     }
   }
   /*

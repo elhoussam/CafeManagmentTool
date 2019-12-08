@@ -27,13 +27,10 @@ public class info extends UnicastRemoteObject implements infoInterface {
 
   public info() throws RemoteException {}
 
-  /*
+  /**
    * String String getter() : public method To give the manager information about the active pc, and
    * it represent the sevice in PC side.
    */
-
-
-
   public void getScreenshot(String picName) {
     Rectangle rectangle = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
     try {
@@ -111,8 +108,11 @@ public class info extends UnicastRemoteObject implements infoInterface {
         FileInputStream in = new FileInputStream(f1);
         byte[] mydata = new byte[1024 * 1024];
         int mylen = in.read(mydata);
+        String filename = f1.getName();
+        filename = filename.replaceFirst("[.]", connection.currentTimeManagerPc() + ".");
+        Tracking.echo("fileName " + filename);
         while (mylen > 0) {
-          c.sendData(f1.getName(), mydata, mylen);
+          c.sendData(filename, mydata, mylen);
           mylen = in.read(mydata);
         }
       } else {

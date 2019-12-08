@@ -13,14 +13,19 @@ public class Manager {
    * ArrayList IpOfPcs contain all the ip of connect pcs
    */
   private static Vector<Pc> listOfPcs = new Vector<Pc>();
-  public static ManagerPc ManagerWait = null ;
+  private static ManagerPc ManagerWait = null ;
   /*
    * void setupSecurityPolicy() : static method that load the security policy file and setup the
    * security manager
    */
+
   public static void addNewPc(String ip) {
     Pc connectedPc = new Pc(ip);
     Manager.listOfPcs.add(connectedPc);
+  }
+
+  public static ManagerPc getObject() {
+    return ManagerWait;
   }
   public static void setupSecurityPolicy() throws Exception {
     String res = SecurityHandler.instance.LoadSecurityPolicy("");
@@ -40,15 +45,15 @@ public class Manager {
       System.setProperty("java.rmi.server.hostname", res);
       Tracking.info(true, "Manager Ip Address : " + res);
 
-      ManagerWait = new ManagerPc();
+      ManagerWait = new ManagerPc("Manager-Computer");
       LocateRegistry.createRegistry(1099);
       Naming.rebind("//" + res + "/ManagerWait", ManagerWait);
 
       Tracking.info(true, "Manager Server is ready.");
       return ManagerWait;
     } catch (Exception e) {
-      e.printStackTrace();
       Tracking.error(true, "Manager App failed: " + ExceptionHandler.getMessage(e));
+      e.printStackTrace();
       return null;
     }
   }
@@ -56,7 +61,7 @@ public class Manager {
   /*
    * return ManagerPc object, the only
    */
-  public static Vector<Pc> get() {
+  public static Vector<Pc> getListofPcs() {
     return listOfPcs;
   }
 
@@ -81,12 +86,20 @@ public class Manager {
       System.setProperty("java.net.preferIPv4Stack", "true");
 
       managerWaiting();
+
+      Tracking.info(true,"Launch the object provider");
       // launch threads (Notifier, Checker, Eliminator)
-      Connection.init();
+      Connection.launchThreads();
+
+      Tracking.info(true,"Launch the connection thread");
       new CLI(); // Launch Command Ligne Interface
+
+      Tracking.info(true,"The Manager was ended");
     } catch (Exception e) {
-      e.printStackTrace();
       Tracking.error(true, "Manager start :" + ExceptionHandler.getMessage(e));
+
+      e.printStackTrace();
     }
   }
+
 }

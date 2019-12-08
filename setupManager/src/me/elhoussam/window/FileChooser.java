@@ -27,7 +27,7 @@ import javax.swing.border.EmptyBorder;
 import me.elhoussam.interfaces.infoInterface;
 import me.elhoussam.util.log.Tracking;
 import me.elhoussam.util.sys.StringHandler;
-public class FileChooser {
+class FileChooser {
 
   private infoInterface currentRemoteObj = null;
 
@@ -35,7 +35,7 @@ public class FileChooser {
   JLabel selectedPathLabel = new JLabel("Path:");
 
   private final JPanel contentPanel = new JPanel();
-  static ArrayList<String> filePathsBase = new ArrayList<String>();
+  //static ArrayList<String> filePathsBase = new ArrayList<String>();
   static ArrayList<String> fileNamesBase = new ArrayList<String>();
   static String currentPath = "";
   static Boolean lock = true ;
@@ -54,6 +54,7 @@ public class FileChooser {
       try {
         Thread.sleep(2*1000);
       } catch (InterruptedException e) {
+        Tracking.error(true,"showOpenDialog "+e.getLocalizedMessage());
         e.printStackTrace();
         return -1;
       }
@@ -71,7 +72,7 @@ public class FileChooser {
 
     ArrayList<String> rootNames =  currentRemoteObj.getRootDir(false);
     ArrayList<String> rootPaths =  currentRemoteObj.getRootDir(true);
-    filePathsBase = (ArrayList<String>) rootPaths.clone();
+    //filePathsBase = (ArrayList<String>) rootPaths.clone();
 
     dialog.getContentPane().setLayout(new BorderLayout());
     contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -119,9 +120,11 @@ public class FileChooser {
                     String [] newItems =  currentRemoteObj.changeDirAndListContent(currentPath);
 
                     DefaultListModel<String> model = getNewListModel( newItems ) ;
-                    filePathsBase = new ArrayList<String>( Arrays.asList( newItems) );
+                    //filePathsBase = new ArrayList<String>( Arrays.asList( newItems) );
                     lsListOfCurrentDirAndfile.setModel(  model  );
+
                   } catch (RemoteException e1) {
+                    Tracking.error(true,"can't reach this directory"+e1.getLocalizedMessage());
                     e1.printStackTrace();
                   }
                 }else {
@@ -164,7 +167,7 @@ public class FileChooser {
 
         DefaultListModel<String> model = getNewListModel( newItems ) ;
         if( newItems != null ) {
-          filePathsBase = new ArrayList<String>( Arrays.asList( newItems) );
+          //filePathsBase = new ArrayList<String>( Arrays.asList( newItems) );
         }
         lsListOfCurrentDirAndfile.setModel(  model  );
       } catch (RemoteException e1) {
@@ -213,10 +216,12 @@ public class FileChooser {
               String [] newItems =  currentRemoteObj.changeDirAndListContent(currentPath);
 
               DefaultListModel<String> model = getNewListModel( newItems ) ;
-              filePathsBase = new ArrayList<String>( Arrays.asList( newItems) );
+              //filePathsBase = new ArrayList<String>( Arrays.asList( newItems) );
               lsListOfCurrentDirAndfile.setModel(  model  );
-            } catch (RemoteException e1) {
-              e1.printStackTrace();
+            } catch (RemoteException ex) {
+
+              Tracking.error(true,"up btn addActionListener "+ex.getLocalizedMessage());
+              ex.printStackTrace();
             }
           }else {
 
@@ -295,7 +300,7 @@ public class FileChooser {
   private static DefaultListModel<String> getNewListModel(String[] arr) {
     if( arr ==  null ) return new DefaultListModel<String>();
     ArrayList<String>  a = new ArrayList<String>( Arrays.asList(arr) );
-    return getNewListModel( a  );
+    return getNewListModel( a );
   }
   private static DefaultListModel<String> getNewListModel(ArrayList<String> arr)  {
     if( arr ==  null ) return new DefaultListModel<String>();

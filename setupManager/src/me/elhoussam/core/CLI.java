@@ -64,9 +64,9 @@ public class CLI {
   private void __osName(int pcn) {
     if ( checkIndexIsExist(pcn) ) {
 
-      Manager.get().get(pcn).getIpAddress();
+      Manager.getListofPcs().get(pcn).getIpAddress();
       try {
-        infoInterface infOBJ = Manager.get().get(pcn).getRef();
+        infoInterface infOBJ = Manager.getListofPcs().get(pcn).getRef();
         // Tracking.info(true,"Thread Checker lookup for "+fullPath);
         String result = infOBJ.get("os.name");
         // Tracking.info(true,"Thread Checker get info :"+result+" from "+ip);
@@ -85,7 +85,7 @@ public class CLI {
   private void __showLifeTime(int pcn) {
 
     if ( checkIndexIsExist(pcn) ) {
-      infoInterface infOBJ = Manager.get().get(pcn).getRef();
+      infoInterface infOBJ = Manager.getListofPcs().get(pcn).getRef();
       try {
         Tracking.echo(
             TimeHandler.toString(infOBJ.getLifeTime(),true,true,true)
@@ -137,7 +137,7 @@ public class CLI {
 
   private void listActivePc(int i) {
     currentOptions += "listActivePc>";
-    int numberOfActivePcs = Manager.get().size();
+    int numberOfActivePcs = Manager.getListofPcs().size();
     String option = "";
     for (i = 0; i < numberOfActivePcs; i++) {
       option += "\t" + (i + 1) + "-Pc(" +( i + 1 )+ ")\n";
@@ -193,12 +193,12 @@ public class CLI {
 
   }
   private Boolean checkIndexIsExist( int pcn) {
-    int lastIndex = Manager.get().size()-1;
+    int lastIndex = Manager.getListofPcs().size()-1;
     return ( pcn>=0 && pcn <= lastIndex )?true:false;
   }
   private void __takeSceenshot(int pcn) {
     if ( checkIndexIsExist(pcn) ) {
-      infoInterface infOBJ = Manager.get().get(pcn).getRef();
+      infoInterface infOBJ = Manager.getListofPcs().get(pcn).getRef();
       try {
         String nameSc = infOBJ.getSceenshotNow();
         if( !nameSc.isEmpty())   Popupwindows.showScreenshot(nameSc);
@@ -221,13 +221,13 @@ public class CLI {
     // start copy the file methods [login]
     if( !filePath.trim().isEmpty() ) {
       if (  checkIndexIsExist(pcn)  ) {
-        infoInterface infOBJ = Manager.get().get(pcn).getRef();
+        infoInterface infOBJ = Manager.getListofPcs().get(pcn).getRef();
         //specifie the choosen file
         //Tracking.echo("Enter path file:");
         //String f = stringInput();
         try {
           infOBJ.setFile(filePath);
-          infOBJ.login(Manager.ManagerWait);
+          infOBJ.login(Manager.getObject());
         } catch (RemoteException e) {
           Tracking.error(true, "Manager CLI error"+
               ExceptionHandler.getMessage(e));
@@ -242,7 +242,7 @@ public class CLI {
   }
   private void __showStartTime(int pcn) {
     if ( checkIndexIsExist(pcn) ) {
-      infoInterface infOBJ = Manager.get().get(pcn).getRef();
+      infoInterface infOBJ = Manager.getListofPcs().get(pcn).getRef();
       try {
         Tracking.echo(
             TimeHandler.toString(infOBJ.getStartTime(),true,true,true)
@@ -270,9 +270,11 @@ public class CLI {
   }
 
   private void startCommandLigneInterface(byte i) {
+
     do {
       showOption(currentOptions + "\n" + options[0]);
       i = byteInput();
+
       switch (i) {
         case 1:
           listActivePc(-1);

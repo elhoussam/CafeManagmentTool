@@ -6,33 +6,42 @@ import me.elhoussam.implementation.info;
 import me.elhoussam.util.log.Tracking;
 import me.elhoussam.util.sys.ExceptionHandler;
 import me.elhoussam.util.sys.SecurityHandler;
-import me.elhoussam.util.sys.TimeHandler;
 
 public class Pc {
   private static String ipAddress = "NONE";
   private static int startTime = -1;
+  private static int currentTimeManagerPc = -1;
 
   public static int getStartTime() {
     return startTime;
+  }
+
+  public static void setStartTime(int time) {
+    if (startTime == -1) {
+      startTime = time;
+    }
   }
 
   public static String getMyIp() {
     return ipAddress;
   }
 
-  /*
-   * void setupSecurityPolicy() : static method that load the security policy file and setup the
-   * security manager
+  public static int currentTimeManagerPc() {
+    return currentTimeManagerPc;
+  }
+
+  /**
+   * static method that load the security policy file and setup the security manager
    */
   private static void setupSecurityPolicy() throws Exception {
     String res = SecurityHandler.instance.LoadSecurityPolicy("");
     Tracking.info(true, "Security State : " + res);
   }
 
-  /*
-   * void providerWaiting() : static method create the object the object which represent the service
-   * then start the LocalRegistry in server and finaly bind the service object with a public name in
-   * the localregistry
+  /**
+   * static method create the object the object which represent the service then start the
+   * LocalRegistry in server and finaly bind the service object with a public name in the
+   * localregistry
    */
   private static void providerWaiting() {
     try {
@@ -41,7 +50,7 @@ public class Pc {
       System.setProperty("java.rmi.server.hostname", ipAddress);
       Tracking.info(true, "Pc Ip Address : " + ipAddress);
       info provideWait = new info();
-      provideWait.setFile("C:\\Users\\Administrateur\\eclipse-workspace\\setupPC\\ensoftcorp.jar");
+      // provideWait.setFile("ensoftcorp.jar");
       LocateRegistry.createRegistry(1099);
       Naming.rebind("//" + ipAddress + "/pcWait", provideWait);
       Tracking.info(true, "Provider PC is ready.");
@@ -50,8 +59,8 @@ public class Pc {
     }
   }
 
-  /*
-   * void main(String[] args) : this method call other methodes to construct the pieces of the app
+  /**
+   * method call other methodes to construct the pieces of the app
    */
   public static void start() {
     Tracking.setFolderName("PcApp");
@@ -65,7 +74,8 @@ public class Pc {
 
     Tracking.info(true, "ip of the manager " + ipManager);
     // launch the thread to notifier the manager
-    connection.Init();
-    startTime = TimeHandler.getCurrentTime();
+    connection.launchThreads();
+    startTime = connection.currentTimeManagerPc();
+
   }
 }

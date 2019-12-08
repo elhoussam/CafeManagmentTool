@@ -13,7 +13,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import me.elhoussam.util.log.Tracking;
 
-public class Screenshot extends JFrame {
+class Screenshot extends JFrame {
 
   private JPanel contentPane;
 
