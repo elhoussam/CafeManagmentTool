@@ -8,23 +8,16 @@ import java.util.logging.Logger;
 
 public class Tracking {
   public static Boolean globalSwitcher = true ;
-  /*
+  /**
    * these two logFolderName, logFolderNameChange to save
    *	the chosing name of logfolder and insure will not
    *	be modified more then one time.
    */
   private static String logFolderName ="logFolder";
   private static Boolean logFolderNameChange = false ;
-
-  /*
-   * instance, fh, ch : use to save and show all
-   *	event that happend in the system into specific
-   *	file and show the update in the console.
-   */
   private static Logger  instance = null;
-  /*
-   * void info(String infoMsg)
-   *	public method which trace the infos of the system
+  /**
+   * which trace the infos of the system
    */
 
   public static synchronized void info(Boolean enable, String infoMsg) {
@@ -33,7 +26,10 @@ public class Tracking {
     instance.info( infoMsg );
     //fh.close();
   }
-
+  /**
+   * that switchOff the console handler
+   * 
+   */
   private static void Toggle(Boolean sw, String classname, int linenumber) {
     ConsoleHandler chLocal = (ConsoleHandler) instance.getHandlers()[0];
     if( sw ) { // enaable console handler by add it IF NOT EXIST
@@ -47,9 +43,8 @@ public class Tracking {
     ((Formatter)fhLocal.getFormatter()).setClassName(classname);
     ((Formatter)fhLocal.getFormatter()).setLineNumber(linenumber);
   }
-  /*
-   * void warning(String infoMsg)
-   *	public method which trace the warning of the system
+  /**
+   *which trace the warning of the system
    */
   public static synchronized void warning(Boolean enable, String warningMsg ) {
 
@@ -58,9 +53,8 @@ public class Tracking {
     instance.warning( warningMsg );
     //fh.close();
   }
-  /*
-   * void error(true,String infoMsg)
-   *	public method which trace the errors of the system
+  /**
+   * public method which trace the errors of the system
    */
   public static synchronized void error(Boolean enable, String errorMsg ) {
     enable = true;
@@ -68,10 +62,9 @@ public class Tracking {
     Toggle(enable ,parts[0],Integer.valueOf(parts[1])) ;
     instance.severe(errorMsg);
   }
-  /*
-   * void setFolderName(String name)
-   *	public method : allow you to set new name folder
-   *	that contain the log file just for one time.
+  /**
+   * allow you to set new name folder
+   * that contain the log file just for one time.
    */
   public static void setFolderName(String name) {
     if ( !logFolderNameChange && !name.trim().isEmpty()  && ! name.trim().equalsIgnoreCase(logFolderName) ) {
@@ -79,9 +72,8 @@ public class Tracking {
     String[] parts = Tracking.LineNb().split("-")  ;
     Tracking.getInstance( parts[0],Integer.valueOf(parts[1])) ;
   }
-  /*
-   * Logger (String ClassName, int lineNb )
-   *	private method : that return new Logger object
+  /**
+   *  that return new Logger object
    *	if its the first you invoke this method, or will
    *	setup new formatter if the lastclassname, lastlinenumber
    *	is changed.
@@ -92,9 +84,8 @@ public class Tracking {
     }
     return instance;
   }
-  /*
-   *	Logger setUpLogger( SimpleFormatter SP )
-   *	private method : that return new Logger object
+  /**
+   *  that return new Logger object
    *	if is the first time, or set new formatter to
    *	the existing logger object.
    */
@@ -116,17 +107,17 @@ public class Tracking {
     }
     return  lg;
   }
-  /*
-   * newConsoleHandler : create new consoleHandler with new formatter and return it
-   * */
+  /**
+   * create new consoleHandler with new formatter and return it
+   */
   private static ConsoleHandler newConsoleHandler( String ClassName, int LineNb) {
     ConsoleHandler ch = new ConsoleHandler();
     ch.setFormatter(new Formatter(ClassName, LineNb, "[%3$s:%4$d]%5$s%n"  )) ;
     return ch;
   }
-  /*
-   * newFileHandler : create new fileHandler with new formatter and return it
-   * */
+  /**
+   * create new fileHandler with new formatter and return it
+   */
   private static FileHandler newFileHandler( String ClassName, int LineNb, String folder) throws SecurityException, IOException {
     FileHandler fh = new FileHandler( folder+"/"+"file.log" ,true );
     fh.setFormatter(new Formatter(ClassName, LineNb, "[%1$tF %1$tT][%2$-7s][%3$s:%4$d]%5$s%n"  ));
@@ -134,7 +125,7 @@ public class Tracking {
   }
   /**
    * echo : simple printf
-   * */
+   */
   public static void echo(Object obj) {
     if( obj == null ) System.out.println("NULL");
     else {

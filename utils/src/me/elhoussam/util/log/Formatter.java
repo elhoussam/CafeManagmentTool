@@ -3,11 +3,17 @@ package me.elhoussam.util.log;
 import java.util.Date;
 import java.util.logging.LogRecord;
 import java.util.logging.SimpleFormatter;
+/**
+ * Formatter is custom formatter that extends the java SimpleFormatter
+ * @author  elhoussam
+ * @version 1.0
+ * @since   2019-12-06
+ */
 
 public class Formatter extends SimpleFormatter {
-  /*
+  /**
    * default format for any Formatter object
-   * */
+   */
   private String format ="[%1$tF %1$tT] [%2$-7s] [%3$s:%4$d] %5$s %n";
   private String className="unkown";
   private int lineNumber=-1;
@@ -24,14 +30,15 @@ public class Formatter extends SimpleFormatter {
     this.lineNumber = (int) argv[1];
     this.format = (String) argv[2] ;
   }
-  // format-console-handler
-  // date 	level className lineNumber Message
-  // disable	  *		argv[0]	 argv[1]	*
-  // ============================================
-  // format-file-handler
-  // date 	level className lineNumber Message
-  // enable	  *	   argv[0]	argv[1]		*
-
+  /**
+   * format-console-handler
+   * date 	level className lineNumber Message
+   * disable	  *		argv[0]	 argv[1]	*
+   * ============================================
+   * format-file-handler
+   * date 	level className lineNumber Message
+   * enable	  *	   argv[0]	argv[1]		*
+   */
   public String getClassName() {
     return className;
   }
