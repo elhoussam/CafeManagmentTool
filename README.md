@@ -2,7 +2,7 @@
 Cafe Management System : Java Appllication Based on client-server topology, using the RMI technologie, and the SERVER in our case is the PC because it provoides all the information for the MANAGER.
 # Build It 
 
-Prerequisite
+Prerequisit
 ------------
 * jdk 1.8
 * maven 
