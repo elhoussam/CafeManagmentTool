@@ -4,6 +4,11 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public interface infoInterface extends java.rmi.Remote {
+
+  public enum STATE {
+    PAUSSED, WORKING, CLOSED
+  }
+
   /*
    * String String getter() : public method To give the manager information about the active pc, and
    * it represent the sevice in PC side.
@@ -14,7 +19,11 @@ public interface infoInterface extends java.rmi.Remote {
 
   public int getStartTime() throws RemoteException;
 
+  public int getWorkTime() throws RemoteException;
+
   public String getIpAddress() throws RemoteException;
+
+
 
   public void setFile(String f) throws RemoteException;
 
@@ -22,11 +31,20 @@ public interface infoInterface extends java.rmi.Remote {
 
   public String getSceenshotNow() throws RemoteException;
 
-  public Object getFileChooser() throws RemoteException;
-
   public ArrayList<String> getRootDir(Boolean option) throws RemoteException;
 
   public String[] changeDirAndListContent(String path) throws RemoteException;
 
   public byte fileOrDirectory(String path) throws RemoteException;
+
+
+
+  public void OpenPc(int lastWorkTime) throws RemoteException;
+
+  public int PausePc() throws RemoteException;
+
+  public int ClosePc() throws RemoteException;
+
+  public STATE getPcState() throws RemoteException;
+
 }

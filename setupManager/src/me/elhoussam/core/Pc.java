@@ -9,9 +9,16 @@ public class Pc {
   private infoInterface ref = null;
   private Boolean pcState = true;
   private int lastconnection = -1;
+  private int lastWorkTime = 0;
 
   public String getIpAddress() {
     return ipAddress;
+  }
+  public int getLastWorkTime() {
+    return lastWorkTime;
+  }
+  public void setLastWorkTime(int workTime ) {
+    lastWorkTime = workTime ;
   }
 
   public Pc(String ipAddress, infoInterface ref, int lastconnection) {

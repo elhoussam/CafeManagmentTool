@@ -1,6 +1,7 @@
 package me.elhoussam.core;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,10 +13,13 @@ import me.elhoussam.util.sys.TimeHandler;
 import me.elhoussam.window.Popupwindows;
 
 public class CLI {
-
-  private String options[] = {"\t1-list active pc\n\t2-cmd to all\n\t0-quit\n # choise :", // managerOptions
-      "\t1-shutdown all pcs\n\t2-logInAllPcs\n\t3-logOutAllPcs 0-quit\n # choise :", // cmd to all
-      "\t1-shutdown\n\t2-Login\n\t3-logoff\n\t4-os name\n\t5-life time\n\t6-start time\n\t7-COPYFILE\n\t8-Screenshot\n\t0-quit\n # choise :",// option to pcs
+  private ArrayList<Integer> lastWorkTimePcs = new ArrayList<Integer>();
+  private String mainOptions[][] = {
+      {"list active pc", "cmd to all" }, // managerOptions  0
+      {"shutdown all pcs","logInAllPcs","logOutAllPcs", "quit" ,"choise :"}, // cmd to all  1
+      {"shutdown","Login","logoff","os name","life time","start time","COPYFILE", "Screenshot" //2
+        ,"pause time"}, //2
+      {"Quit","your choise :"}// option to pcs 3
   };
 
   private String currentOptions = "ManagerApp>";
@@ -43,7 +47,16 @@ public class CLI {
 
   private void __logInPcN(int pcn) {
     if ( checkIndexIsExist(pcn) ) {
-      Tracking.echo("log In pc N" + pcn + " ... done\n");
+      Pc pcObj = Manager.getListofPcs().get(pcn);
+      int lastWork = pcObj.getLastWorkTime();
+      try {
+        pcObj.getRef().OpenPc(lastWork);
+
+        Tracking.echo("Pc(" + (pcn+1) + ") LogIn ... done\n");
+      } catch (Exception e) {
+        Tracking.error(true, "Manager CLI error"+
+            ExceptionHandler.getMessage(e));
+      }
     }else {
       Tracking.echo("Pc("+pcn+") not connected");
     }
@@ -55,7 +68,17 @@ public class CLI {
 
   private void __logOutPcN(int pcn) {
     if ( checkIndexIsExist(pcn) ) {
-      Tracking.echo("log Out pc N" + pcn + " ... done\n");
+      Pc pcObj = Manager.getListofPcs().get(pcn);
+      try {
+        int workTime = pcObj.getRef().ClosePc();
+        pcObj.setLastWorkTime( workTime );
+        Tracking.echo("Pc(" + (pcn+1) + ") LogOut ... done \t workTime :"+
+            TimeHandler.toString(workTime, true,true,true)+"\n");
+      } catch (Exception e) {
+        Tracking.error(true, "Manager CLI error"+
+            ExceptionHandler.getMessage(e));
+      }
+
     }else {
       Tracking.echo("Pc("+pcn+") not connected");
     }
@@ -117,7 +140,7 @@ public class CLI {
     currentOptions += "cmdToAll>";
 
     do {
-      showOption(currentOptions + "\n" + options[1]);
+      showOption(currentOptions, mainOptions[1]);
       i = byteInput();
       switch (i) {
         case 1:
@@ -138,14 +161,14 @@ public class CLI {
   private void listActivePc(int i) {
     currentOptions += "listActivePc>";
     int numberOfActivePcs = Manager.getListofPcs().size();
-    String option = "";
+    ArrayList<String> pcs = new ArrayList<String>();
     for (i = 0; i < numberOfActivePcs; i++) {
-      option += "\t" + (i + 1) + "-Pc(" +( i + 1 )+ ")\n";
+      pcs.add("Pc("+(i+1)+")");
+      //option += "\t" + (i + 1) + "-Pc(" +( i + 1 )+ ")\n";
     }
-    option += "\n\t0-quit\n # choise :";
-
+    String option[] = pcs.toArray( new String[0]);
     do {
-      showOption(currentOptions + "\n" + option);
+      showOption(currentOptions, option);
       i = byteInput();
       if(i != 0) {
         if ( checkIndexIsExist(i-1)  )pcPickedN(i - 1);
@@ -159,7 +182,7 @@ public class CLI {
     currentOptions += "Pc(" + (pcn + 1) + ")>";
     byte i = -1;
     do {// if( i != 1 && i != 2 && i != 3)
-      showOption(currentOptions + "\n" + options[2]);
+      showOption(  currentOptions, mainOptions[2]);
       i = byteInput();
       switch (i) {
         case 1:
@@ -186,11 +209,31 @@ public class CLI {
         case 8:
           __takeSceenshot(pcn);
           break;
+        case 9:
+          __pauseTime(pcn);
+          break;
       }
 
     } while (i != 0);
     removeLastOption();
 
+  }
+  private void __pauseTime(int pcn) {
+    if ( checkIndexIsExist(pcn) ) {
+      Pc pcObj = Manager.getListofPcs().get(pcn);
+      try {
+        int workTime = pcObj.getRef().PausePc();
+        pcObj.setLastWorkTime( workTime );
+        Tracking.echo("Pc(" + (pcn+1) + ") FreezeTime ... done \t workTime :"+
+            TimeHandler.toString(workTime, true,true,true)+"\n");
+      } catch (Exception e) {
+        Tracking.error(true, "Manager CLI error"+
+            ExceptionHandler.getMessage(e));
+      }
+
+    }else {
+      Tracking.echo("Pc("+pcn+") not connected");
+    }
   }
   private Boolean checkIndexIsExist( int pcn) {
     int lastIndex = Manager.getListofPcs().size()-1;
@@ -265,14 +308,21 @@ public class CLI {
     currentOptions = String.join(">", strList);
   }
 
-  private void showOption(String options) {
-    Tracking.echo(options);
+  private void showOption(String header, String... options) {
+    Tracking.echo(header);
+    for(byte i = 0; i< options.length ;i++) {
+      Tracking.echo( "\t"+(i+1)+"-"+options[i]);
+    }
+    Tracking.echo( "\t0-"+mainOptions[3][0]);
+    System.out.print("\t"+mainOptions[3][1]);
+
+
   }
 
   private void startCommandLigneInterface(byte i) {
 
     do {
-      showOption(currentOptions + "\n" + options[0]);
+      showOption(currentOptions, mainOptions[0]);
       i = byteInput();
 
       switch (i) {
