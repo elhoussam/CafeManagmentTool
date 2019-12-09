@@ -25,10 +25,21 @@ public class connection {
   private static connection obj = null;
   private int currentTimeManagerPc = -1;
 
+
   public static int currentTimeManagerPc() {
     if (obj == null)
       return -2;
-    return obj.currentTimeManagerPc;
+
+    int currentTime = obj.currentTimeManagerPc;
+    try {
+      currentTime = connection.getManagerRef().getCurrentTime();
+
+      return currentTime;
+    } catch (Exception e) {
+
+      Tracking.error(true, "currentTimeManagerPc :Not connected" + e.getLocalizedMessage());
+      return currentTime;
+    }
   }
 
   public static ManagerPcInterface getManagerRef() {
@@ -107,10 +118,14 @@ public class connection {
               }
 
               int time = connection.currentTimeManagerPc() - Pc.getStartTime();
-              Tracking.echo("PC start at~"
-                  + TimeHandler.toString(Pc.getStartTime(), true, true, true) + "|Right Now~"
-                  + TimeHandler.toString(connection.currentTimeManagerPc(), true, true, true)
-                  + "|pc uptime~" + TimeHandler.toString(time, true, true, true));
+              Tracking.echo("PC start\t" + TimeHandler.toString(Pc.getStartTime(), true, true, true)
+                  + "\nRight Now\t" + TimeHandler.toString(currentTime, true, true, true)
+                  + "\npc uptime\t" + TimeHandler.toString(time, true, true, true) + "\nlast open\t"
+                  + TimeHandler.toString(Pc.getLastOpenTime(), true, true, true) + "\nwork time\t"
+                  + TimeHandler.toString(Pc.getWorkTime(), true, true, true) + "\npc state\t"
+                  + Pc.getCurrentState()
+
+              );
               // notifier manager every minute
             } catch (Exception e) {
 

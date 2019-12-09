@@ -12,7 +12,6 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
-import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
 import me.elhoussam.core.Pc;
 import me.elhoussam.core.connection;
@@ -127,22 +126,6 @@ public class info extends UnicastRemoteObject implements infoInterface {
     return true;
   }
 
-  JFileChooser jfc = null;
-
-  @Override
-  public Object getFileChooser() throws RemoteException {
-    if (jfc == null)
-      jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-    jfc.setDialogTitle("Multiple file and directory selection:");
-    jfc.setMultiSelectionEnabled(true);
-    jfc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-
-    Tracking.info(true, "JFC up and ready");
-    return jfc;
-  }
-
-
-
   @Override
   public ArrayList<String> getRootDir(Boolean option) throws RemoteException {
     FileSystemView mySystemView = FileSystemView.getFileSystemView();;
@@ -221,6 +204,48 @@ public class info extends UnicastRemoteObject implements infoInterface {
       return (byte) ((myfile.isDirectory()) ? 0 : 1);
     }
     return -1;
+  }
+
+  @Override
+  public int getWorkTime() throws RemoteException {
+    return Pc.getWorkTime();
+  }
+
+  @Override
+  public void OpenPc(int lastWorkTime) throws RemoteException {
+
+    if (!Pc.getCurrentState().equals(STATE.WORKING))
+      Pc.Open(lastWorkTime);
+    Tracking.echo("OpenPc :: disable PreventingWindows "
+        + TimeHandler.toString(lastWorkTime, true, true, true) + " "
+        + TimeHandler.toString(connection.currentTimeManagerPc(), true, true, true));
+  }
+
+  @Override
+  public int PausePc() throws RemoteException {
+    int val = -2;
+    if (Pc.getCurrentState().equals(STATE.WORKING))
+      val = Pc.Pause();
+    Tracking
+        .echo("PausePc :: Enable PreventingWindows " + TimeHandler.toString(val, true, true, true)
+            + " " + TimeHandler.toString(connection.currentTimeManagerPc(), true, true, true));
+    return val;
+  }
+
+  @Override
+  public int ClosePc() throws RemoteException {
+    int val = -3;
+    if (!Pc.getCurrentState().equals(STATE.CLOSED))
+      val = Pc.Close();
+    Tracking
+        .echo("ClosePc :: Enable PreventingWindows " + TimeHandler.toString(val, true, true, true)
+            + " " + TimeHandler.toString(connection.currentTimeManagerPc(), true, true, true));
+    return val;
+  }
+
+  @Override
+  public STATE getPcState() throws RemoteException {
+    return Pc.getCurrentState();
   }
 
 }
