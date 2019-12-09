@@ -21,16 +21,22 @@ public class TimeHandler {
     //for(Boolean e : enable)Tracking.echo(e);
 
     byte hour = Byte.valueOf(Integer.toString(time / 3600));
-    mytime += ((enable.length > 0 && enable[0]==true)?hour:"**");
+    mytime += ((enable.length > 0 && enable[0]==true)?
+        ((hour>=0 && hour<10)?"0"+hour:hour)
+        :"**");
     time = time - (hour * (3600));
 
 
     byte min = Byte.valueOf( Integer.toString(time/60)) ;
-    mytime += ((enable.length >1 && enable[1]==true)?":"+ min:":**");
+    mytime += ((enable.length >1 && enable[1]==true)?":"+
+        ((min>=0 && min<10)?"0"+min:min)
+        :":**");
     time = time - (min * (60));
 
     byte sec = Byte.valueOf( Integer.toString(time)) ;
-    mytime+=((enable.length >2 && enable[2])?":"+ sec:"");
+    mytime+=((enable.length >2 && enable[2])?":"+
+        ((sec>=0 && sec<10)?"0"+sec:sec)
+        :"");
 
     return mytime ;
   }
