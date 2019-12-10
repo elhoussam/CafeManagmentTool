@@ -27,7 +27,7 @@ public class Pc {
     else if (Pc.getCurrentState().equals(STATE.WORKING))
       return localObj.workTime + (connection.currentTimeManagerPc() - localObj.lastOpenTime);
     else if (Pc.getCurrentState().equals(STATE.CLOSED))
-      return -1;
+      return 0;
     return -2;
   }
 
@@ -67,10 +67,7 @@ public class Pc {
     localObj.lastOpenTime = connection.currentTimeManagerPc();
 
     if (lastWorkTime >= 0)
-      if (localObj.workTime != 0)
-        localObj.workTime += lastWorkTime;
-      else
-        localObj.workTime = lastWorkTime;
+      localObj.workTime = lastWorkTime;
 
   }
 

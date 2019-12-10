@@ -23,7 +23,9 @@ public class connection {
   private static ManagerPcInterface managerRef = null;
   private static Boolean managerRefAssigned = false;
   private static connection obj = null;
-  private int currentTimeManagerPc = -1;
+  private int currentTimeManagerPc = 0;
+  private int periodToSyncronize = 180;
+  private int lastSynchrWithManager = -1 * periodToSyncronize;
 
 
   public static int currentTimeManagerPc() {
@@ -80,8 +82,9 @@ public class connection {
 
     connection.setManagerRef(obj);
 
-
+    launchLocalClock();
     reachManager(ipOfManager);
+
   }
 
   /*
@@ -104,42 +107,37 @@ public class connection {
 
           do {
             try {
-              connection.setManagerRef(getRemoteObj(ipManager));
-
-              int currentTime = connection.getManagerRef().getCurrentTime();
-              synchronized (connection.obj) {
-                connection.obj.currentTimeManagerPc = currentTime;
-                timeUpdatedFromServer = true;
-              }
-
-              if (!setStartTime) {
-                Pc.setStartTime(currentTime);
-                setStartTime = true;
-              }
-
-              int time = connection.currentTimeManagerPc() - Pc.getStartTime();
-              Tracking.echo("PC start\t" + TimeHandler.toString(Pc.getStartTime(), true, true, true)
-                  + "\nRight Now\t" + TimeHandler.toString(currentTime, true, true, true)
-                  + "\npc uptime\t" + TimeHandler.toString(time, true, true, true) + "\nlast open\t"
-                  + TimeHandler.toString(Pc.getLastOpenTime(), true, true, true) + "\nwork time\t"
-                  + TimeHandler.toString(Pc.getWorkTime(), true, true, true) + "\npc state\t"
-                  + Pc.getCurrentState()
-
-              );
-              // notifier manager every minute
-            } catch (Exception e) {
 
               synchronized (connection.obj) {
-                timeUpdatedFromServer = false;
-              }
-              if (localClock == null) {
-                if (currentTimeManagerPc != -1)
-                  launchLocalClock();
-              } else {
-                synchronized (connection.obj) {
-                  connection.obj.notify();
+                if (!setStartTime) {
+                  obj.wait(2000);
+                  Tracking.echo("Reach Manager wait for the first time");
                 }
               }
+              connection.setManagerRef(getRemoteObj(ipManager));
+              if (connection.getManagerRef() != null) {
+                int currentTime = connection.obj.currentTimeManagerPc;
+
+                if (!setStartTime) {
+                  Pc.setStartTime(currentTime);
+                  setStartTime = true;
+                }
+
+                int time = connection.currentTimeManagerPc() - Pc.getStartTime();
+                Tracking.echo("PC start\t"
+                    + TimeHandler.toString(Pc.getStartTime(), true, true, true) + "\nRight Now\t"
+                    + TimeHandler.toString(currentTime, true, true, true) + "\npc uptime\t"
+                    + TimeHandler.toString(time, true, true, true) + "\nlast open\t"
+                    + TimeHandler.toString(Pc.getLastOpenTime(), true, true, true) + "\nwork time\t"
+                    + TimeHandler.toString(Pc.getWorkTime(), true, true, true) + "\npc state\t"
+                    + Pc.getCurrentState()
+
+                );
+              } else {
+                Tracking.echo("rach manager failed because is NULL ");
+              }
+              // notifier manager every minute
+            } catch (Exception e) {
               Tracking.error(true, "PC Notifier Failed:" + ExceptionHandler.getMessage(e));
             } finally {
               try {
@@ -163,21 +161,22 @@ public class connection {
         public void run() {
           try {
             do {
+              int timeBetweenSynch =
+                  connection.obj.currentTimeManagerPc - connection.obj.lastSynchrWithManager;
+              if (timeBetweenSynch >= connection.obj.periodToSyncronize) {
+                connection.setManagerRef(connection.getRemoteObj(connection.obj.ipOfManager));
+                int currentTimeAtManager = connection.getManagerRef().getCurrentTime();
+                connection.obj.currentTimeManagerPc = currentTimeAtManager;
+                connection.obj.lastSynchrWithManager = currentTimeAtManager;
+
+                Tracking.echo("Synchronize Time with Manager "
+                    + TimeHandler.toString(currentTimeAtManager, true, true, true));
+              }
+              Thread.sleep(1000);
               synchronized (connection.obj) {
-                connection.obj.currentTimeManagerPc += 20;
+                connection.obj.currentTimeManagerPc += 1;
               }
-              Tracking.echo("PC launchLocalClock : time "
-                  + TimeHandler.toString(connection.obj.currentTimeManagerPc, true, true, true));
-              // Thread.sleep(20 * 1000); // taskPeriod
 
-
-              if (timeUpdatedFromServer == true) {
-                synchronized (connection.obj) {
-                  connection.obj.wait();
-                }
-              } else {
-                Thread.sleep(20 * 1000); // taskPeriod
-              }
             } while (true);
           } catch (Exception e) {
             Tracking.error(true, "PC launchLocalClock :" + ExceptionHandler.getMessage(e));
