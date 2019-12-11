@@ -207,25 +207,47 @@ public class info extends UnicastRemoteObject implements infoInterface {
   }
 
   @Override
+  public STATE getPcState() throws RemoteException {
+    return Pc.getCurrentState();
+  }
+
+  @Override
+  public int getCloseTime() throws RemoteException {
+    return Pc.getCloseTime();
+  }
+
+  @Override
+  public int getPauseTime() throws RemoteException {
+    return Pc.getPauseTime();
+  }
+
+  @Override
   public int getWorkTime() throws RemoteException {
     return Pc.getWorkTime();
   }
 
   @Override
-  public void OpenPc(int lastWorkTime) throws RemoteException {
-
-    if (!Pc.getCurrentState().equals(STATE.WORKING))
-      Pc.Open(lastWorkTime);
-    Tracking.echo("OpenPc :: disable PreventingWindows "
-        + TimeHandler.toString(lastWorkTime, true, true, true) + " "
+  public int OpenPc(int lastWorkTime) throws RemoteException {
+    int val = -3;
+    STATE pcState = Pc.getCurrentState();
+    if (pcState.equals(STATE.CLOSED))
+      val = Pc.Open(0); // return closeTime
+    else if (pcState.equals(STATE.PAUSSED))
+      val = Pc.Resume(lastWorkTime); // return pauseTime
+    Tracking.echo(pcState.toString() + "->OpenPc:disable Windows "
+        + ((pcState.equals(STATE.CLOSED)) ? "closeTime" : "pauseTime")
+        + TimeHandler.toString(val, true, true, true) + " "
         + TimeHandler.toString(connection.currentTimeManagerPc(), true, true, true));
+    return val;
   }
 
   @Override
-  public int PausePc() throws RemoteException {
+  public int PausePc(int lastPauseTime) throws RemoteException {
     int val = -2;
-    if (Pc.getCurrentState().equals(STATE.WORKING))
-      val = Pc.Pause();
+    STATE pcState = Pc.getCurrentState();
+    if (pcState.equals(STATE.WORKING))
+      val = Pc.Pause(lastPauseTime);
+
     Tracking
         .echo("PausePc :: Enable PreventingWindows " + TimeHandler.toString(val, true, true, true)
             + " " + TimeHandler.toString(connection.currentTimeManagerPc(), true, true, true));
@@ -233,19 +255,16 @@ public class info extends UnicastRemoteObject implements infoInterface {
   }
 
   @Override
-  public int ClosePc() throws RemoteException {
+  public int ClosePc(int lastCloseTime) throws RemoteException {
     int val = -3;
     if (!Pc.getCurrentState().equals(STATE.CLOSED))
-      val = Pc.Close();
+      val = Pc.Close(lastCloseTime);
     Tracking
         .echo("ClosePc :: Enable PreventingWindows " + TimeHandler.toString(val, true, true, true)
             + " " + TimeHandler.toString(connection.currentTimeManagerPc(), true, true, true));
     return val;
   }
 
-  @Override
-  public STATE getPcState() throws RemoteException {
-    return Pc.getCurrentState();
-  }
+
 
 }

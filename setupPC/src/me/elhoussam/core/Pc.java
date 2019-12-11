@@ -11,11 +11,15 @@ import me.elhoussam.util.sys.SecurityHandler;
 public class Pc {
   private static Pc localObj = null;
   private String ipAddress = "NONE";
-  private int startTime = -1;
-  private int lastOpenTime = -1;
+  private int startTime = 0;
+  private int lastOpenTime = 0;
   private int workTime = 0;
+  private int lastCloseTime = 0;
+  private int closeTime = 0;
+  private int lastPauseTime = 0;
+  private int pauseTime = 0;
   private boolean firstTimeOpen;
-  private STATE currentState = STATE.PAUSSED;
+  private STATE currentState = STATE.CLOSED;
 
   public static STATE getCurrentState() {
     return localObj.currentState;
@@ -27,47 +31,82 @@ public class Pc {
     else if (Pc.getCurrentState().equals(STATE.WORKING))
       return localObj.workTime + (connection.currentTimeManagerPc() - localObj.lastOpenTime);
     else if (Pc.getCurrentState().equals(STATE.CLOSED))
-      return 0;
+      return localObj.workTime;
     return -2;
   }
 
-  public static int Pause() {
+  public static int getPauseTime() {
+    if (Pc.getCurrentState().equals(STATE.PAUSSED))
+      return localObj.pauseTime + (connection.currentTimeManagerPc() - localObj.lastPauseTime);
+    else if (Pc.getCurrentState().equals(STATE.WORKING))
+      return localObj.pauseTime;
+    else if (Pc.getCurrentState().equals(STATE.CLOSED))
+      return localObj.pauseTime;
+    return -2;
+  }
+
+  public static int getCloseTime() {
+    if (Pc.getCurrentState().equals(STATE.PAUSSED))
+      return localObj.closeTime;
+    else if (Pc.getCurrentState().equals(STATE.WORKING))
+      return localObj.closeTime;
+    else if (Pc.getCurrentState().equals(STATE.CLOSED))
+      return localObj.closeTime + (connection.currentTimeManagerPc() - localObj.lastCloseTime);
+    return -2;
+  }
+
+  public static int Pause(int lastPauseTime) {
     localObj.currentState = STATE.PAUSSED;
     int currentTime = connection.currentTimeManagerPc();
-    if (localObj.firstTimeOpen == true) {
-      localObj.workTime = currentTime - localObj.startTime;
-    } else {
-      localObj.workTime = localObj.workTime + (currentTime - localObj.lastOpenTime);
-    }
+    localObj.lastPauseTime = currentTime;
+    if (lastPauseTime >= 0)
+      localObj.pauseTime = lastPauseTime;
+    localObj.workTime = localObj.workTime + (currentTime - localObj.lastOpenTime);
 
     return localObj.workTime;
   }
 
-  public static int Close() {
-
+  public static int Close(int lastCloseTime) {
+    STATE lastState = localObj.currentState;
     localObj.currentState = STATE.CLOSED;
     int currentTime = connection.currentTimeManagerPc();
-
-    if (localObj.firstTimeOpen == true) {
-      return currentTime - localObj.startTime;
-    } else {
-      int time = localObj.workTime + (currentTime - localObj.lastOpenTime);
-      localObj.workTime = 0;
-      return time;
-    }
+    localObj.lastCloseTime = currentTime;
+    if (lastCloseTime >= 0)
+      localObj.closeTime = lastCloseTime;
+    int time = localObj.workTime;
+    localObj.workTime = 0;
+    if (lastState.equals(STATE.WORKING))
+      time += (currentTime - localObj.lastOpenTime);
+    return time;
   }
 
-  public static void Open(int lastWorkTime) {
+  public static int Open(int lastWorkTime) {
     if (getCurrentState().equals(STATE.CLOSED))
       localObj.firstTimeOpen = true;
     else // paussed
       localObj.firstTimeOpen = false;
 
     localObj.currentState = STATE.WORKING;
-    localObj.lastOpenTime = connection.currentTimeManagerPc();
-
+    int currentTime = connection.currentTimeManagerPc();
+    localObj.lastOpenTime = currentTime;
     if (lastWorkTime >= 0)
       localObj.workTime = lastWorkTime;
+
+    localObj.closeTime += (currentTime - localObj.lastCloseTime);
+    return localObj.closeTime;
+
+  }
+
+  public static int Resume(int lastWorkTime) {
+    localObj.currentState = STATE.WORKING;
+    int currentTime = connection.currentTimeManagerPc();
+
+    localObj.lastOpenTime = currentTime;
+    if (lastWorkTime >= 0)
+      localObj.workTime = lastWorkTime;
+
+    localObj.pauseTime = +(currentTime - localObj.lastPauseTime);
+    return localObj.pauseTime;
 
   }
 
@@ -79,10 +118,18 @@ public class Pc {
     return localObj.lastOpenTime;
   }
 
+  public static int getLastCloseTime() {
+    return localObj.lastCloseTime;
+  }
+
+  public static int getLastPauseTime() {
+    return localObj.lastPauseTime;
+  }
+
   public static void setStartTime(int time) {
-    if (localObj.startTime == -1) {
+    if (localObj.startTime == 0) {
       localObj.startTime = time;
-      // localObj.lastOpenTime = time;
+      localObj.lastCloseTime = time;
     }
   }
 
@@ -122,21 +169,21 @@ public class Pc {
   /**
    * method call other methodes to construct the pieces of the app
    */
-  public static void start() {
+  public static void start(String arg) {
 
     Tracking.setFolderName("PcApp");
     Tracking.info(true, "Start Pc Applicaion");
     // for java to use preferIp version = 4
     // java.net.preferIPv4Stack
     System.setProperty("java.net.preferIPv6Addresses", "true");
-    String ipManager = "DEFAULT:192.168.1.2";
+    String ipManager = (!arg.isEmpty()) ? arg : "192.168.1.2";
     // create the remote object which represent the service the pc provide
     initPcObject();
     providerWaiting();
 
     Tracking.info(true, "ip of the manager " + ipManager);
     // launch the thread to notifier the manager
-    connection.launchThreads();
+    connection.launchThreads(ipManager);
     localObj.startTime = connection.currentTimeManagerPc();
 
   }
@@ -147,4 +194,6 @@ public class Pc {
     }
 
   }
+
+
 }
