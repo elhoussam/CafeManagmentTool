@@ -20,6 +20,8 @@ public interface infoInterface extends java.rmi.Remote {
   public int getStartTime() throws RemoteException;
 
   public int getWorkTime() throws RemoteException;
+  public int getCloseTime() throws RemoteException;
+  public int getPauseTime() throws RemoteException;
 
   public String getIpAddress() throws RemoteException;
 
@@ -39,11 +41,11 @@ public interface infoInterface extends java.rmi.Remote {
 
 
 
-  public void OpenPc(int lastWorkTime) throws RemoteException;
+  public int OpenPc(int lastWorkTime) throws RemoteException;
 
-  public int PausePc() throws RemoteException;
+  public int PausePc(int lastPauseTime) throws RemoteException;
 
-  public int ClosePc() throws RemoteException;
+  public int ClosePc(int lastCloseTime) throws RemoteException;
 
   public STATE getPcState() throws RemoteException;
 

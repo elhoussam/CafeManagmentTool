@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 import me.elhoussam.interfaces.infoInterface;
+import me.elhoussam.interfaces.infoInterface.STATE;
 import me.elhoussam.util.log.Tracking;
 import me.elhoussam.util.sys.ExceptionHandler;
 import me.elhoussam.util.sys.TimeHandler;
@@ -17,8 +18,9 @@ public class CLI {
   private String mainOptions[][] = {
       {"list active pc", "cmd to all" }, // managerOptions  0
       {"shutdown all pcs","logInAllPcs","logOutAllPcs", "quit" ,"choise :"}, // cmd to all  1
-      {"shutdown","Login","logoff","os name","life time","start time","COPYFILE", "Screenshot" //2
-        ,"pause time"}, //2
+      {"shutdown","Login","logoff","pause time","os name","life time","start time",
+        "Screenshot", "COPYFILE"//2
+      }, //2
       {"Quit","your choise :"}// option to pcs 3
   };
 
@@ -48,11 +50,14 @@ public class CLI {
   private void __logInPcN(int pcn) {
     if ( checkIndexIsExist(pcn) ) {
       Pc pcObj = Manager.getListofPcs().get(pcn);
-      int lastWork = pcObj.getLastWorkTime();
       try {
-        pcObj.getRef().OpenPc(lastWork);
+        STATE pcState = pcObj.getRef().getPcState();
 
-        Tracking.echo("Pc(" + (pcn+1) + ") LogIn ... done\n");
+        int lastWork = pcObj.getRef().getWorkTime() ;
+        int time =   pcObj.getRef().OpenPc(lastWork);
+
+        Tracking.echo("Pc(" + (pcn+1) + ") LogIn ... done "+
+            (pcState.equals(STATE.CLOSED)?"close ":"pause ")+"time\n"+time);
       } catch (Exception e) {
         Tracking.error(true, "Manager CLI error"+
             ExceptionHandler.getMessage(e));
@@ -70,7 +75,9 @@ public class CLI {
     if ( checkIndexIsExist(pcn) ) {
       Pc pcObj = Manager.getListofPcs().get(pcn);
       try {
-        int workTime = pcObj.getRef().ClosePc();
+        int lastCloseTime = pcObj.getRef().getCloseTime();
+
+        int workTime = pcObj.getRef().ClosePc( lastCloseTime);
         pcObj.setLastWorkTime( workTime );
         Tracking.echo("Pc(" + (pcn+1) + ") LogOut ... done \t workTime :"+
             TimeHandler.toString(workTime, true,true,true)+"\n");
@@ -195,22 +202,22 @@ public class CLI {
           __logOutPcN(pcn);
           break;
         case 4:
-          __osName(pcn);
+          __pauseTime(pcn);
           break;
         case 5:
-          __showLifeTime(pcn);
+          __osName(pcn);
           break;
         case 6:
-          __showStartTime(pcn);
+          __showLifeTime(pcn);
           break;
         case 7:
-          __copyFile(pcn);
+          __showStartTime(pcn);
           break;
         case 8:
           __takeSceenshot(pcn);
           break;
         case 9:
-          __pauseTime(pcn);
+          __copyFile(pcn);
           break;
       }
 
@@ -222,7 +229,8 @@ public class CLI {
     if ( checkIndexIsExist(pcn) ) {
       Pc pcObj = Manager.getListofPcs().get(pcn);
       try {
-        int workTime = pcObj.getRef().PausePc();
+        int lastPauseTime = pcObj.getRef().getPauseTime();
+        int workTime = pcObj.getRef().PausePc(lastPauseTime);
         pcObj.setLastWorkTime( workTime );
         Tracking.echo("Pc(" + (pcn+1) + ") FreezeTime ... done \t workTime :"+
             TimeHandler.toString(workTime, true,true,true)+"\n");
@@ -311,7 +319,9 @@ public class CLI {
   private void showOption(String header, String... options) {
     Tracking.echo(header);
     for(byte i = 0; i< options.length ;i++) {
-      Tracking.echo( "\t"+(i+1)+"-"+options[i]);
+      System.out.print("\t"+(i+1)+"-"+options[i]);
+      if( (i+1) % 3 == 0)
+        Tracking.echo("");
     }
     Tracking.echo( "\t0-"+mainOptions[3][0]);
     System.out.print("\t"+mainOptions[3][1]);
