@@ -1,0 +1,216 @@
+[2019-12-15 14:08:03][INFOS  ][me.elhoussam.core.Manager:84]Start Manager Applicaion
+[2019-12-15 14:08:03][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2019-12-15 14:08:03][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupManager/target/classes/conf/sec.policy
+[2019-12-15 14:08:03][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2019-12-15 14:08:04][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2019-12-15 14:08:04][INFOS  ][me.elhoussam.core.Manager:32]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupManager/target/classes/conf/sec.policy
+[2019-12-15 14:08:06][INFOS  ][me.elhoussam.core.Manager:46]Manager Ip Address : 192.168.1.3
+[2019-12-15 14:08:07][INFOS  ][me.elhoussam.core.Manager:52]Manager Server is ready.
+[2019-12-15 14:08:07][INFOS  ][me.elhoussam.core.Manager:90]Launch the object provider
+[2019-12-15 14:08:07][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2019-12-15 14:08:07][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2019-12-15 14:08:07][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 60
+[2019-12-15 14:08:07][INFOS  ][me.elhoussam.core.Connection:45]Connection launch Notifier thread
+[2019-12-15 14:08:07][INFOS  ][me.elhoussam.core.Connection$3:174]Connection Notifier: Waiting
+[2019-12-15 14:08:07][INFOS  ][me.elhoussam.core.Connection:49]Manager launch Checker thread
+[2019-12-15 14:08:07][INFOS  ][me.elhoussam.core.Connection:53]Manager launch Eliminator thread
+[2019-12-15 14:08:07][INFOS  ][me.elhoussam.core.Manager:94]Launch the connection thread
+[2019-12-15 14:08:07][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2019-12-15 14:08:07][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2019-12-15 14:08:07][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 180
+[2019-12-15 14:08:19][INFOS  ][me.elhoussam.core.Connection$3:159]Connection Notifier: New Conn ip: 192.168.1.10
+[2019-12-15 14:08:19][INFOS  ][me.elhoussam.core.Connection$3:166]Connection Notifier:192.168.1.10 is new for me
+[2019-12-15 14:08:19][INFOS  ][me.elhoussam.implementation.ManagerPc:38]the (192.168.1.10) was recieved
+[2019-12-15 14:08:19][INFOS  ][me.elhoussam.core.Connection$3:159]Connection Notifier: New Conn ip: 192.168.1.10
+[2019-12-15 14:08:19][INFOS  ][me.elhoussam.core.Connection$3:170]Connection Notifier:192.168.1.10 is Aready listed
+[2019-12-15 14:08:19][INFOS  ][me.elhoussam.implementation.ManagerPc:38]the (192.168.1.10) was recieved
+[2019-12-15 14:09:02][GRAVE  ][me.elhoussam.core.CLI:265]Manager CLI errorjava.rmi.ServerException
+[2019-12-15 14:09:07][INFOS  ][me.elhoussam.core.Connection$1:90]Connection Checker:192.168.1.10 connected
+[2019-12-15 14:09:15][INFOS  ][me.elhoussam.core.Connection$3:159]Connection Notifier: New Conn ip: 192.168.1.10
+[2019-12-15 14:09:15][INFOS  ][me.elhoussam.core.Connection$3:170]Connection Notifier:192.168.1.10 is Aready listed
+[2019-12-15 14:09:15][INFOS  ][me.elhoussam.implementation.ManagerPc:38]the (192.168.1.10) was recieved
+[2019-12-15 14:10:02][INFOS  ][me.elhoussam.core.Manager:84]Start Manager Applicaion
+[2019-12-15 14:10:02][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2019-12-15 14:10:02][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupManager/target/classes/conf/sec.policy
+[2019-12-15 14:10:02][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2019-12-15 14:10:02][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2019-12-15 14:10:02][INFOS  ][me.elhoussam.core.Manager:32]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupManager/target/classes/conf/sec.policy
+[2019-12-15 14:10:04][INFOS  ][me.elhoussam.core.Manager:46]Manager Ip Address : 192.168.1.3
+[2019-12-15 14:10:05][INFOS  ][me.elhoussam.core.Manager:52]Manager Server is ready.
+[2019-12-15 14:10:05][INFOS  ][me.elhoussam.core.Manager:90]Launch the object provider
+[2019-12-15 14:10:05][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2019-12-15 14:10:05][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2019-12-15 14:10:05][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 60
+[2019-12-15 14:10:05][INFOS  ][me.elhoussam.core.Connection:45]Connection launch Notifier thread
+[2019-12-15 14:10:05][INFOS  ][me.elhoussam.core.Connection$3:174]Connection Notifier: Waiting
+[2019-12-15 14:10:05][INFOS  ][me.elhoussam.core.Connection:49]Manager launch Checker thread
+[2019-12-15 14:10:05][INFOS  ][me.elhoussam.core.Connection:53]Manager launch Eliminator thread
+[2019-12-15 14:10:05][INFOS  ][me.elhoussam.core.Manager:94]Launch the connection thread
+[2019-12-15 14:10:05][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2019-12-15 14:10:05][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2019-12-15 14:10:05][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 180
+[2019-12-15 14:10:11][INFOS  ][me.elhoussam.core.Connection$3:159]Connection Notifier: New Conn ip: 192.168.1.10
+[2019-12-15 14:10:11][INFOS  ][me.elhoussam.core.Connection$3:166]Connection Notifier:192.168.1.10 is new for me
+[2019-12-15 14:10:11][INFOS  ][me.elhoussam.implementation.ManagerPc:38]the (192.168.1.10) was recieved
+[2019-12-15 14:10:11][INFOS  ][me.elhoussam.core.Connection$3:159]Connection Notifier: New Conn ip: 192.168.1.10
+[2019-12-15 14:10:11][INFOS  ][me.elhoussam.core.Connection$3:170]Connection Notifier:192.168.1.10 is Aready listed
+[2019-12-15 14:10:11][INFOS  ][me.elhoussam.implementation.ManagerPc:38]the (192.168.1.10) was recieved
+[2019-12-15 14:11:05][INFOS  ][me.elhoussam.core.Connection$1:90]Connection Checker:192.168.1.10 connected
+[2019-12-15 14:11:06][INFOS  ][me.elhoussam.core.Connection$3:159]Connection Notifier: New Conn ip: 192.168.1.10
+[2019-12-15 14:11:06][INFOS  ][me.elhoussam.core.Connection$3:170]Connection Notifier:192.168.1.10 is Aready listed
+[2019-12-15 14:11:06][INFOS  ][me.elhoussam.implementation.ManagerPc:38]the (192.168.1.10) was recieved
+[2019-12-15 14:11:38][GRAVE  ][me.elhoussam.core.CLI:265]Manager CLI errorjava.rmi.ServerException
+[2019-12-15 14:12:01][INFOS  ][me.elhoussam.core.Connection$3:159]Connection Notifier: New Conn ip: 192.168.1.10
+[2019-12-15 14:12:01][INFOS  ][me.elhoussam.core.Connection$3:170]Connection Notifier:192.168.1.10 is Aready listed
+[2019-12-15 14:12:01][INFOS  ][me.elhoussam.implementation.ManagerPc:38]the (192.168.1.10) was recieved
+[2019-12-15 14:14:37][INFOS  ][me.elhoussam.core.Manager:84]Start Manager Applicaion
+[2019-12-15 14:14:37][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2019-12-15 14:14:37][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupManager/target/classes/conf/sec.policy
+[2019-12-15 14:14:37][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2019-12-15 14:14:37][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2019-12-15 14:14:37][INFOS  ][me.elhoussam.core.Manager:32]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupManager/target/classes/conf/sec.policy
+[2019-12-15 14:14:39][INFOS  ][me.elhoussam.core.Manager:46]Manager Ip Address : 192.168.1.3
+[2019-12-15 14:14:40][INFOS  ][me.elhoussam.core.Manager:52]Manager Server is ready.
+[2019-12-15 14:14:40][INFOS  ][me.elhoussam.core.Manager:90]Launch the object provider
+[2019-12-15 14:14:40][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2019-12-15 14:14:40][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2019-12-15 14:14:40][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 60
+[2019-12-15 14:14:40][INFOS  ][me.elhoussam.core.Connection:45]Connection launch Notifier thread
+[2019-12-15 14:14:40][INFOS  ][me.elhoussam.core.Connection$3:174]Connection Notifier: Waiting
+[2019-12-15 14:14:40][INFOS  ][me.elhoussam.core.Connection:49]Manager launch Checker thread
+[2019-12-15 14:14:40][INFOS  ][me.elhoussam.core.Connection:53]Manager launch Eliminator thread
+[2019-12-15 14:14:40][INFOS  ][me.elhoussam.core.Manager:94]Launch the connection thread
+[2019-12-15 14:14:40][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2019-12-15 14:14:40][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2019-12-15 14:14:40][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 180
+[2019-12-15 14:14:44][INFOS  ][me.elhoussam.core.Connection$3:159]Connection Notifier: New Conn ip: 192.168.1.10
+[2019-12-15 14:14:44][INFOS  ][me.elhoussam.core.Connection$3:166]Connection Notifier:192.168.1.10 is new for me
+[2019-12-15 14:14:44][INFOS  ][me.elhoussam.implementation.ManagerPc:38]the (192.168.1.10) was recieved
+[2019-12-15 14:14:44][INFOS  ][me.elhoussam.core.Connection$3:159]Connection Notifier: New Conn ip: 192.168.1.10
+[2019-12-15 14:14:44][INFOS  ][me.elhoussam.core.Connection$3:170]Connection Notifier:192.168.1.10 is Aready listed
+[2019-12-15 14:14:44][INFOS  ][me.elhoussam.implementation.ManagerPc:38]the (192.168.1.10) was recieved
+[2019-12-15 14:15:02][GRAVE  ][me.elhoussam.core.Manager:99]Manager start :java.security.AccessControlException
+[2019-12-15 14:15:41][GRAVE  ][me.elhoussam.core.Connection:200]getRemoteObj (192.168.1.10):Not connectedjava.rmi.ConnectException
+[2019-12-15 14:15:41][INFOS  ][me.elhoussam.core.Connection$1:94]Connection Checker:192.168.1.10 not connected
+[2019-12-15 14:16:02][INFOS  ][me.elhoussam.core.Manager:84]Start Manager Applicaion
+[2019-12-15 14:16:02][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2019-12-15 14:16:02][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupManager/target/classes/conf/sec.policy
+[2019-12-15 14:16:02][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2019-12-15 14:16:02][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2019-12-15 14:16:02][INFOS  ][me.elhoussam.core.Manager:32]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupManager/target/classes/conf/sec.policy
+[2019-12-15 14:16:04][INFOS  ][me.elhoussam.core.Manager:46]Manager Ip Address : 192.168.1.3
+[2019-12-15 14:16:04][INFOS  ][me.elhoussam.core.Manager:52]Manager Server is ready.
+[2019-12-15 14:16:04][INFOS  ][me.elhoussam.core.Manager:90]Launch the object provider
+[2019-12-15 14:16:04][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2019-12-15 14:16:04][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2019-12-15 14:16:04][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 60
+[2019-12-15 14:16:04][INFOS  ][me.elhoussam.core.Connection:45]Connection launch Notifier thread
+[2019-12-15 14:16:04][INFOS  ][me.elhoussam.core.Connection:49]Manager launch Checker thread
+[2019-12-15 14:16:04][INFOS  ][me.elhoussam.core.Connection$3:174]Connection Notifier: Waiting
+[2019-12-15 14:16:04][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2019-12-15 14:16:04][INFOS  ][me.elhoussam.core.Connection:53]Manager launch Eliminator thread
+[2019-12-15 14:16:04][INFOS  ][me.elhoussam.core.Manager:94]Launch the connection thread
+[2019-12-15 14:16:04][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2019-12-15 14:16:04][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 180
+[2019-12-15 14:16:06][INFOS  ][me.elhoussam.core.Connection$3:159]Connection Notifier: New Conn ip: 192.168.1.10
+[2019-12-15 14:16:06][INFOS  ][me.elhoussam.core.Connection$3:166]Connection Notifier:192.168.1.10 is new for me
+[2019-12-15 14:16:06][INFOS  ][me.elhoussam.implementation.ManagerPc:38]the (192.168.1.10) was recieved
+[2019-12-15 14:16:06][INFOS  ][me.elhoussam.core.Connection$3:159]Connection Notifier: New Conn ip: 192.168.1.10
+[2019-12-15 14:16:06][INFOS  ][me.elhoussam.core.Connection$3:170]Connection Notifier:192.168.1.10 is Aready listed
+[2019-12-15 14:16:06][INFOS  ][me.elhoussam.implementation.ManagerPc:38]the (192.168.1.10) was recieved
+[2019-12-15 14:17:01][INFOS  ][me.elhoussam.core.Connection$3:159]Connection Notifier: New Conn ip: 192.168.1.10
+[2019-12-15 14:17:01][INFOS  ][me.elhoussam.core.Connection$3:170]Connection Notifier:192.168.1.10 is Aready listed
+[2019-12-15 14:17:01][INFOS  ][me.elhoussam.implementation.ManagerPc:38]the (192.168.1.10) was recieved
+[2019-12-15 14:17:05][INFOS  ][me.elhoussam.core.Connection$1:90]Connection Checker:192.168.1.10 connected
+[2019-12-15 14:57:48][INFOS  ][me.elhoussam.core.Manager:84]Start Manager Applicaion
+[2019-12-15 14:57:48][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2019-12-15 14:57:48][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupManager/target/classes/conf/sec.policy
+[2019-12-15 14:57:48][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2019-12-15 14:57:48][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2019-12-15 14:57:48][INFOS  ][me.elhoussam.core.Manager:32]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupManager/target/classes/conf/sec.policy
+[2019-12-15 14:57:51][INFOS  ][me.elhoussam.core.Manager:46]Manager Ip Address : 192.168.1.3
+[2019-12-15 14:57:51][GRAVE  ][me.elhoussam.core.Manager:55]Manager App failed: java.rmi.server.ExportException
+[2019-12-15 14:57:51][INFOS  ][me.elhoussam.core.Manager:90]Launch the object provider
+[2019-12-15 14:57:51][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2019-12-15 14:57:51][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2019-12-15 14:57:51][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 60
+[2019-12-15 14:57:51][INFOS  ][me.elhoussam.core.Connection:45]Connection launch Notifier thread
+[2019-12-15 14:57:51][INFOS  ][me.elhoussam.core.Connection$3:174]Connection Notifier: Waiting
+[2019-12-15 14:57:51][INFOS  ][me.elhoussam.core.Connection:49]Manager launch Checker thread
+[2019-12-15 14:57:51][INFOS  ][me.elhoussam.core.Connection:53]Manager launch Eliminator thread
+[2019-12-15 14:57:51][INFOS  ][me.elhoussam.core.Manager:94]Launch the connection thread
+[2019-12-15 14:57:51][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2019-12-15 14:57:51][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2019-12-15 14:57:51][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 180
+[2019-12-15 14:58:01][INFOS  ][me.elhoussam.core.Manager:84]Start Manager Applicaion
+[2019-12-15 14:58:01][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2019-12-15 14:58:01][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupManager/target/classes/conf/sec.policy
+[2019-12-15 14:58:01][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2019-12-15 14:58:01][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2019-12-15 14:58:01][INFOS  ][me.elhoussam.core.Manager:32]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupManager/target/classes/conf/sec.policy
+[2019-12-15 14:58:03][INFOS  ][me.elhoussam.core.Manager:46]Manager Ip Address : 192.168.1.3
+[2019-12-15 14:58:03][INFOS  ][me.elhoussam.core.Manager:52]Manager Server is ready.
+[2019-12-15 14:58:03][INFOS  ][me.elhoussam.core.Manager:90]Launch the object provider
+[2019-12-15 14:58:03][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2019-12-15 14:58:03][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2019-12-15 14:58:03][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 60
+[2019-12-15 14:58:03][INFOS  ][me.elhoussam.core.Connection:45]Connection launch Notifier thread
+[2019-12-15 14:58:03][INFOS  ][me.elhoussam.core.Connection$3:174]Connection Notifier: Waiting
+[2019-12-15 14:58:03][INFOS  ][me.elhoussam.core.Connection:49]Manager launch Checker thread
+[2019-12-15 14:58:03][INFOS  ][me.elhoussam.core.Connection:53]Manager launch Eliminator thread
+[2019-12-15 14:58:03][INFOS  ][me.elhoussam.core.Manager:94]Launch the connection thread
+[2019-12-15 14:58:03][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2019-12-15 14:58:03][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2019-12-15 14:58:03][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 180
+[2019-12-15 14:58:21][INFOS  ][me.elhoussam.core.Connection$3:159]Connection Notifier: New Conn ip: 192.168.1.7
+[2019-12-15 14:58:21][INFOS  ][me.elhoussam.core.Connection$3:166]Connection Notifier:192.168.1.7 is new for me
+[2019-12-15 14:58:21][INFOS  ][me.elhoussam.implementation.ManagerPc:38]the (192.168.1.7) was recieved
+[2019-12-15 14:58:29][GRAVE  ][me.elhoussam.core.Manager:99]Manager start :java.security.AccessControlException
+[2019-12-15 14:59:04][GRAVE  ][me.elhoussam.core.Connection:200]getRemoteObj (192.168.1.7):Not connectedjava.rmi.ConnectException
+[2019-12-15 14:59:04][INFOS  ][me.elhoussam.core.Connection$1:94]Connection Checker:192.168.1.7 not connected
+[2019-12-15 14:59:15][INFOS  ][me.elhoussam.core.Connection$3:159]Connection Notifier: New Conn ip: 192.168.1.7
+[2019-12-15 14:59:15][INFOS  ][me.elhoussam.core.Connection$3:170]Connection Notifier:192.168.1.7 is Aready listed
+[2019-12-15 14:59:15][INFOS  ][me.elhoussam.implementation.ManagerPc:38]the (192.168.1.7) was recieved
+[2019-12-15 14:59:15][INFOS  ][me.elhoussam.core.Connection$3:159]Connection Notifier: New Conn ip: 192.168.1.7
+[2019-12-15 14:59:15][INFOS  ][me.elhoussam.core.Connection$3:170]Connection Notifier:192.168.1.7 is Aready listed
+[2019-12-15 14:59:15][INFOS  ][me.elhoussam.implementation.ManagerPc:38]the (192.168.1.7) was recieved
+[2019-12-15 14:59:21][INFOS  ][me.elhoussam.core.Manager:84]Start Manager Applicaion
+[2019-12-15 14:59:22][INFOS  ][me.elhoussam.util.sys.SecurityHandler:35]The External policy file doesn't exist.. we will use the internal
+[2019-12-15 14:59:22][INFOS  ][me.elhoussam.util.sys.SecurityHandler:38]security path = file:/C:/Users/Administrateur/eclipse-workspace/setupManager/target/classes/conf/sec.policy
+[2019-12-15 14:59:22][INFOS  ][me.elhoussam.util.sys.SecurityHandler:41]The Security policy is initialized
+[2019-12-15 14:59:22][INFOS  ][me.elhoussam.util.sys.SecurityHandler:58]The Security policy setup
+[2019-12-15 14:59:22][INFOS  ][me.elhoussam.core.Manager:32]Security State : file:/C:/Users/Administrateur/eclipse-workspace/setupManager/target/classes/conf/sec.policy
+[2019-12-15 14:59:24][INFOS  ][me.elhoussam.core.Manager:46]Manager Ip Address : 192.168.1.3
+[2019-12-15 14:59:24][INFOS  ][me.elhoussam.core.Manager:52]Manager Server is ready.
+[2019-12-15 14:59:24][INFOS  ][me.elhoussam.core.Manager:90]Launch the object provider
+[2019-12-15 14:59:24][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2019-12-15 14:59:24][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2019-12-15 14:59:24][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 60
+[2019-12-15 14:59:24][INFOS  ][me.elhoussam.core.Connection:45]Connection launch Notifier thread
+[2019-12-15 14:59:24][INFOS  ][me.elhoussam.core.Connection$3:174]Connection Notifier: Waiting
+[2019-12-15 14:59:24][INFOS  ][me.elhoussam.core.Connection:49]Manager launch Checker thread
+[2019-12-15 14:59:24][INFOS  ][me.elhoussam.core.Connection:53]Manager launch Eliminator thread
+[2019-12-15 14:59:24][INFOS  ][me.elhoussam.core.Manager:94]Launch the connection thread
+[2019-12-15 14:59:24][INFOS  ][me.elhoussam.util.sys.PropertyHandler:34]The External config file doesn't exist.. we will use the internal
+[2019-12-15 14:59:24][INFOS  ][me.elhoussam.util.sys.PropertyHandler:41]config path = null
+[2019-12-15 14:59:24][INFOS  ][me.elhoussam.util.sys.PropertyHandler:47]PropertyHandler read value 180
+[2019-12-15 14:59:30][INFOS  ][me.elhoussam.core.Connection$3:159]Connection Notifier: New Conn ip: 192.168.1.7
+[2019-12-15 14:59:30][INFOS  ][me.elhoussam.core.Connection$3:166]Connection Notifier:192.168.1.7 is new for me
+[2019-12-15 14:59:30][INFOS  ][me.elhoussam.implementation.ManagerPc:38]the (192.168.1.7) was recieved
+[2019-12-15 14:59:30][INFOS  ][me.elhoussam.core.Connection$3:159]Connection Notifier: New Conn ip: 192.168.1.7
+[2019-12-15 14:59:30][INFOS  ][me.elhoussam.core.Connection$3:170]Connection Notifier:192.168.1.7 is Aready listed
+[2019-12-15 14:59:30][INFOS  ][me.elhoussam.implementation.ManagerPc:38]the (192.168.1.7) was recieved
+[2019-12-15 15:00:45][GRAVE  ][me.elhoussam.core.Connection:200]getRemoteObj (192.168.1.7):Not connectedjava.rmi.ConnectException
+[2019-12-15 15:00:45][INFOS  ][me.elhoussam.core.Connection$1:94]Connection Checker:192.168.1.7 not connected
+[2019-12-15 15:01:47][GRAVE  ][me.elhoussam.core.Connection:200]getRemoteObj (192.168.1.7):Not connectedjava.rmi.ConnectException
+[2019-12-15 15:01:47][INFOS  ][me.elhoussam.core.Connection$1:94]Connection Checker:192.168.1.7 not connected
+[2019-12-15 15:02:48][GRAVE  ][me.elhoussam.core.Connection:200]getRemoteObj (192.168.1.7):Not connectedjava.rmi.ConnectException
+[2019-12-15 15:02:48][INFOS  ][me.elhoussam.core.Connection$1:94]Connection Checker:192.168.1.7 not connected
+[2019-12-15 15:03:24][INFOS  ][me.elhoussam.core.Connection$2:128]Thread Eliminator remove the Pc(0)
+[2019-12-15 15:03:39][INFOS  ][me.elhoussam.core.Connection$3:159]Connection Notifier: New Conn ip: 192.168.1.7
+[2019-12-15 15:03:39][INFOS  ][me.elhoussam.core.Connection$3:166]Connection Notifier:192.168.1.7 is new for me
+[2019-12-15 15:03:39][INFOS  ][me.elhoussam.implementation.ManagerPc:38]the (192.168.1.7) was recieved
+[2019-12-15 15:03:39][INFOS  ][me.elhoussam.core.Connection$3:159]Connection Notifier: New Conn ip: 192.168.1.7
+[2019-12-15 15:03:39][INFOS  ][me.elhoussam.core.Connection$3:170]Connection Notifier:192.168.1.7 is Aready listed
+[2019-12-15 15:03:39][INFOS  ][me.elhoussam.implementation.ManagerPc:38]the (192.168.1.7) was recieved
+[2019-12-15 15:03:48][INFOS  ][me.elhoussam.core.Connection$1:90]Connection Checker:192.168.1.7 connected

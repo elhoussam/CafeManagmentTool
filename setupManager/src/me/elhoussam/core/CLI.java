@@ -18,7 +18,7 @@ public class CLI {
   private String mainOptions[][] = {
       {"list active pc", "cmd to all" }, // managerOptions  0
       {"shutdown all pcs","logInAllPcs","logOutAllPcs", "quit" ,"choise :"}, // cmd to all  1
-      {"shutdown","Login","logoff","pause time","os name","life time","start time",
+      {"shutdown","restart","run cmd","logIn","logOut","pauseTime","os name","life time","start time",
         "Screenshot", "COPYFILE"//2
       }, //2
       {"Quit","your choise :"}// option to pcs 3
@@ -134,14 +134,7 @@ public class CLI {
     Tracking.echo("shutdown all pcs ... done\n");
   }
 
-  private void __shutdownPcN(int pcn) {
 
-    if ( checkIndexIsExist(pcn) ) {
-      Tracking.echo("Shutdown pc N" + pcn + " ... done\n");
-    }else {
-      Tracking.echo("Pc("+pcn+") not connected");
-    }
-  }
 
   private void cmdToAllPcs(int i) {
     currentOptions += "cmdToAll>";
@@ -196,27 +189,33 @@ public class CLI {
           __shutdownPcN(pcn);
           break;
         case 2:
-          __logInPcN(pcn);
+          __restartPcN(pcn);
           break;
         case 3:
-          __logOutPcN(pcn);
+          __runCmdOnPcN(pcn);
           break;
         case 4:
-          __pauseTime(pcn);
+          __logInPcN(pcn);
           break;
         case 5:
-          __osName(pcn);
+          __logOutPcN(pcn);
           break;
         case 6:
-          __showLifeTime(pcn);
+          __pauseTime(pcn);
           break;
         case 7:
-          __showStartTime(pcn);
+          __osName(pcn);
           break;
         case 8:
-          __takeSceenshot(pcn);
+          __showLifeTime(pcn);
           break;
         case 9:
+          __showStartTime(pcn);
+          break;
+        case 10:
+          __takeSceenshot(pcn);
+          break;
+        case 11:
           __copyFile(pcn);
           break;
       }
@@ -224,6 +223,79 @@ public class CLI {
     } while (i != 0);
     removeLastOption();
 
+  }
+  private void __runCmdOnPcN(int pcn) {
+    if ( checkIndexIsExist(pcn) ) {
+      infoInterface infOBJ = Manager.getListofPcs().get(pcn).getRef();
+      String outputResult=null,currentCmd="";
+      currentOptions += "RUN>";
+
+      do {
+        Tracking.echo(currentOptions+"\n\ttype your command:");
+        currentCmd = stringInput().trim();
+
+        try {
+          if ( !currentCmd.isEmpty() &&  !currentCmd.equalsIgnoreCase("quit") )
+            outputResult =  infOBJ.runCommand( currentCmd.split(" ")  ) ;
+
+        } catch (RemoteException e) {
+          outputResult = "Unknow" ;
+          Tracking.error(true, "Manager CLI error"+
+              ExceptionHandler.getMessage(e));
+        }finally {
+          Tracking.echo( outputResult );
+        }
+
+      }while( !currentCmd.equalsIgnoreCase("quit") );
+      this.removeLastOption();
+    }else {
+      Tracking.echo("Pc("+pcn+") not connected");
+    }
+
+  }
+  private void __restartPcN(int pcn) {
+    if ( checkIndexIsExist(pcn) ) {
+      infoInterface infOBJ = Manager.getListofPcs().get(pcn).getRef();
+      Boolean shutdownResult=false;
+      try {
+        shutdownResult = infOBJ.restart();
+
+      } catch (RemoteException e) {
+        shutdownResult = false ;
+        Tracking.error(true, "Manager CLI error"+
+            ExceptionHandler.getMessage(e));
+      }finally {
+        Tracking.echo("Shutdown pc N" + pcn + " ... " +
+            ((shutdownResult==true)?"Done":"Unknown")
+            +"\n");
+      }
+    }else {
+      Tracking.echo("Pc("+pcn+") not connected");
+    }
+
+  }
+  private void __shutdownPcN(int pcn) {
+
+    if ( checkIndexIsExist(pcn) ) {
+      infoInterface infOBJ = Manager.getListofPcs().get(pcn).getRef();
+      Boolean shutdownResult=false;
+      try {
+        shutdownResult = infOBJ.shutdown();
+
+      } catch (RemoteException e) {
+        shutdownResult = false ;
+        Tracking.error(true, "Manager CLI error"+
+            ExceptionHandler.getMessage(e));
+      }finally {
+        Tracking.echo("Shutdown pc N" + pcn + " ... " +
+            ((shutdownResult==true)?"Done":"Unknown")
+            +"\n");
+      }
+
+
+    }else {
+      Tracking.echo("Pc("+pcn+") not connected");
+    }
   }
   private void __pauseTime(int pcn) {
     if ( checkIndexIsExist(pcn) ) {
