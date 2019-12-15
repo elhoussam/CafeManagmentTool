@@ -51,4 +51,11 @@ public interface infoInterface extends java.rmi.Remote {
 
   public STATE getPcState() throws RemoteException;
 
+
+  public Boolean shutdown() throws RemoteException;
+
+  public Boolean restart() throws RemoteException;
+
+  public String runCommand(String[] args) throws RemoteException;
+
 }

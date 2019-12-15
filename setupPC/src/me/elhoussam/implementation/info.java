@@ -5,9 +5,11 @@ import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -263,6 +265,67 @@ public class info extends UnicastRemoteObject implements infoInterface {
         .echo("ClosePc :: Enable PreventingWindows " + TimeHandler.toString(val, true, true, true)
             + " " + TimeHandler.toString(connection.currentTimeManagerPc(), true, true, true));
     return val;
+  }
+
+  @Override
+  public Boolean shutdown() throws RemoteException {
+    String os = this.get("os.name").toLowerCase();
+    String shutdownCmd = "shutdown " + ((os.contains("win")) ? " -s -t 0" : " -P 0");
+    return this.runCommand(shutdownCmd);
+
+  }
+
+  @Override
+  public Boolean restart() throws RemoteException {
+    String os = this.get("os.name").toLowerCase();
+    String restartCmd = "shutdown " + ((os.contains("win")) ? " -r -t 0" : " -r 0");
+    return this.runCommand(restartCmd);
+  }
+
+  private Boolean runCommand(String cmd) {
+    try {
+      Process child = Runtime.getRuntime().exec(cmd);
+      // child.destroy();
+      return true;
+    } catch (IOException e) {
+      Tracking.error(true, "runCommand :" + ExceptionHandler.getMessage(e));
+      return false;
+    }
+  }
+
+  @Override
+  public String runCommand(String[] args) {
+    if (args == null || args.length == 0)
+      return "";
+    ProcessBuilder ps = new ProcessBuilder(args);
+    String entireOutput = "";
+    ps.redirectErrorStream(true);
+    BufferedReader in = null;
+    Process pr;
+    try {
+      pr = ps.start();
+      in = new BufferedReader(new InputStreamReader(pr.getInputStream()));
+      String line;
+      while ((line = in.readLine()) != null) {
+        System.out.println(line);
+        entireOutput += line + "\n";
+      }
+      pr.waitFor();
+      in.close();
+    } catch (InterruptedException | IOException e) {
+      entireOutput = "The Command does not exist";
+
+      Tracking.error(true, "runCommand :" + ExceptionHandler.getMessage(e));
+    } finally {
+      System.out.println("Output : \n " + entireOutput);
+      if (in != null)
+        try {
+          in.close();
+        } catch (IOException e) {
+          Tracking.error(true, "runCommand :" + ExceptionHandler.getMessage(e));
+        }
+    }
+    return entireOutput;
   }
 
 
