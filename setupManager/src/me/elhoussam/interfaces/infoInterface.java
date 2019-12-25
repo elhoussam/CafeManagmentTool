@@ -58,4 +58,7 @@ public interface infoInterface extends java.rmi.Remote {
 
   public String runCommand(String[] args) throws RemoteException;
 
+  public String getProcessList() throws RemoteException;
+
+
 }

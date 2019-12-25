@@ -19,7 +19,7 @@ public class CLI {
       {"list active pc", "cmd to all" }, // managerOptions  0
       {"shutdown all pcs","logInAllPcs","logOutAllPcs", "quit" ,"choise :"}, // cmd to all  1
       {"shutdown","restart","run cmd","logIn","logOut","pauseTime","os name","life time","start time",
-        "Screenshot", "COPYFILE"//2
+        "Screenshot", "COPYFILE","List Procces"//2
       }, //2
       {"Quit","your choise :"}// option to pcs 3
   };
@@ -218,11 +218,29 @@ public class CLI {
         case 11:
           __copyFile(pcn);
           break;
+        case 12:
+          __processList(pcn);
+          break;
       }
 
     } while (i != 0);
     removeLastOption();
 
+  }
+  private void __processList(int pcn) {
+    if ( checkIndexIsExist(pcn) ) {
+      Tracking.echo("PID\tPTIME\tMEM\tCPU\tPNOM");
+      infoInterface infOBJ = Manager.getListofPcs().get(pcn).getRef();
+      try {
+        String res = infOBJ.getProcessList();
+        Tracking.echo(res);
+      }catch (RemoteException e) {
+        Tracking.error(true, "Manager CLI error"+
+            ExceptionHandler.getMessage(e));
+      }
+    }else {
+      Tracking.echo("Pc("+pcn+") not connected");
+    }
   }
   private void __runCmdOnPcN(int pcn) {
     if ( checkIndexIsExist(pcn) ) {
