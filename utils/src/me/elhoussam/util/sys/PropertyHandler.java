@@ -11,35 +11,35 @@ public class PropertyHandler {
   public PropertyHandler(String pathOfConfig) {
     if(!pathOfConfig.trim().isEmpty())
       pathOfProperties = pathOfConfig;
-  } 
+  }
   public static String loadExternalConfig() {
-    
+
     String DynamicPath =  Paths.get(".").toAbsolutePath().normalize().toString()+
         File.separator +"config"+File.separator+ "config.properties" ;
     //Tracking.echo("Conf path "+DynamicPath);
-    File policyfile = new File(DynamicPath); 
+    File policyfile = new File(DynamicPath);
     if( !(policyfile.exists()) )
-        DynamicPath =  null ;
+      DynamicPath =  null ;
     return DynamicPath ;
-    
+
   }
-  public String getPropetry(String key) { 
+  public String getPropetry(String key) {
     try{
       // Load external config/config.properties :: beside the executable jar file
       String con = loadExternalConfig();
       InputStream input = null ;
       //Tracking.echo( (con==null )?"NULL":con);
       // if we don't found the file than will use the inside config
-      if( con == null ) { 
+      if( con == null ) {
         Tracking.info(true,"The External config file doesn't exist.. we will use the internal");
-        //con =  getClass().getClassLoader().getResource( pathOfProperties ).toString(); 
+        //con =  getClass().getClassLoader().getResource( pathOfProperties ).toString();
         //input = new FileInputStream(con);
-        
+
         input = getClass().getClassLoader().getResourceAsStream(pathOfProperties);
-        
+
       }else input = new FileInputStream(con);
       Tracking.info(false,"config path = "+con);
-      
+
       Properties prop = new Properties();
       // load a properties file
       prop.load(input);

@@ -21,8 +21,9 @@ public class Command {
     do {
       System.out.print(ps.directory().getAbsolutePath() + "> ");
       inputCmd = stringInput();
-      Command.run(inputCmd.split(" "));
+      String output = Command.run(inputCmd.split(" "));
 
+      System.out.println("Output : \n " + output.replace('\n', '#'));
     } while (!inputCmd.equalsIgnoreCase("quit"));
 
   }
@@ -75,7 +76,6 @@ public class Command {
     } catch (InterruptedException | IOException e) {
       entireOutput = "The Command does not exist";
     } finally {
-      System.out.println("Output : \n " + entireOutput);
       System.out.println("ok!");
       if (in != null)
         try {

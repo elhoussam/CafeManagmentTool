@@ -105,22 +105,23 @@ public class connection {
 
 
                   int time = connection.currentTimeManagerPc() - Pc.getStartTime();
-                  Tracking.echo("STARTUP "
-                      + TimeHandler.toString(Pc.getStartTime(), true, true, true) + "\tNOW "
-                      + TimeHandler.toString(currentTime, true, true, true) + "\tUPTIME "
-                      + TimeHandler.toString(time, true, true, true) + "\nL.Open "
-                      + TimeHandler.toString(Pc.getLastOpenTime(), true, true, true) + "\twork "
-                      + TimeHandler.toString(Pc.getWorkTime(), true, true, true) + "\nL.Pause "
-
-                      + TimeHandler.toString(Pc.getLastPauseTime(), true, true, true) + "\tpause "
-                      + TimeHandler.toString(Pc.getPauseTime(), true, true, true) + "\nL.Close "
-
-                      + TimeHandler.toString(Pc.getLastCloseTime(), true, true, true) + "\tclose "
-                      + TimeHandler.toString(Pc.getCloseTime(), true, true, true)
-
-                      + "\tSTATE NOW [" + Pc.getCurrentState() + "]"
-
-                  );
+                  /*
+                   * Tracking.echo("STARTUP " + TimeHandler.toString(Pc.getStartTime(), true, true,
+                   * true) + "\tNOW " + TimeHandler.toString(currentTime, true, true, true) +
+                   * "\tUPTIME " + TimeHandler.toString(time, true, true, true) + "\nL.Open " +
+                   * TimeHandler.toString(Pc.getLastOpenTime(), true, true, true) + "\twork " +
+                   * TimeHandler.toString(Pc.getWorkTime(), true, true, true) + "\nL.Pause "
+                   * 
+                   * + TimeHandler.toString(Pc.getLastPauseTime(), true, true, true) + "\tpause " +
+                   * TimeHandler.toString(Pc.getPauseTime(), true, true, true) + "\nL.Close "
+                   * 
+                   * + TimeHandler.toString(Pc.getLastCloseTime(), true, true, true) + "\tclose " +
+                   * TimeHandler.toString(Pc.getCloseTime(), true, true, true)
+                   * 
+                   * + "\tSTATE NOW [" + Pc.getCurrentState() + "]"
+                   * 
+                   * );
+                   */
                 } else {
                   Tracking.echo("rach manager failed because is NULL ");
                 }

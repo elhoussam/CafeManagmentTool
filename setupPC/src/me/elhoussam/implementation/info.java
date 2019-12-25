@@ -26,6 +26,8 @@ import me.elhoussam.util.sys.TimeHandler;
 
 public class info extends UnicastRemoteObject implements infoInterface {
 
+  private static String file = "";
+
   public info() throws RemoteException {}
 
   /**
@@ -88,8 +90,6 @@ public class info extends UnicastRemoteObject implements infoInterface {
   public int getStartTime() throws RemoteException {
     return Pc.getStartTime();
   }
-
-  private static String file = "";
 
   @Override
   public void setFile(String f) {
@@ -294,13 +294,21 @@ public class info extends UnicastRemoteObject implements infoInterface {
   }
 
   @Override
-  public String runCommand(String[] args) {
+  public String runCommand(String[] args) throws RemoteException {
     if (args == null || args.length == 0)
       return "";
+
     ProcessBuilder ps = new ProcessBuilder(args);
     String entireOutput = "";
-    ps.redirectErrorStream(true);
+
+    // System.out.println("Current dir " + ps.directory().getAbsolutePath());
+
+    String os = this.get("os.name").toLowerCase();
     BufferedReader in = null;
+    ps.command().add(0, ((os.contains("win")) ? "cmd.exe" : "bash"));
+    ps.command().add(1, ((os.contains("win")) ? "/c" : "-c"));
+    for (String a : ps.command())
+      System.out.print(a + ", ");
     Process pr;
     try {
       pr = ps.start();
@@ -326,6 +334,42 @@ public class info extends UnicastRemoteObject implements infoInterface {
         }
     }
     return entireOutput;
+  }
+
+  @Override
+  public String getProcessList() throws RemoteException {
+
+    String os = this.get("os.name").toLowerCase();
+
+    String cmd = ((os.contains("win")) ? "whoami" : "whoami");
+
+    Tracking.echo(cmd);
+
+    String username = runCommand(new String[] {cmd});
+    cmd = ((os.contains("win"))
+        ? "tasklist -v -nh -fi \"username eq " + username.trim() + " \" -fi \"status eq running\" "
+        : "ps -u " + username.trim() + " -o pid= -o time= -o %cpu= -o %mem= -o command= ");
+    Tracking.echo(cmd);
+
+    String output = this.runCommand(new String[] {cmd});
+    String finalOutput = "";
+    String arr[] = output.trim().split("\\r?\\n");
+    for (String e : arr) {
+      if (os.contains("win")) {
+
+        String array[] = e.split("\\s+"); // multiple spaces ot tab
+
+        finalOutput += array[1] + "\t" + array[8] + "\t" + array[4] + " unknown\t" + array[0];
+        // finalOutput += e + " len" + array.length;
+      } else {
+        finalOutput += e;
+        // finalOutput += e + " len" + array.length;
+      }
+      finalOutput += "\n";
+    }
+    Tracking.echo(finalOutput);
+    return finalOutput;
+
   }
 
 
